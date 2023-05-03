@@ -12,6 +12,7 @@ body{
     background-image:  linear-gradient(rgba(112, 112, 112, 0.05) 1px, transparent 1px), linear-gradient(to right, rgba(112, 112, 112, 0.05) 1px, transparent 1px);
     background-size: 40px 40px;
     font-family: effra;
+    margin: 0;
 }
 
 .login {
@@ -97,3 +98,9 @@ body{
 }
 
 
+.app {
+    display: flex;
+    height: 100vh;
+    padding: 30px;
+    box-sizing: border-box;
+}

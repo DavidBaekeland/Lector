@@ -11,17 +11,8 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body>
-        <div>
+        <div class="app">
             @include('layouts.navigation')
-
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header>
-                    <div>
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
 
             <!-- Page Content -->
             <main>
