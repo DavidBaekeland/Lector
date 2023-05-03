@@ -1,3 +1,96 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+:root {
+    --red: #E84E4E;
+    --redsdvsdv: #D2323F;
+    --grayCard: #E4E4E4;
+    --gray: #DDDDDD;
+}
+
+body{
+    background-image:  linear-gradient(rgba(112, 112, 112, 0.05) 1px, transparent 1px), linear-gradient(to right, rgba(112, 112, 112, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    font-family: effra;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    width: 5rem;
+    height: 5rem;
+}
+/** w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg */
+.card {
+    background-color: white;
+    width: 30rem;
+    margin: 16px;
+    padding: 40px;
+    border-radius: 10px;
+    border: 1px solid #E4E4E4;
+    box-shadow: 0px 3px 12px #AE949629;
+}
+
+.input-label {
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--red);
+}
+
+.text-input {
+    border: 1px solid var(--gray);
+    border-radius: 8px;
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 5px;
+    padding: 10px 10px 10px 40px;
+    font-family: effra;
+    font-size: 20px;
+    color: #CBC9C9;
+}
+
+.text-input:focus {
+    border-color: var(--red);
+    outline-width: 0;
+    color: var(--red);
+}
+
+.input-div {
+    margin-bottom: 30px;
+}
+
+.primary-button{
+    font-weight: bold;
+    font-size: 18px;
+    display: flex;
+    color: #fff;
+    padding: 3% 25%;
+    border: none;
+    background-color: #D2323F;
+    border-radius: 8px;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+
+.input-error {
+    color: var(--red);
+    list-style: none;
+    margin-top: 8px;
+    margin-left: 0;
+}
+
+.input-error li {
+    margin-left: 0;
+}
+
+.flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
