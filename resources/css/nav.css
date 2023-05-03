@@ -1,8 +1,8 @@
 nav {
     display: flex;
     flex-direction: column;
-    width: 4vw;
-    height: 18vh;
+    width: 35px;
+    height: 180px;
     background-color: #E84E4E;
     padding: 10px;
     border-radius: 12px;
@@ -28,4 +28,14 @@ nav a svg {
 
 .normal-link {
     fill: none;
+}
+
+
+@media only screen and (max-width: 600px) {
+    nav {
+        flex-direction: row;
+        width: 45vw;
+        height: 4vh;
+        margin: auto;
+    }
 }
