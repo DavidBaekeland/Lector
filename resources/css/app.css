@@ -1,9 +1,12 @@
+@import "nav.css";
+
 :root {
     --red: #E84E4E;
     --redsdvsdv: #D2323F;
     --grayCard: #E4E4E4;
     --gray: #DDDDDD;
 }
+
 
 body{
     background-image:  linear-gradient(rgba(112, 112, 112, 0.05) 1px, transparent 1px), linear-gradient(to right, rgba(112, 112, 112, 0.05) 1px, transparent 1px);
