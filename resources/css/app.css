@@ -57,7 +57,7 @@ body{
     color: #CBC9C9;
 }
 
-.text-input:focus {
+.text-input:focus, select:focus {
     border-color: var(--red);
     outline-width: 0;
     color: var(--red);
@@ -103,4 +103,32 @@ body{
     height: 100vh;
     padding: 30px;
     box-sizing: border-box;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+}
+
+.icon {
+    width: 30px;
+}
+
+.link {
+    color: var(--red);
+    display: flex;
+    justify-content: flex-end;
+}
+
+select {
+    border: 1px solid var(--gray);
+    border-radius: 8px;
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 5px;
+    padding: 10px 10px 10px 40px;
+    font-family: effra;
+    font-size: 20px;
+    color: #CBC9C9;
 }

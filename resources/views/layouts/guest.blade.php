@@ -20,9 +20,9 @@
                 </a>
             </div>
 
-            <div class="card">
+            <x-card>
                 {{ $slot }}
-            </div>
+            </x-card>
         </div>
     </body>
 </html>
