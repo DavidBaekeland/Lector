@@ -4,6 +4,8 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     {{ __("You're logged in!") }}
+
+                    {{\Illuminate\Support\Facades\Auth::user()->role->name}}
                 </div>
             </div>
         </div>
