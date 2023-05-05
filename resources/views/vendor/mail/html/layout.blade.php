@@ -11,47 +11,28 @@
 .inner-body {
 width: 100% !important;
 }
-
-.footer {
-width: 100% !important;
-}
-}
-
-@media only screen and (max-width: 500px) {
-.button {
-width: 100% !important;
-}
 }
 </style>
 </head>
 <body>
 
-<table class="wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation">
-<tr>
-<td align="center">
-<table class="content" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+<div class="wrapper">
+
+<div class="header">
 {{ $header ?? '' }}
 
-<!-- Email Body -->
-<tr>
-<td class="body" width="100%" cellpadding="0" cellspacing="0" style="border: hidden !important;">
-<table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0" role="presentation">
-<!-- Body content -->
-<tr>
-<td class="content-cell">
+</div>
+<div class="body">
+<div class="inner-body">
+
 {{ Illuminate\Mail\Markdown::parse($slot) }}
 
 {{ $subcopy ?? '' }}
-</td>
-</tr>
-</table>
-</td>
-</tr>
+
+</div>
 
 {{ $footer ?? '' }}
-</table>
-</td>
-</tr>
-</table>
+</div>
+</div>
 </body>
 </html>
