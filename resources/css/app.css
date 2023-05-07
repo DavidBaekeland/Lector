@@ -1,4 +1,6 @@
 @import "nav.css";
+@import "footer.css";
+
 
 :root {
     --red: #E84E4E;
@@ -7,6 +9,11 @@
     --gray: #DDDDDD;
 }
 
+.links {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 
 body{
     background-image:  linear-gradient(rgba(112, 112, 112, 0.05) 1px, transparent 1px), linear-gradient(to right, rgba(112, 112, 112, 0.05) 1px, transparent 1px);

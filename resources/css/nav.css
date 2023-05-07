@@ -12,14 +12,14 @@ nav {
     margin: auto 0;
 }
 
-nav a{
+.nav-link {
     width: 20px;
     height: 20px;
     margin: auto;
     color: #fff;
 }
 
-nav a svg {
+.nav-link svg {
     stroke-width: 2px;
 }
 

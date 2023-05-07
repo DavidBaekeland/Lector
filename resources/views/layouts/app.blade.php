@@ -12,12 +12,19 @@
     </head>
     <body>
         <div class="app">
-            @include('layouts.navigation')
+            <div class="links">
+                @include('layouts.navigation')
+
+                @include('layouts.footer')
+            </div>
 
             <!-- Page Content -->
             <main>
                 {{ $slot }}
             </main>
+
+
+
         </div>
     </body>
 </html>
