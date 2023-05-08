@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\DeleteUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Mail\NewUser;
+use App\Models\Course;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
@@ -17,39 +18,63 @@ class UserController extends Controller
 {
     public function __construct()
     {
+        $this->middleware('auth');
         $this->authorizeResource(User::class, 'user');
     }
 
 
     public function index()
     {
-        $users = User::all();
+        $users = User::orderBy('id', 'desc')->get();
+        $roles = Role::all();
 
-        return view("users.index", compact('users'));
+        $users->load([
+            "role",
+            "course"
+        ]);
+
+        $courses = Course::all();
+
+        $show = false;
+
+        return view("users.index", compact('users', 'show', 'courses', 'roles'));
     }
 
     public function create()
     {
-        //
+        $users = User::orderBy('id', 'desc')->get();
+        $courses = Course::all();
+        $roles = Role::all();
+
+        $users->load([
+            "role",
+            "course"
+        ]);
+
+        $show = true;
+
+
+        return view("users.index", compact('users', 'show', 'courses', 'roles'));
     }
 
 
     public function store(StoreUserRequest $request)
     {
-        $role_id = Role::where("name", $request->role)->first()->id;
-
         $user = User::create([
-            'name' => $request->name,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
             'email' => $request->email,
             'password' => Hash::make(Str::random(4)),
-            'role_id' => $role_id
+            'role_id' => $request->role,
+            'course_id' => $request->course,
+            'year' => $request->year,
         ]);
 
         event(new Registered($user));
 
         Mail::to($user)->send(new NewUser($user));
 
-        return redirect()->back();
+        return redirect()->route("users.index");
     }
 
 

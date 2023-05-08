@@ -13,13 +13,16 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    const YEARS = ["1Ba", "2Ba", "3Ba", "1Ma", "2Ma", "1HBO5", "2HBO5", "1BaNaBa", "2BaNaBa", "1MaNaMa", "2MaNaMa"];
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
         'password',
         'role_id'
@@ -44,9 +47,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /** Attibutes */
+    public function getNameAttribute()
+    {
+        return "$this->first_name $this->last_name";
+    }
+
     /** Relationships */
     public function role(): BelongsTo
     {
         return $this->belongsTo(Role::class);
+    }
+
+    public function course(): BelongsTo
+    {
+        return $this->belongsTo(Course::class);
     }
 }

@@ -10,6 +10,9 @@ class Role extends Model
 {
     use HasFactory;
 
+    const ROLES = ["admin", "docent", "student"];
+
+
     /** Attributes */
 
 
