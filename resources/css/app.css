@@ -230,6 +230,6 @@ select {
     margin-bottom: 20px;
 }
 
-.error li {
+.error ul {
     list-style: none;
 }
