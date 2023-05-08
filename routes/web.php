@@ -3,6 +3,9 @@
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Mail\NewUser;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,10 +20,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -34,24 +33,25 @@ Route::get('/calender', function () {
 })->middleware(['auth', 'verified'])->name('calender');
 
 
-Route::get('/users', [UserController::class, "index"])
-    ->middleware(['auth', 'verified'])
-    ->name('user.index');
+Route::resources([
+    'users' => UserController::class,
+]);
 
-Route::post('/users', [UserController::class, "store"])
-    ->middleware(['auth', 'verified'])
-    ->name('user.store');
-
-Route::post('/users', [UserController::class, "destroyMultipleUsers"])
+Route::post('/users/multiple', [UserController::class, "destroyMultipleUsers"])
     ->middleware(['auth', 'verified'])
     ->can('manage_users')
-    ->name('users.delete');
+    ->name('users.multiple.delete');
 
 Route::get('/activate-account/{token}/{email}', [PasswordController::class, 'create'])->name('password.create');
 
 Route::post('/activate-account', [PasswordController::class, 'store'])
     ->middleware('guest')
     ->name('user.activate');
+
+Route::get('/mail', function () {
+    Mail::to(Auth::user())->send(new NewUser(Auth::user()));
+    return new NewUser(Auth::user());
+})->middleware(['auth', 'verified'])->name('mail');
 
 
 Route::middleware('auth')->group(function () {
