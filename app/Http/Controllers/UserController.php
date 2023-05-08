@@ -2,22 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DeleteUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Mail\NewUser;
 use App\Models\Role;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
-use Dflydev\DotAccessData\Data;
-use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
-use Illuminate\Testing\Fluent\Concerns\Has;
-use Laravel\Sanctum\PersonalAccessToken;
 
 class UserController extends Controller
 {
@@ -80,5 +74,16 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function destroyMultipleUsers(DeleteUserRequest $request)
+    {
+        foreach ($request->users as $user)
+        {
+            $user2 = User::find($user);
+            $user2->delete();
+        }
+
+        return redirect()->back();
     }
 }

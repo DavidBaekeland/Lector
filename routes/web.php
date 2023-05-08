@@ -42,6 +42,11 @@ Route::post('/users', [UserController::class, "store"])
     ->middleware(['auth', 'verified'])
     ->name('user.store');
 
+Route::post('/users', [UserController::class, "destroyMultipleUsers"])
+    ->middleware(['auth', 'verified'])
+    ->can('manage_users')
+    ->name('users.delete');
+
 Route::get('/activate-account/{token}/{email}', [PasswordController::class, 'create'])->name('password.create');
 
 Route::post('/activate-account', [PasswordController::class, 'store'])
