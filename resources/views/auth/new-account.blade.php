@@ -1,6 +1,6 @@
 <x-guest-layout>
     <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+    <x-auth-session-status :status="session('status')" />
     <x-input-error :messages="$errors->get('email')" />
 
     <form method="POST" action="{{ route('user.activate') }}">

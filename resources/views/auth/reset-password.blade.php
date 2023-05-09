@@ -2,38 +2,46 @@
     <form method="POST" action="{{ route('password.store') }}">
         @csrf
 
-        <!-- Password Reset Token -->
         <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+        <input type="hidden" name="email" id="email" value="{{ $request->email }}">
+
+        <x-input-error :messages="$errors->get('email')" />
 
         <!-- Password -->
-        <div class="mt-4">
+        <div class="input-div">
             <x-input-label for="password" :value="__('Password')" />
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            <x-text-input id="password" type="password" name="password" required autofocus autocomplete="new-password" />
+            <x-input-error :messages="$errors->get('password')" />
         </div>
 
         <!-- Confirm Password -->
-        <div class="mt-4">
+        <div class="input-div">
             <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
 
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
+            <x-text-input id="password_confirmation"
                                 type="password"
                                 name="password_confirmation" required autocomplete="new-password" />
 
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+            <x-input-error :messages="$errors->get('password_confirmation')" />
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Reset Password') }}
-            </x-primary-button>
-        </div>
+        <x-primary-button>
+            {{ __('RESET WACHTWOORD') }}
+        </x-primary-button>
     </form>
+
+    <style>
+        .text-input[type="password"] {
+            background: url({{ asset('storage/icons/password.svg') }}) no-repeat;
+            background-size: 20px;
+            background-position: 10px center;
+        }
+
+        .text-input[type="password"]:focus {
+            background: url({{ asset('storage/icons/selected/password.svg') }}) no-repeat;
+            background-size: 20px;
+            background-position: 10px center;
+        }
+    </style>
 </x-guest-layout>
