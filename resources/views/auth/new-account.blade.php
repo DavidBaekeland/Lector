@@ -11,7 +11,7 @@
 
         <!-- Password -->
         <div class="input-div">
-            <x-input-label for="password" :value="__('Password')" />
+            <x-input-label for="password" :value="__('Wachtwoord')" />
 
             <x-text-input id="password"
                             type="password"
@@ -22,8 +22,8 @@
         </div>
 
         <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+        <div>
+            <x-input-label for="password_confirmation" :value="__('Bevestig Wachtwoord')" />
 
             <x-text-input id="password_confirmation"
                           type="password"
@@ -33,7 +33,7 @@
         </div>
 
         <x-primary-button>
-            {{ __('ACTIVATE ACCOUNT') }}
+            {{ __('ACTIVEER ACCOUNT') }}
         </x-primary-button>
     </form>
 

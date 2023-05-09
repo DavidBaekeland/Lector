@@ -13,8 +13,8 @@
         </div>
 
         <!-- Password -->
-        <div class="input-div">
-            <x-input-label for="password" :value="__('Password')" />
+        <div>
+            <x-input-label for="password" :value="__('Wachtwoord')" />
 
             <x-text-input id="password"
                             type="password"
@@ -38,7 +38,7 @@
             <!-- Reset password -->
             @if (Route::has('password.request'))
                 <a class="password-reset" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
+                    {{ __('Wachtwoord vergeten?') }}
                 </a>
             @endif
 

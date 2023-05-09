@@ -17,7 +17,7 @@
 
         <!-- Confirm Password -->
         <div class="input-div">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+            <x-input-label for="password_confirmation" :value="__('Bevestig Wachtwoord')" />
 
             <x-text-input id="password_confirmation"
                                 type="password"
