@@ -45,7 +45,7 @@ class NewUser extends Mailable
         return new Content(
             markdown: 'emails.newUser',
             with: [
-                'userName' => $this->user->name,
+                'userFirstName' => $this->user->first_name,
                 'url' => url("activate-account/$this->token/$this->email"),
             ]
         );
