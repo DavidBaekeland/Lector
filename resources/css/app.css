@@ -206,13 +206,6 @@ select {
     margin-left: 0;
 }
 
-.flex {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-
 .app {
     display: flex;
     height: 100vh;
@@ -269,6 +262,76 @@ table {
     margin-bottom: 20px;
     color: #fff;
 }
+
+/**
+ https://www.w3schools.com/howto/howto_css_custom_checkbox.asp
+ https://www.w3schools.com/html/html_entities.asp
+ https://www.w3schools.com/CSSref/css_entities.php
+ */
+.remember-password-div  {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+    color: var(--grayText);
+}
+
+.container-checkbox {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding-left: 25px;
+}
+
+.checkbox {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 16px;
+    width: 16px;
+    border: 1px solid var(--gray);
+    border-radius: 4px;
+}
+
+.checkbox:checked ~ .checkmark {
+    background-color: var(--red);
+    border: 1px solid var(--red);
+}
+
+.checkbox:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkmark:after {
+    left: 4px;
+    content: '\2713';
+    color: white;
+    font-size: 12px;
+}
+
+.password-reset {
+    color: var(--grayText);
+    text-decoration-color: var(--grayText);
+}
+
 .errorList ul {
     list-style: none;
 }
