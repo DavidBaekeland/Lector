@@ -29,7 +29,7 @@
         <div class="remember-password-div">
             <!-- Remember Me -->
             <div class="remember-div">
-                <x-checkbox id="remember_me" name="remember"/>
+                <x-checkbox id="remember_me" name="remember" valueLabel="Onthoud mij"/>
             </div>
 
             <!-- Reset password -->
