@@ -42,19 +42,7 @@ class UserController extends Controller
 
     public function create()
     {
-        $users = User::orderBy('id', 'desc')->get();
-        $courses = Course::all();
-        $roles = Role::all();
-
-        $users->load([
-            "role",
-            "course"
-        ]);
-
-        $show = true;
-
-
-        return view("users.index", compact('users', 'show', 'courses', 'roles'));
+        //
     }
 
 
@@ -64,7 +52,7 @@ class UserController extends Controller
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'email' => $request->email,
-            'password' => Hash::make(Str::random(4)),
+            'password' => Hash::make(Str::random(10)),
             'role_id' => $request->role,
             'course_id' => $request->course,
             'year' => $request->year,
@@ -106,6 +94,7 @@ class UserController extends Controller
         foreach ($request->users as $user)
         {
             $user2 = User::find($user);
+
             $user2->delete();
         }
 
