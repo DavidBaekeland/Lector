@@ -57,6 +57,8 @@ class PasswordController extends Controller
 
         $user->save();
 
+        $user->tokens()->where('name', 'activate-account')->delete();
+
         event(new PasswordReset($user));
 
         Auth::login($user);
