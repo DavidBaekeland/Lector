@@ -91,7 +91,7 @@
                 console.log()
                 let htmlString = `
                 <tr>
-                    <td><input type="checkbox" name="users[]" class="checkbox" value="${ user.id }"></td>
+                    <td><input type="checkbox" name="users[]" value="${ user.id }"></td>
                     <td>${user.first_name}</td>
                     <td>${user.last_name}</td>
                     <td>${user.email}</td>
