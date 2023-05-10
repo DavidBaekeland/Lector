@@ -52,11 +52,6 @@ Route::post('/activate-account', [PasswordController::class, 'store'])
     ->middleware('guest')
     ->name('user.activate');
 
-Route::get('/mail', function () {
-    Mail::to(Auth::user())->send(new NewUser(Auth::user()));
-    return new NewUser(Auth::user());
-})->middleware(['auth', 'verified'])->name('mail');
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
