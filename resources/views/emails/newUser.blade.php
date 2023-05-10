@@ -5,9 +5,9 @@ Welkom bij {{ config('app.name') }}, het online leerplatform van Erasmushogescho
 
 Om uw account te activeren moet u via de link hieronder een password aanmaken
 
-<a href="{{ $url }}" class="primary-button" target="_blank" rel="noopener">
+<x-mail::button :url="$url">
     Wachtwoord aanmaken
-</a>
+</x-mail::button>
 
 <span>
 Met vriendelijke groetjes,<br>
