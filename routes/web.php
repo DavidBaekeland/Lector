@@ -21,16 +21,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+Route::get('/courses', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('courses');
 
 Route::get('/chat', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('chat');
+})->middleware(['auth'])->name('chat');
 
 
 Route::get('/calender', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('calender');
+})->middleware(['auth'])->name('calender');
 
 
 Route::resources([
@@ -38,7 +42,7 @@ Route::resources([
 ]);
 
 Route::post('/users/multiple', [UserController::class, "destroyMultipleUsers"])
-    ->middleware(['auth', 'verified'])
+    ->middleware(['auth'])
     ->can('manage_users')
     ->name('users.multiple.delete');
 
