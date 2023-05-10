@@ -171,6 +171,13 @@ img {
 
 /* Buttons */
 
+.primary-button-div{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+
 .primary-button{
     text-decoration: none;
     color: #fff;
@@ -179,8 +186,7 @@ img {
     border: none;
     background-color: #D2323F;
     border-radius: 8px;
-    margin: 4px auto 20px;
-    justify-content: center;
+    margin: 4px 0 20px;
 }
 
 /* Panels */
