@@ -368,3 +368,84 @@ table {
 .none {
     display: none;
 }
+
+.small {
+    width: 20%;
+    margin-right: 30px;
+}
+
+#chat-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    padding-left: 0;
+}
+
+#chat-list::-webkit-scrollbar {
+    display: none;
+}
+
+
+.message {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.time {
+    margin-top: 5px;
+}
+
+.time, .person {
+    font-size: 12px;
+    padding-left: 10px;
+
+}
+
+.person {
+    margin-bottom: 3px;
+}
+
+.message-text {
+    font-family: Roboto;
+    display: inline;
+    padding: 10px 16px;
+    border-radius: 10px;
+    box-shadow: 0px 3px 7px #76767629;
+}
+
+.personal-message .message-text{
+    color: #fff;
+    background-color: #E84E4E;
+    border: 1px solid #E84E4E;
+}
+
+
+.personal-message{
+    margin-left: auto;
+}
+
+.normal-message{
+    margin-right: auto;
+}
+
+.normal-message .message-text{
+    border: 1px solid var(--gray);
+}
+
+#chat-form, #messages-input {
+    display: flex;
+    flex-direction: column;
+}
+
+#submit-chat {
+    margin-top: 10px;
+}
+
+#messageInput {
+    padding-left: 10px;
+    color: black;
+}
