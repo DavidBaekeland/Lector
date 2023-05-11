@@ -47,6 +47,9 @@ Echo.channel(`messages`)
             `;
 
         chatList.insertAdjacentHTML("beforeend", htmlString)
+
+        chatList.scrollTop = chatList.scrollHeight - chatList.clientHeight;
+
     })
 
 chatForm.addEventListener("submit", function (e) {
@@ -77,7 +80,6 @@ chatForm.addEventListener("submit", function (e) {
             .then(response => response.json())
             .then(result => chatForm.reset())
             .catch(error => console.log('error', error));
-
     }
 
 
