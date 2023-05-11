@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\PasswordController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Mail\NewUser;
@@ -27,9 +28,9 @@ Route::get('/courses', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('courses');
 
-Route::get('/chat', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('chat');
+Route::get('/chat', [ChatController::class, 'index'])->name('chat');
+
+Route::post('/chat', [ChatController::class, 'store'])->name('chat');
 
 
 Route::get('/calender', function () {
