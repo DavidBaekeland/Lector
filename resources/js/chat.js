@@ -4,35 +4,59 @@ let chatList = document.getElementById('chat-list');
 
 chatList.scrollTop = chatList.scrollHeight - chatList.clientHeight;
 
-Echo.channel(`messages`)
-    .listen('Message', (e) => {
-        let createdAtTime = new Date(e.message.created_at);
 
-        let cssClassMessage;
+ Echo.private(`chat.${chat}`)
+     .listen('Chat', (e) => {
+         console.log(e.message)
+         let createdAtTime = new Date(e.message.created_at);
 
-        if (e.message.user_id == user) {
-            cssClassMessage = "personal-message"
-        } else {
-            cssClassMessage = "normal-message"
-        }
+         let cssClassMessage;
 
-        let htmlString = `
-                <li class="${cssClassMessage} message">
-                    <span class="message-text">
-                        ${e.message.message}
-                    </span>
+         if (e.message.user_id === userId) {
+             cssClassMessage = "personal-message"
+         } else {
+             cssClassMessage = "normal-message"
+         }
 
-                    <span class="time">
-                       ${createdAtTime.getHours()}:${createdAtTime.getMinutes()}
-                    </span>
-                </li>
-            `;
+         let htmlString = `
+                 <li class="${cssClassMessage} message">
+                     <span class="message-text">
+                         ${e.message.message}
+                     </span>
 
-        chatList.insertAdjacentHTML("beforeend", htmlString)
+                     <span class="time">
+                        ${createdAtTime.getHours()}:${createdAtTime.getMinutes()}
+                     </span>
+                 </li>
+             `;
 
-        chatList.scrollTop = chatList.scrollHeight - chatList.clientHeight;
+         chatList.insertAdjacentHTML("beforeend", htmlString)
 
-    })
+         chatList.scrollTop = chatList.scrollHeight - chatList.clientHeight;
+     })
+     .listenForWhisper('typing', (e) => {
+         if (e.name != "") {
+             document.getElementById('typing').innerHTML = `${e.name} is aan het typen ...`
+         } else {
+             document.getElementById('typing').innerHTML = ""
+         }
+         chatList.scrollTop = chatList.scrollHeight - chatList.clientHeight;
+     });
+
+document.getElementById('messageInput').addEventListener('keyup', function (e) {
+    if (document.getElementById('messageInput').value != "")  {
+        Echo.private(`chat.${chat}`)
+            .whisper('typing', {
+                name: userName
+            });
+    } else {
+        Echo.private(`chat.${chat}`)
+            .whisper('typing', {
+                name: ""
+            });
+    }
+
+})
 
 chatForm.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -60,7 +84,13 @@ chatForm.addEventListener("submit", function (e) {
 
         fetch(urlChat, requestOptions)
             .then(response => response.json())
-            .then(result => chatForm.reset())
+            .then(result => {
+                chatForm.reset()
+                Echo.private(`chat.${chat}`)
+                    .whisper('typing', {
+                        name: ""
+                    });
+            })
             .catch(error => console.log('error', error));
     }
 })

@@ -71,6 +71,10 @@ class User extends Authenticatable
         return "$this->first_name $this->last_name";
     }
 
+    public function hasChat($chat) {
+        return $this->chats()->where('chat_id', $chat)->exists();
+    }
+
     /** Relationships */
     public function role(): BelongsTo
     {

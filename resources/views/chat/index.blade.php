@@ -19,6 +19,7 @@
 
             <x-input-hidden id="chat_id" value="{{auth()->user()->chats->first()->id}}" />
 
+            <p id="typing"></p>
             <x-text-input type="text" name="messageInput" id="messageInput" autocomplete="off" />
 
             <button type="submit" id="submit-chat">Submit</button>

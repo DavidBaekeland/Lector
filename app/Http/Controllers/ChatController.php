@@ -17,7 +17,7 @@ class ChatController extends Controller
 
     public function index()
     {
-        JavaScript::put(["urlChat" => url('chat'), "user" => auth()->user()->id]);
+        JavaScript::put(["urlChat" => url('chat'), "userId" => auth()->user()->id, "userName" => auth()->user()->first_name, 'chat' => 1]);
 
         return view('chat.index');
     }
@@ -35,12 +35,9 @@ class ChatController extends Controller
             "user_id" => auth()->user()->id
         ]);
 
-        event(new \App\Events\Message($message));
+        event(new \App\Events\Chat($message));
 
         return response()->json("succes");
-
-
-
     }
 
     public function show(string $id)

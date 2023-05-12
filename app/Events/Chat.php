@@ -10,7 +10,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class Message implements ShouldBroadcast
+class Chat implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -24,6 +24,7 @@ class Message implements ShouldBroadcast
         $this->message = $message;
     }
 
+
     /**
      * Get the channels the event should broadcast on.
      *
@@ -32,7 +33,8 @@ class Message implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new Channel('messages'),
+            new PrivateChannel("chat.{$this->message->chat_id}"),
         ];
     }
+
 }
