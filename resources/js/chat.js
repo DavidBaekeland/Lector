@@ -7,8 +7,15 @@ chatList.scrollTop = chatList.scrollHeight - chatList.clientHeight;
 
  Echo.private(`chat.${chat}`)
      .listen('Chat', (e) => {
-         console.log(e.message)
          let createdAtTime = new Date(e.message.created_at);
+
+         // createdAtTime.getMinutes kunnen kleiner zijn als 10. Dat begint niet met 0
+         let minutes = createdAtTime.getMinutes();
+
+         if (createdAtTime.getMinutes() < 10) {
+             minutes = `0${createdAtTime.getMinutes()}`
+         }
+
 
          let cssClassMessage;
 
@@ -18,6 +25,7 @@ chatList.scrollTop = chatList.scrollHeight - chatList.clientHeight;
              cssClassMessage = "normal-message"
          }
 
+
          let htmlString = `
                  <li class="${cssClassMessage} message">
                      <span class="message-text">
@@ -25,7 +33,7 @@ chatList.scrollTop = chatList.scrollHeight - chatList.clientHeight;
                      </span>
 
                      <span class="time">
-                        ${createdAtTime.getHours()}:${createdAtTime.getMinutes()}
+                        ${createdAtTime.getHours()}:${minutes}
                      </span>
                  </li>
              `;
@@ -55,7 +63,6 @@ document.getElementById('messageInput').addEventListener('keyup', function (e) {
                 name: ""
             });
     }
-
 })
 
 chatForm.addEventListener("submit", function (e) {
