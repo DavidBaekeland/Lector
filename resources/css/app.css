@@ -472,3 +472,9 @@ table {
 #typing {
     margin: 0;
 }
+
+.livewire {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
