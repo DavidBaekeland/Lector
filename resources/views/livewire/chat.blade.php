@@ -5,7 +5,15 @@
                 "chatItem",
                 "chatItemSelected" => $chatLivewire->id == $chat->id
             ])>
-                {{$chat->name}}
+                @if($chat->name)
+                    {{$chat->name}}
+                @else
+                    @foreach($chat->users as $chatUser)
+                        @if($chatUser->id != auth()->user()->id)
+                            {{$chatUser->name}}
+                        @endif
+                    @endforeach
+                @endif
             </a>
         @endforeach
 
