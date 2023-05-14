@@ -28,7 +28,7 @@
     </x-card-large>
 
 
-    <x-card-large>
+    <x-card-large class="space-between">
         <ul id="chat-list">
             @if($chatLivewire)
                 @foreach($chatLivewire->messages as $message)

@@ -10,7 +10,7 @@
                 </a>
             </div>
             @foreach(auth()->user()->chats as $chat)
-                <a>
+                <a href="{{ route('chat') }}" class="chatItem">
                     @if($chat->name)
                         {{$chat->name}}
                     @else
