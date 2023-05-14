@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+use App\Models\Chat;
 use App\Models\User;
+use App\Policies\ChatPolicy;
 use App\Policies\UserPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -16,7 +18,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        User::class => UserPolicy::class
+        User::class => UserPolicy::class,
+        Chat::class => ChatPolicy::class,
     ];
 
     /**
@@ -24,6 +27,12 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Gate::define('manage_users', function(User $user) {
+            return $user->role->name == "admin";
+        });
 
+        Gate::define('store_message', function(User $user, Chat $chat) {
+            return $user->hasChat($chat->id);
+        });
     }
 }

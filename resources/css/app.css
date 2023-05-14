@@ -28,6 +28,7 @@ body{
     background-size: 40px 40px;
     font-family: effra;
     margin: 0;
+    position: relative;
 }
 
 .login {
@@ -42,7 +43,7 @@ body{
     width: 5rem;
     height: 5rem;
 }
-/** w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg */
+
 .card {
     background-color: white;
     width: 30rem;
@@ -66,6 +67,45 @@ body{
     box-shadow: 0px 3px 12px #AE949629;
     display: flex;
     flex-direction: column;
+}
+
+.alert {
+    position: absolute;
+    background-color: white;
+    width: 20rem;
+    padding: 20px 30px;
+    border-radius: 10px;
+    border: 1px solid #E4E4E4;
+    box-shadow: var(--boxShadowCard);
+    right: 10px;
+    border-left: 5px solid rgba(0, 122, 255, 0.94);
+}
+
+.alert div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.alert div h1{
+    margin-bottom: 0;
+    font-size: 24px;
+}
+
+.alert div svg{
+    width: 20px;
+}
+
+
+.space-between {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+form.space-between {
+    height: 100%;
 }
 
 th {
@@ -125,7 +165,7 @@ th {
     color: var(--red);
 }
 
-.text-input, select {
+.text-input, .input-div select {
     border: 1px solid var(--gray);
     border-radius: 8px;
     display: flex;
@@ -139,7 +179,7 @@ th {
     color: #050505;
 }
 
-select {
+.input-div select {
     color: #CBC9C9;
     -webkit-appearance: none;
     appearance: none;
@@ -367,4 +407,203 @@ table {
 
 .none {
     display: none;
+}
+
+.small {
+    width: 20%;
+    margin-right: 30px;
+}
+
+#chat-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    padding-left: 0;
+}
+
+#chat-list::-webkit-scrollbar {
+    display: none;
+}
+
+
+.message {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.time {
+    margin-top: 5px;
+}
+
+.time, .person {
+    font-size: 12px;
+    padding-left: 10px;
+
+}
+
+.person {
+    margin-bottom: 3px;
+}
+
+.message-text {
+    font-family: Roboto;
+    display: inline;
+    padding: 10px 16px;
+    border-radius: 10px;
+    box-shadow: 0px 3px 7px #76767629;
+}
+
+.personal-message .message-text{
+    color: #fff;
+    background-color: #E84E4E;
+    border: 1px solid #E84E4E;
+}
+
+
+.personal-message{
+    margin-left: auto;
+}
+
+.normal-message{
+    margin-right: auto;
+}
+
+.normal-message .message-text{
+    border: 1px solid var(--gray);
+}
+
+#chat-form, #messages-input {
+    display: flex;
+    flex-direction: column;
+}
+
+#submit-chat {
+    width: 10%;
+}
+
+#chat-input-div {
+    display: flex;
+    align-content: center;
+
+}
+.inputNoIcon {
+    padding-left: 5px;
+    color: black;
+}
+
+#messageInput {
+
+    width: 90%;
+}
+
+#submit-chat{
+    margin: auto;
+    background: none;
+    border: none;
+}
+
+#submit-chat svg{
+    stroke: var(--gray);
+    height: 40px;
+    width: 40px;
+}
+
+#typing {
+    margin: 0;
+}
+
+.livewire {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.chatItem {
+    padding: 8px 5px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #000;
+}
+
+.chatItemSelected {
+    background-color: var(--red);
+    color: #fff;
+}
+
+#chatCreate {
+    display: flex;
+    flex-direction: row;
+    color: var(--red);
+    font-family: Roboto;
+    font-weight: bold;
+    font-size: 20px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+
+#chatCreate a {
+    display: flex;
+}
+
+#chatCreate a svg {
+    stroke: var(--red);
+    stroke-width: 5px;
+    width: 20px;
+    height: 20px;
+}
+
+#showUsersDiv {
+    display: flex;
+    flex-direction: column;
+}
+
+#showUsersDiv a{
+    margin: 10px 0;
+    padding: 4px;
+    border-radius: 10px;
+    color: #171717;
+}
+
+#showUsersDiv a:hover{
+    background-color: rgb(249, 249, 249);
+}
+
+.selectedUsers {
+    border: 1px solid var(--gray);
+    border-radius: 8px;
+    display: flex;
+    width: 100%;
+    height: 43px;
+    margin-top: 5px;
+    font-size: 18px;
+    padding: 5px;
+}
+
+.selectedUsers input{
+    border: none;
+    height: 100%;
+    font-family: Roboto;
+
+}
+
+.selectedUsers input:focus{
+    outline: none;
+}
+
+
+.selectedUsers span{
+    margin: 10px;
+    font-family: Roboto;
+}
+
+.selectedUsers span a{
+    margin: 0 2px;
+    padding: 4px 8px;
+    font-family: Roboto;
 }

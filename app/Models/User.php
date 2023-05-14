@@ -6,6 +6,8 @@ namespace App\Models;
 use App\Notifications\ResetPasswordNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -58,7 +60,7 @@ class User extends Authenticatable
      */
     public function sendPasswordResetNotification($token): void
     {
-        $url = url('/reset-password?token='.$token);
+        $url = url('/reset-password/'.$token.'/'.$this->email);
 
         $this->notify(new ResetPasswordNotification($url, $this->first_name));
     }
@@ -67,6 +69,15 @@ class User extends Authenticatable
     public function getNameAttribute()
     {
         return "$this->first_name $this->last_name";
+    }
+
+    public function hasChat($chat) {
+        return $this->chats()->where('chat_id', $chat)->exists();
+    }
+
+    public function latestChat()
+    {
+        return $this->belongsToMany(Chat::class)->latest()->first();
     }
 
     /** Relationships */
@@ -78,5 +89,10 @@ class User extends Authenticatable
     public function course(): BelongsTo
     {
         return $this->belongsTo(Course::class);
+    }
+
+    public function chats(): BelongsToMany
+    {
+        return $this->belongsToMany(Chat::class);
     }
 }

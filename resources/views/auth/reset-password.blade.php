@@ -4,7 +4,7 @@
 
         <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
-        <input type="hidden" name="email" id="email" value="{{ $request->email }}">
+        <input type="hidden" name="email" id="email" value="{{ $request->route('email') }}">
 
         <x-input-error :messages="$errors->get('email')" />
 

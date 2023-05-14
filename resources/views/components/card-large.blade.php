@@ -1,3 +1,3 @@
-<div class="card-large">
+<div {{$attributes->merge(['class' => "card-large" ])}} >
     {{$slot}}
 </div>

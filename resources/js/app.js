@@ -10,8 +10,8 @@ let userModalLink = document.getElementById('register-modal-link');
 
 let userModal = document.getElementById('register-modal');
 
-userModalLink.addEventListener('click', (e) => {
-    userModal.classList.remove('none')
-});
-
-
+if (userModal) {
+    userModalLink.addEventListener('click', (e) => {
+        userModal.classList.remove('none')
+    });
+}
