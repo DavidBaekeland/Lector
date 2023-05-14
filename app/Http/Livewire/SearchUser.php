@@ -20,6 +20,7 @@ class SearchUser extends Component
     {
         $this->selectedUsers[] = $user;
         $this->user = "";
+        $this->choiceUsers = "";
     }
 
     public function updatedUser()
@@ -29,7 +30,7 @@ class SearchUser extends Component
             $this->choiceUsers = null;
         } else
         {
-            $this->choiceUsers = User::where("first_name", "like", $this->user.'%')->get();
+            $this->choiceUsers = User::where("first_name", "like", $this->user.'%')->where("id", "!=", auth()->user()->id)->get();
         }
     }
 
