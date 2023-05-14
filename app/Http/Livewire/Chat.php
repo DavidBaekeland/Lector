@@ -10,8 +10,12 @@ use Livewire\Component;
 class Chat extends Component
 {
     public \App\Models\Chat $chatLivewire;
-    public $messageLivewire;
 
+    public function mount()
+    {
+        $this->chatLivewire = auth()->user()->latestChat();
+        JavaScript::put(["urlChat" => url('chat'), "userId" => auth()->user()->id, "userName" => auth()->user()->first_name, 'chatId' => $this->chatLivewire->id]);
+    }
 
     public function notifyMessage()
     {
@@ -21,9 +25,11 @@ class Chat extends Component
 
     public function chat(\App\Models\Chat $chat)
     {
-        JavaScript::put(["urlChat" => url('chat'), "userId" => auth()->user()->id, "userName" => auth()->user()->first_name, 'chat' => $chat->id]);
+        JavaScript::put(["urlChat" => url('chat'), "userId" => auth()->user()->id, "userName" => auth()->user()->first_name, 'chatId' => $chat->id]);
 
         $this->chatLivewire = $chat;
+        $this->dispatchBrowserEvent('newMessage');
+
     }
 
     public function getListeners()

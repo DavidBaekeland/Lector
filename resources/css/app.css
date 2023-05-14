@@ -478,3 +478,13 @@ table {
     flex-direction: row;
     width: 100%;
 }
+
+.chatItem {
+    padding: 8px 5px;
+    border-radius: 4px;
+}
+
+.chatItemSelected {
+    background-color: var(--red);
+    color: #fff;
+}

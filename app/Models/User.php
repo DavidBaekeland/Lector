@@ -75,6 +75,11 @@ class User extends Authenticatable
         return $this->chats()->where('chat_id', $chat)->exists();
     }
 
+    public function latestChat()
+    {
+        return $this->belongsToMany(Chat::class)->latest()->first();
+    }
+
     /** Relationships */
     public function role(): BelongsTo
     {

@@ -8,6 +8,7 @@ export default defineConfig({
                 'resources/css/app.css',
                 'resources/css/nav.css',
                 'resources/js/app.js',
+                'resources/js/chat.js',
             ],
             refresh: true,
         }),
