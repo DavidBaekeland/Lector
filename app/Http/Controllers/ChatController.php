@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Livewire\Chat;
 use App\Models\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Laracasts\Utilities\JavaScript\JavaScriptFacade as JavaScript;
 
 
@@ -28,9 +30,15 @@ class ChatController extends Controller
 
     public function store(Request $request)
     {
+        $chat = \App\Models\Chat::find($request->chat_id);
+
+        if (! Gate::allows('store_message', $chat)) {
+            return response()->json("Your are not allowed to send a message in this chat.", 403);
+        }
+
         $message = Message::create([
             "message" => $request->message,
-            "chat_id" => 1,
+            "chat_id" => $request->chat_id,
             "user_id" => auth()->user()->id
         ]);
 
