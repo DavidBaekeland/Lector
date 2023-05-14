@@ -27,7 +27,12 @@ Route::get('/courses', function () {
 
 Route::get('/chat', [ChatController::class, 'index'])->name('chat');
 
-Route::post('/chat', [ChatController::class, 'store'])->name('chat');
+Route::get('/chat/create', [ChatController::class, 'create'])->name('chat.create');
+
+Route::post('/chat', [ChatController::class, 'store'])->name('message.store');
+
+
+
 
 
 Route::get('/calender', function () {

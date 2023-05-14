@@ -25,7 +25,7 @@ class ChatController extends Controller
 
     public function create()
     {
-        //
+        return view('chat.create');
     }
 
     public function store(Request $request)

@@ -13,6 +13,9 @@ class Chat extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $fillable = [
+        'name',
+    ];
 
     /** Relationships */
     public function users(): BelongsToMany

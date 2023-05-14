@@ -450,10 +450,12 @@ table {
     align-content: center;
 
 }
-
-#messageInput {
+.inputNoIcon {
     padding-left: 10px;
     color: black;
+}
+#messageInput {
+
     width: 90%;
 }
 
@@ -487,4 +489,37 @@ table {
 .chatItemSelected {
     background-color: var(--red);
     color: #fff;
+}
+
+#chatCreate {
+    display: flex;
+    flex-direction: row;
+    color: var(--red);
+    font-family: Roboto;
+    font-weight: bold;
+    font-size: 20px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+
+#chatCreate a {
+    display: flex;
+}
+
+#chatCreate a svg {
+    stroke: var(--red);
+    stroke-width: 5px;
+    width: 20px;
+    height: 20px;
+}
+
+#showUsersDiv {
+    display: flex;
+    flex-direction: column;
+}
+
+#showUsersDiv a{
+    margin: 10px 0;
 }

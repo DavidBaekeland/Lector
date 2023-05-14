@@ -1,5 +1,13 @@
 <div class="livewire">
     <x-card-large class="small">
+        <div id="chatCreate">
+            <span>CHAT</span>
+            <a href="{{ route("chat.create") }}">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
+            </a>
+        </div>
         @foreach(auth()->user()->chats as $chat)
             <a wire:click="chat({{ $chat->id}})" @class([
                 "chatItem",
@@ -39,7 +47,7 @@
             <p id="typing"></p>
 
             <div id="chat-input-div">
-                <x-text-input type="text" name="messageInput" id="messageInput" autocomplete="off" />
+                <x-text-input type="text" name="messageInput" class="inputNoIcon" id="messageInput" autocomplete="off" />
 
                 <button type="submit" id="submit-chat">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-6 h-6">
