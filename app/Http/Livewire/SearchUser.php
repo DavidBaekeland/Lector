@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Message;
+use App\Models\User;
 use Livewire\Component;
 
 class SearchUser extends Component
@@ -13,9 +14,23 @@ class SearchUser extends Component
 
     public $messageInput;
 
-    public function selectUser($user) {
+    public $choiceUsers;
+
+    public function selectUser($user)
+    {
         $this->selectedUsers[] = $user;
         $this->user = "";
+    }
+
+    public function updatedUser()
+    {
+        if ($this->user == null)
+        {
+            $this->choiceUsers = null;
+        } else
+        {
+            $this->choiceUsers = User::where("first_name", "like", $this->user.'%')->get();
+        }
     }
 
     public function submit()

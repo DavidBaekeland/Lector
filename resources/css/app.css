@@ -522,4 +522,11 @@ table {
 
 #showUsersDiv a{
     margin: 10px 0;
+    padding: 4px;
+    border-radius: 10px;
+    color: #171717;
+}
+
+#showUsersDiv a:hover{
+    background-color: rgb(249, 249, 249);
 }
