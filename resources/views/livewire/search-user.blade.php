@@ -1,6 +1,4 @@
-
-
-<form wire:submit.prevent="submit">
+<form wire:submit.prevent="submit" class="space-between">
     @csrf
 
     <div>
@@ -28,8 +26,6 @@
             @endif
         </div>
     </div>
-
-
 
     <div id="chat-input-div">
         <x-text-input type="text" wire:model="messageInput" name="messageInput" class="inputNoIcon" id="messageInput" autocomplete="off"/>

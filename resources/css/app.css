@@ -28,6 +28,7 @@ body{
     background-size: 40px 40px;
     font-family: effra;
     margin: 0;
+    position: relative;
 }
 
 .login {
@@ -42,7 +43,7 @@ body{
     width: 5rem;
     height: 5rem;
 }
-/** w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg */
+
 .card {
     background-color: white;
     width: 30rem;
@@ -67,6 +68,35 @@ body{
     display: flex;
     flex-direction: column;
 }
+
+.alert {
+    position: absolute;
+    background-color: white;
+    width: 20rem;
+    padding: 20px 30px;
+    border-radius: 10px;
+    border: 1px solid #E4E4E4;
+    box-shadow: var(--boxShadowCard);
+    right: 10px;
+    border-left: 5px solid rgba(0, 122, 255, 0.94);
+}
+
+.alert div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.alert div h1{
+    margin-bottom: 0;
+    font-size: 24px;
+}
+
+.alert div svg{
+    width: 20px;
+}
+
 
 .space-between {
     display: flex;

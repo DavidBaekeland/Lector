@@ -22,7 +22,7 @@
     <!-- Role -->
     <div class="input-div">
         <select name="role" class="role-input">
-            <option value="Rol">Rol</option>
+            <option value="Rol" disabled selected>Rol</option>
 
             @foreach($roles as $role)
                 <option value="{{ $role->id }}">{{ $role->name }}</option>
@@ -36,7 +36,7 @@
     <!-- Course -->
     <div class="input-div">
         <select name="course" class="course-input">
-            <option value="course">Opleiding</option>
+            <option value="course" disabled selected>Opleiding</option>
 
             @foreach($courses as $course)
                 <option value="{{$course->id}}">{{ $course->name}}</option>

@@ -4,6 +4,8 @@ namespace App\Http\Livewire;
 
 use App\Models\Message;
 use App\Models\User;
+use App\Notifications\NewMessage;
+use Illuminate\Support\Facades\Notification;
 use Livewire\Component;
 
 class SearchUser extends Component
@@ -36,7 +38,26 @@ class SearchUser extends Component
 
     public function submit()
     {
-        $chat = \App\Models\Chat::create();
+        $nameChat = "";
+        $users = [];
+
+        foreach ($this->selectedUsers as $key => $selectedUserId)
+        {
+            $selectedUser = User::find($selectedUserId);
+            $users[] = $selectedUser;
+
+            if ($key == 0)
+            {
+                $nameChat = $selectedUser->name;
+            } else
+            {
+                $nameChat = $nameChat.", ".$selectedUser->name;
+            }
+        }
+
+        $chat = \App\Models\Chat::create([
+            "name" => $nameChat
+        ]);
 
         $chat->users()->sync([...$this->selectedUsers, auth()->user()->id]);
 
@@ -47,7 +68,7 @@ class SearchUser extends Component
             "user_id" => auth()->user()->id
         ]);
 
-        event(new \App\Events\Chat($message));
+        Notification::send($users, new NewMessage($message, $chat));
 
         return redirect()->route('chat');
     }
