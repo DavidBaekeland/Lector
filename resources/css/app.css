@@ -125,7 +125,7 @@ th {
     color: var(--red);
 }
 
-.text-input, select {
+.text-input, .input-div select {
     border: 1px solid var(--gray);
     border-radius: 8px;
     display: flex;
@@ -139,7 +139,7 @@ th {
     color: #050505;
 }
 
-select {
+.input-div select {
     color: #CBC9C9;
     -webkit-appearance: none;
     appearance: none;
@@ -451,9 +451,10 @@ table {
 
 }
 .inputNoIcon {
-    padding-left: 10px;
+    padding-left: 5px;
     color: black;
 }
+
 #messageInput {
 
     width: 90%;
@@ -484,6 +485,8 @@ table {
 .chatItem {
     padding: 8px 5px;
     border-radius: 4px;
+    text-decoration: none;
+    color: #000;
 }
 
 .chatItemSelected {
@@ -529,4 +532,38 @@ table {
 
 #showUsersDiv a:hover{
     background-color: rgb(249, 249, 249);
+}
+
+.selectedUsers {
+    border: 1px solid var(--gray);
+    border-radius: 8px;
+    display: flex;
+    width: 100%;
+    height: 43px;
+    margin-top: 5px;
+    font-size: 18px;
+    padding: 5px;
+}
+
+.selectedUsers input{
+    border: none;
+    height: 100%;
+    font-family: Roboto;
+
+}
+
+.selectedUsers input:focus{
+    outline: none;
+}
+
+
+.selectedUsers span{
+    margin: 10px;
+    font-family: Roboto;
+}
+
+.selectedUsers span a{
+    margin: 0 2px;
+    padding: 4px 8px;
+    font-family: Roboto;
 }

@@ -3,16 +3,30 @@
 <form wire:submit.prevent="submit">
     @csrf
 
-    <x-text-input type="text" wire:model="user" class="inputNoIcon" name="userInput"  autocomplete="off"/>
+    <div>
+        <div class="selectedUsers">
+            <span>
+                @if($selectedUsers)
+                    @foreach($selectedUsers as $selectedUser)
+                        <a class="chatItem chatItemSelected">{{\App\Models\User::find($selectedUser)->name}}</a>
+                    @endforeach
+                @endif
+            </span>
 
-    <div id="showUsersDiv">
-        @if($choiceUsers)
-            @foreach($choiceUsers as $user)
-                <a wire:click="selectUser({{ $user->id}})">
-                    {{$user->name}}
-                </a>
-            @endforeach
-        @endif
+
+            <input type="text" wire:model="user" class="inputNoIcon" name="userInput" autofocus autocomplete="off">
+        </div>
+
+
+        <div id="showUsersDiv">
+            @if($choiceUsers)
+                @foreach($choiceUsers as $user)
+                    <a wire:click="selectUser({{ $user->id}})">
+                        {{$user->name}}
+                    </a>
+                @endforeach
+            @endif
+        </div>
     </div>
 
 
