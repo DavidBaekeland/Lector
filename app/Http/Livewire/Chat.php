@@ -9,12 +9,19 @@ use Livewire\Component;
 
 class Chat extends Component
 {
-    public \App\Models\Chat $chatLivewire;
+    public ?\App\Models\Chat $chatLivewire;
 
     public function mount()
     {
         $this->chatLivewire = auth()->user()->latestChat();
-        JavaScript::put(["urlChat" => url('chat'), "userId" => auth()->user()->id, "userName" => auth()->user()->first_name, 'chatId' => $this->chatLivewire->id]);
+
+        if ($this->chatLivewire)
+        {
+            JavaScript::put(["urlChat" => url('chat'), "userId" => auth()->user()->id, "userName" => auth()->user()->first_name, 'chatId' => $this->chatLivewire->id]);
+        }else
+        {
+            JavaScript::put(["urlChat" => url('chat'), "userId" => auth()->user()->id, "userName" => auth()->user()->first_name, 'chatId' => null]);
+        }
     }
 
     public function notifyMessage()
