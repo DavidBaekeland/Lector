@@ -78,7 +78,7 @@ class User extends Authenticatable
 
     public function latestChat()
     {
-        return $this->belongsToMany(Chat::class)->latest()->first();
+        return $this->belongsToMany(Chat::class)->latest("updated_at")->first();
     }
 
     /** Relationships */

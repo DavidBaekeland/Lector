@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chat;
 use App\Models\Message;
 use App\Notifications\NewMessage;
 use Illuminate\Http\Request;
@@ -39,6 +40,9 @@ class MessageController extends Controller
             "chat_id" => $request->chat_id,
             "user_id" => auth()->user()->id
         ]);
+
+        $chat->updated_at = now();
+        $chat->save();
 
         event(new \App\Events\Chat($message));
 

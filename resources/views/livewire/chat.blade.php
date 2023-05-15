@@ -9,7 +9,7 @@
             </a>
         </div>
         <div class="chat-list">
-            @foreach(auth()->user()->chats as $chat)
+            @foreach($authUserChats as $chat)
                 <a wire:click="chat({{ $chat->id}})" @class([
                 "chatItem",
                 "chatItemSelected" => $chatLivewire->id == $chat->id
