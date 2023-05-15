@@ -28,15 +28,17 @@
 
         @livewireScripts
 
+
         <script type="module">
+            @if(!request()->routeIs('chat') && !request()->routeIs('chat.create'))
             Echo.private('App.Models.User.' + {{ auth()->user()->id }})
                 .notification((notification) => {
                     let htmlString = `
-                        <div class="alertDiv">
+                        <div class="alertDiv" id="${notification.id}Div">
                             <span class="alert">
                                 <div>
                                     <h1>${notification.chatName}</h1>
-                                    <a id="alertClose">
+                                    <a id="${notification.id}">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                                         </svg>
@@ -48,15 +50,17 @@
 
                     document.getElementsByClassName('app')[0].insertAdjacentHTML('afterbegin', htmlString);
 
-                    let alertClose = document.getElementById('alertClose');
+                    let alertClose = document.getElementById(`${notification.id}`);
+
+                    setTimeout(() => {
+                        document.getElementById(`${notification.id}Div`).innerHTML = "";
+                    }, "5000");
 
                     alertClose.addEventListener('click', (e) => {
-                        document.getElementsByClassName('alertDiv')[0].innerHTML = "";
+                        document.getElementById(`${notification.id}Div`).innerHTML = "";
                     })
-
                 });
-
-
+            @endif
         </script>
     </body>
 </html>

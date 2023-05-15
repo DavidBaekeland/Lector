@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Message;
+use App\Notifications\NewMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Notification;
 
 class MessageController extends Controller
 {
@@ -39,6 +41,19 @@ class MessageController extends Controller
         ]);
 
         event(new \App\Events\Chat($message));
+
+        $users = $chat->users;
+
+        foreach ($users as $user)
+        {
+            $tempUsers = $users->filter(function ($tempUser) use ($user){
+                return $user->id != $tempUser->id;
+            });
+
+            $chatName = $tempUsers->pluck("name")->implode(', ');
+
+            Notification::send($user, new NewMessage($message, $chat, $chatName));
+        }
 
         return response()->json("succes");
     }
