@@ -68,6 +68,7 @@ class NewMessage extends Notification
     public function toBroadcast(object $notifiable): BroadcastMessage
     {
         return new BroadcastMessage([
+            'chatId' => $this->chat->id,
             'chatName' => ($this->chat->name) ? $this->chat->name : $this->chatName,
             'message' => $this->message->message,
         ]);

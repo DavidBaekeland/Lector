@@ -8,7 +8,7 @@
                 </svg>
             </a>
         </div>
-        <div class="chat-list">
+        <div class="chat-list" id="chats">
             @foreach($authUserChats as $chat)
                 <a wire:click="chat({{ $chat->id}})" @class([
                 "chatItem",
