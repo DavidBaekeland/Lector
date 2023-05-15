@@ -8,13 +8,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
     const YEARS = ["1Ba", "2Ba", "3Ba", "1Ma", "2Ma", "1HBO5", "2HBO5", "1BaNaBa", "2BaNaBa", "1MaNaMa", "2MaNaMa"];
 
@@ -77,7 +78,7 @@ class User extends Authenticatable
 
     public function latestChat()
     {
-        return $this->belongsToMany(Chat::class)->latest()->first();
+        return $this->belongsToMany(Chat::class)->latest("updated_at")->first();
     }
 
     /** Relationships */
@@ -94,5 +95,10 @@ class User extends Authenticatable
     public function chats(): BelongsToMany
     {
         return $this->belongsToMany(Chat::class);
+    }
+
+    public function messages(): HasMany
+    {
+        return $this->hasMany(Message::class);
     }
 }

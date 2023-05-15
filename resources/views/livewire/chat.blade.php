@@ -8,28 +8,31 @@
                 </svg>
             </a>
         </div>
-        @foreach(auth()->user()->chats as $chat)
-            <a wire:click="chat({{ $chat->id}})" @class([
+        <div class="chat-list" id="chats">
+            @foreach($authUserChats as $chat)
+                <a wire:click="chat({{ $chat->id}})" @class([
                 "chatItem",
                 "chatItemSelected" => $chatLivewire->id == $chat->id
             ])>
-                @if($chat->name)
-                    {{$chat->name}}
-                @else
-                    @foreach($chat->users as $chatUser)
-                        @if($chatUser->id != auth()->user()->id)
-                            {{$chatUser->name}}
-                        @endif
-                    @endforeach
-                @endif
-            </a>
-        @endforeach
+                    @if($chat->name)
+                        {{$chat->name}}
+                    @else
+                        @foreach($chat->users as $chatUser)
+                            @if($chatUser->id != auth()->user()->id)
+                                {{$chatUser->name}}
+                            @endif
+                        @endforeach
+                    @endif
+                </a>
+            @endforeach
+        </div>
+
 
     </x-card-large>
 
 
     <x-card-large class="space-between">
-        <ul id="chat-list">
+        <ul id="chat-list" class="chat-list">
             @if($chatLivewire)
                 @foreach($chatLivewire->messages as $message)
                     <x-chat.message :message="$message"></x-chat.message>

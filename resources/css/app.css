@@ -414,7 +414,7 @@ table {
     margin-right: 30px;
 }
 
-#chat-list {
+.chat-list {
     list-style: none;
     display: flex;
     flex-direction: column;
@@ -424,7 +424,7 @@ table {
     padding-left: 0;
 }
 
-#chat-list::-webkit-scrollbar {
+.chat-list::-webkit-scrollbar {
     display: none;
 }
 

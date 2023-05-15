@@ -11,9 +11,13 @@ class Chat extends Component
 {
     public ?\App\Models\Chat $chatLivewire;
 
+    public $authUserChats;
+
     public function mount()
     {
         $this->chatLivewire = auth()->user()->latestChat();
+
+        $this->authUserChats = auth()->user()->chats->sortByDesc('updated_at');
 
         if ($this->chatLivewire)
         {
@@ -27,6 +31,7 @@ class Chat extends Component
     public function notifyMessage()
     {
         $this->dispatchBrowserEvent('newMessage');
+        $this->authUserChats = auth()->user()->chats->sortByDesc('updated_at');
     }
 
 
