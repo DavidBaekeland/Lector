@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -29,7 +30,7 @@ Route::get('/chat', [ChatController::class, 'index'])->name('chat');
 
 Route::get('/chat/create', [ChatController::class, 'create'])->name('chat.create');
 
-Route::post('/chat', [ChatController::class, 'store'])->name('message.store');
+Route::post('/chat', [MessageController::class, 'store'])->name('message.store');
 
 
 
