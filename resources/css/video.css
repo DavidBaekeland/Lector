@@ -1,0 +1,48 @@
+video {
+    height: 100%;
+    width: auto;
+    margin: auto;
+    border-radius: 10px;
+
+}
+
+#videoCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: hidden;
+}
+
+.call-button  {
+    border: 1px solid #E4E4E4;
+    border-radius: 20px;
+    box-shadow: 0px 3px 6px #76767628;;
+    display: flex;
+    width: 77px;
+    height: 77px;
+
+}
+
+.call-button svg{
+    width: 30px;
+    height: 30px;
+    margin: auto;
+}
+
+.exit {
+    background-color: var(--red);
+    color: #fff;
+}
+
+
+#callButtonsDiv {
+    display: flex;
+    width: 50%;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+.videosDiv {
+    display: inline-flex;
+}
+

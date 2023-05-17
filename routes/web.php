@@ -5,6 +5,7 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +34,18 @@ Route::get('/chat/create', [ChatController::class, 'create'])->name('chat.create
 Route::post('/chat', [MessageController::class, 'store'])->name('message.store');
 
 
+Route::get('/call', function () {
+    return view('chat.call');
+});
+
+Route::post('/peer', function (Request $request) {
+    try {
+        event(new \App\Events\Peer($request->peerId));
+        return response()->json("succes");
+    } catch (Exception $e)  {
+        return response()->json($e);
+    }
+})->middleware('auth:sanctum');
 
 
 
