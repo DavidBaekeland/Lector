@@ -36,7 +36,7 @@ Route::post('/chat', [MessageController::class, 'store'])->name('message.store')
 
 Route::get('/call', function () {
     return view('chat.call');
-});
+})->middleware('auth');
 
 Route::post('/peer', function (Request $request) {
     try {
