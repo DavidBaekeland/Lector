@@ -536,7 +536,7 @@ table {
     color: #fff;
 }
 
-#chatCreate {
+.chatTitle{
     display: flex;
     flex-direction: row;
     color: var(--red);
@@ -549,11 +549,16 @@ table {
 }
 
 
-#chatCreate a {
+.chatTitle a {
     display: flex;
 }
 
-#chatCreate a svg {
+#videoLink svg {
+    fill: none;
+    stroke-width: 1.5px;
+}
+
+.chatTitle a svg {
     stroke: var(--red);
     stroke-width: 5px;
     width: 20px;
