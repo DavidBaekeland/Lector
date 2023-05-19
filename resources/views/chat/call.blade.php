@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-card-large id="videoCard">
         <div id="videosDiv">
-            <video id="localVideo" autoplay playsinline>  </video>
+{{--            <video id="localVideo" autoplay playsinline>  </video>--}}
         </div>
 
 
@@ -43,39 +43,8 @@
     </x-card-large>
 
 
-
-    <script>
-        let el = document.getElementsByTagName("video");
-
-        if(el.length > 3) {
-            for (let element of el) {
-                element.style.height = "auto"
-                element.style.width = "33%"
-
-            }
-        }
-
-        if (el.length == 2) {
-            for (let element of el) {
-                element.style.height = "auto"
-                element.style.width = '49%'
-            }
-
-        }
-
-        if (el.length == 3) {
-            for (let element of el) {
-                element.style.height = "auto"
-                element.style.width = '32%'
-                element.style.margin = '10px';
-            }
-        }
-    </script>
-
     <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
     <script type="module">
-
-        console.log(@json($peerUuid))
 
          if(@json($otherPeerId)) {
              let peer = new Peer({
@@ -88,8 +57,16 @@
              getUserMedia({video: true, audio: false}, function(stream) {
                  let call = peer.call(@json($otherPeerId), stream);
                  call.on('stream', function(remoteStream) {
-                     const videoElement = document.querySelector('video#localVideo');
-                     videoElement.srcObject = remoteStream;
+                     const remoteVideo = document.createElement('video');
+                     remoteVideo.srcObject = remoteStream;
+                     remoteVideo.addEventListener('loadedmetadata', () => {
+                         remoteVideo.play()
+                     })
+                     document.getElementById('videosDiv').append(remoteVideo)
+
+                     console.log(remoteStream)
+                     stylingVideo();
+
                  });
              }, function(err) {
                  console.log('Failed to get local stream' ,err);
@@ -100,24 +77,56 @@
                  port: 9000,
                  path: "/myapp",
              });
-             peer.on('open', function(id) {
-
-             });
 
              let getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
              peer.on('call', function(call) {
                  getUserMedia({video: true, audio: false}, function(stream) {
-                     call.answer(stream); // Answer the call with an A/V stream.
+                     call.answer(stream);
                      call.on('stream', function(remoteStream) {
-                         const test = document.querySelector('video#localVideo');
-                         test.srcObject = remoteStream;
+                         const remoteVideo = document.createElement('video');
+                         remoteVideo.srcObject = remoteStream;
+                         remoteVideo.addEventListener('loadedmetadata', () => {
+                             remoteVideo.play()
+                         })
+                         document.getElementById('videosDiv').append(remoteVideo)
+
+                         stylingVideo();
+
                      });
+
+                     console.log(stream);
                  }, function(err) {
                      console.log('Failed to get local stream' ,err);
                  });
              });
          }
 
+         function stylingVideo() {
+             let el = document.getElementsByTagName("video");
 
+             if(el.length > 3) {
+                 for (let element of el) {
+                     element.style.height = "auto"
+                     element.style.width = "33%"
+
+                 }
+             }
+
+             if (el.length == 2) {
+                 for (let element of el) {
+                     element.style.height = "auto"
+                     element.style.width = '49%'
+                 }
+
+             }
+
+             if (el.length == 3) {
+                 for (let element of el) {
+                     element.style.height = "auto"
+                     element.style.width = '32%'
+                     element.style.margin = '10px';
+                 }
+             }
+         }
     </script>
 </x-app-layout>

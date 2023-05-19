@@ -16,7 +16,8 @@
         let callAudio = document.createElement('audio')
         callAudio.src = "http://127.0.0.1:8000/storage/soundEffects/call.mp3";
 
-        Echo.private(`chat.1`)
+        @foreach(auth()->user()->chats as $chat)
+        Echo.private(`chat.{{$chat->id}}`)
             .listen('Peer', (e) => {
                 let urlChatAccept = `${urlChat}/${e.peer_id}`;
                 let urlChatDecline = `${urlChat}/${e.peer_id}/decline`;
@@ -37,8 +38,6 @@
                         </div>`;
 
 
-                // let callAudio = new Audio(audioLink);
-                //
                 callAudio.play()
                 callAudio.loop = true;
 
@@ -52,5 +51,7 @@
                 })
                 console.log(e)
             });
+        @endforeach
+
     </script>
 </x-app-layout>
