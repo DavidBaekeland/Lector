@@ -14,18 +14,24 @@ class Peer implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $peerId;
+    public $peer_id;
 
-    public $userId;
+    public $user_id;
+
+    public $chat_id;
+
+    public $chat_name;
 
 
     /**
      * Create a new event instance.
      */
-    public function __construct($peerId)
+    public function __construct($peer_id, $chat_id, $chat_name)
     {
-        $this->peerId = $peerId;
-        $this->userId = auth()->user()->id;
+        $this->peer_id = $peer_id;
+        $this->user_id = auth()->user()->id;
+        $this->chat_id = $chat_id;
+        $this->chat_name = $chat_name;
     }
 
     /**
@@ -36,7 +42,7 @@ class Peer implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new Channel('peer'),
+            new PrivateChannel("chat.{$this->chat_id}"),
         ];
     }
 }

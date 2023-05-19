@@ -1,8 +1,4 @@
 <x-app-layout>
-
-   <button id="button">dsqfsdqf</button>
-
-
     <x-card-large id="videoCard">
         <div id="videosDiv">
             <video id="localVideo" autoplay playsinline>  </video>
@@ -77,64 +73,50 @@
     </script>
 
     <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
-
     <script type="module">
-        let peer = new Peer();
 
+        console.log(@json($peerUuid))
 
-        Echo.channel(`peer`)
-            .listen('Peer', (e) => {
+         if(@json($otherPeerId)) {
+             let peer = new Peer({
+                 host: "localhost",
+                 port: 9000,
+                 path: "/myapp",
+             });
 
-                let getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-                getUserMedia({video: true, audio: false}, function(stream) {
-                    let call = peer.call(e.peerId, stream);
-                    call.on('stream', function(remoteStream) {
-                        const videoElement = document.querySelector('video#localVideo');
-                        videoElement.srcObject = remoteStream;
-                    });
-                }, function(err) {
-                    console.log('Failed to get local stream' ,err);
-                });
+             let getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+             getUserMedia({video: true, audio: false}, function(stream) {
+                 let call = peer.call(@json($otherPeerId), stream);
+                 call.on('stream', function(remoteStream) {
+                     const videoElement = document.querySelector('video#localVideo');
+                     videoElement.srcObject = remoteStream;
+                 });
+             }, function(err) {
+                 console.log('Failed to get local stream' ,err);
+             });
+         }else if(@json($peerUuid)) {
+             let peer = new Peer(@json($peerUuid), {
+                 host: "localhost",
+                 port: 9000,
+                 path: "/myapp",
+             });
+             peer.on('open', function(id) {
 
-            })
+             });
 
-        peer.on('open', function(id) {
-            let formdata = new FormData();
-            formdata.append("peerId", id);
-
-
-            document.getElementById("button").addEventListener("click", () => {
-                fetch("http://127.0.0.1:8000/peer", {
-                    method: 'POST',
-                    credentials: "same-origin",
-                    headers: {
-                        "X-Requested-With": "XMLHttpRequest",
-                        "X-CSRF-Token": document.querySelector('meta[name=\"csrf-token\"]').content,
-                    },
-                    body: formdata,
-                    redirect: 'follow'
-                })
-                    .then(resp => resp.json())
-                    .then(result => {
-                        // console.log(result);
-                    })
-            })
-        });
-
-        let getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-        peer.on('call', function(call) {
-            getUserMedia({video: true, audio: false}, function(stream) {
-                call.answer(stream); // Answer the call with an A/V stream.
-                call.on('stream', function(remoteStream) {
-                    const test = document.querySelector('video#localVideo');
-                    test.srcObject = remoteStream;
-                });
-            }, function(err) {
-                console.log('Failed to get local stream' ,err);
-            });
-        });
-
-
+             let getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+             peer.on('call', function(call) {
+                 getUserMedia({video: true, audio: false}, function(stream) {
+                     call.answer(stream); // Answer the call with an A/V stream.
+                     call.on('stream', function(remoteStream) {
+                         const test = document.querySelector('video#localVideo');
+                         test.srcObject = remoteStream;
+                     });
+                 }, function(err) {
+                     console.log('Failed to get local stream' ,err);
+                 });
+             });
+         }
 
 
     </script>

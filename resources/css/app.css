@@ -614,3 +614,28 @@ table {
     padding: 4px 8px;
     font-family: Roboto;
 }
+
+.callButtonDiv {
+    display: flex;
+    justify-content: space-between;
+}
+
+.button {
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    color: #fff;
+    padding: 10px 0;
+    border-radius: 8px;
+    margin-top: 40px;
+    width: 48%;
+    text-decoration: none;
+}
+
+.acceptButton {
+    background-color: #34982a;
+}
+
+.declineButton {
+    background-color: #D2323F;
+}

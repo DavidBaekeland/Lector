@@ -46,7 +46,7 @@
                 <form method="POST" action="{{ route("call")}}">
                     @csrf
 
-                    <x-input-hidden name="chatId" :value="$chatLivewire->id" />
+                    <x-input-hidden name="chat_id" :value="$chatLivewire->id" />
                     <a type="submit" id="videoLink" onclick="event.preventDefault()
                                         this.closest('form').submit();">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
