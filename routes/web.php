@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\PasswordController;
+use App\Http\Controllers\CallController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
@@ -37,45 +38,28 @@ Route::get('/chat/create', [ChatController::class, 'create'])->name('chat.create
 Route::post('/chat', [MessageController::class, 'store'])->name('message.store');
 
 
-Route::post('/call', function (Request $request) {
-    $peer = Peer::create(["uuid" => Str::uuid()->toString(), "user_id" => auth()->user()->id]);
 
-//    $chat = \App\Models\Chat::where("id", $request->chat_id)->first();
-//    $users = $chat->users;
-//
-//    foreach ($users as $user)
-//    {
-//        $tempUsers = $users->filter(function ($tempUser) use ($user){
-//            return $user->id != $tempUser->id;
-//        });
-//
-//        $chatName = $tempUsers->pluck("name")->implode(', ');
-//
+Route::post('/call', [CallController::class, 'call'])->middleware('auth')->name("call");
+
+Route::get('/call/{otherPeerId}', [CallController::class, 'answer'])->middleware('auth')->name("call.peer");
+
+// Melding sturen naar persoon die gesprek gestart is
+Route::get('/call/{otherPeerId}/decline', [CallController::class, 'declineOtherPeer'])->middleware('auth')->name("call.decline");
+
+Route::get('/stop', [CallController::class, 'stopCall'])->middleware(['auth'])->name("call.stop");
+
+
+
+
+//Route::post('/peer', function (Request $request) {
+//    try {
+//        event(new \App\Events\Peer($request->peerId));
+//        return response()->json("succes");
+//    } catch (Exception $e)  {
+//        return response()->json($e);
 //    }
-    event(new \App\Events\Peer($peer->uuid, $request->chat_id, "sdqfqsdf"));
+//})->middleware('auth:sanctum');
 
-    return view('chat.call', ["peerUuid" => $peer->uuid, "otherPeerId" => false]);
-})->middleware('auth')->name("call");
-
-
-Route::get('/call/{otherPeerId}', function (string $otherPeerId) {
-    return view('chat.call', ["peerUuid" => false, "otherPeerId" => $otherPeerId]);
-})->middleware('auth')->name("call.peer");
-
-Route::get('/call/{otherPeerId}/decline', function (string $otherPeerId) {
-    // melding sturen naar persoon die gesprek gestart is
-
-    return redirect()->back();
-})->middleware('auth')->name("call.decline");
-
-Route::post('/peer', function (Request $request) {
-    try {
-        event(new \App\Events\Peer($request->peerId));
-        return response()->json("succes");
-    } catch (Exception $e)  {
-        return response()->json($e);
-    }
-})->middleware('auth:sanctum');
 
 
 
