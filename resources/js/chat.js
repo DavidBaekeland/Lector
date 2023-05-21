@@ -26,15 +26,6 @@ document.getElementById('messageInput').addEventListener('keyup', function (e) {
     }
 })
 
-Echo.private(`App.Models.User.${userId}`)
-    .notification((notification) => {
-        let htmlString = `
-                        <a wire:click="chat(${notification.chatId})" class="chatItem">
-                            ${notification.chatName}
-                        </a>`;
-
-        document.getElementById('chats').insertAdjacentHTML('afterbegin', htmlString);
-    });
 
 
 let chatForm = document.getElementById('chat-form');
