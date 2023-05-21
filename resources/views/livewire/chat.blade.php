@@ -33,10 +33,10 @@
 
     <x-card-large class="space-between">
         <div class="chatTitle">
-            @if($chat->name)
-                {{$chat->name}}
+            @if($chatLivewire->name)
+                {{$chatLivewire->name}}
             @else
-                @foreach($chat->users as $chatUser)
+                @foreach($chatLivewire->users as $chatUser)
                     @if($chatUser->id != auth()->user()->id)
                         {{$chatUser->name}}
                     @endif
