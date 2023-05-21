@@ -32,6 +32,7 @@
 
 
     <x-card-large class="space-between">
+        @if(isset($chatLivewire))
         <div class="chatTitle">
             @if($chatLivewire->name)
                 {{$chatLivewire->name}}
@@ -84,6 +85,8 @@
             </div>
 
         </form>
+        @endif
+
     </x-card-large>
 
     @vite(['resources/js/chat.js'])
