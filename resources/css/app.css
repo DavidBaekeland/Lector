@@ -424,6 +424,7 @@ table {
     -ms-overflow-style: none;
     scrollbar-width: none;
     padding-left: 0;
+    height: 100%;
 }
 
 .chat-list::-webkit-scrollbar {
