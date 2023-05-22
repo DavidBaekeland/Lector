@@ -1,9 +1,9 @@
 video {
     height: auto;
     width: 100%;
+    max-width: 30vw;
     margin: auto;
     border-radius: 10px;
-
 }
 
 #videoCard {
@@ -20,7 +20,6 @@ video {
     display: flex;
     width: 77px;
     height: 77px;
-
 }
 
 .call-button svg{
@@ -31,7 +30,10 @@ video {
 
 .exit {
     background-color: var(--red);
-    color: #fff;
+}
+
+.exit svg {
+    stroke: #fff;
 }
 
 
