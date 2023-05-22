@@ -46,7 +46,7 @@
         const peer = new Peer({
             host: "localhost",
             port: 9000,
-            path: "/myapp",
+            path: "/peerserver",
         })
 
         const myVideo = document.createElement('video')
