@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chat;
 use App\Models\Peer;
+use App\Notifications\NewMessage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 
 class CallController extends Controller
@@ -15,20 +18,20 @@ class CallController extends Controller
 
     public function call(Request $request)
     {
+        $chat = Chat::find($request->chat_id);
+        $users = $chat->users;
 
-//    $chat = \App\Models\Chat::where("id", $request->chat_id)->first();
-//    $users = $chat->users;
-//
-//    foreach ($users as $user)
-//    {
-//        $tempUsers = $users->filter(function ($tempUser) use ($user){
-//            return $user->id != $tempUser->id;
-//        });
-//
-//        $chatName = $tempUsers->pluck("name")->implode(', ');
-//
-//    }
-        event(new \App\Events\Peer($request->chat_id));
+        foreach ($users as $user)
+        {
+            $tempUsers = $users->filter(function ($tempUser) use ($user){
+                return $user->id != $tempUser->id;
+            });
+
+            $chatName = $tempUsers->pluck("name")->implode(', ');
+
+            Notification::send($user, new \App\Notifications\Peer($chat, $chatName));
+        }
+
         return view('chat.call', ["chat_id" => $request->chat_id]);
     }
 

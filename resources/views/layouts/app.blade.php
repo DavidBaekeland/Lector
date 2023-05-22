@@ -33,7 +33,39 @@
             @if(!request()->routeIs('chat') && !request()->routeIs('chat.create'))
             Echo.private('App.Models.User.' + {{ auth()->user()->id }})
                 .notification((notification) => {
-                    let htmlString = `
+                    console.log(notification)
+
+                    if(notification.type === 'App\\Notifications\\Peer') {
+                        let callAudio = document.createElement('audio')
+                        callAudio.src = notification.audio_link;
+
+                        let htmlString = `
+                        <div class="alertDiv" id="${notification.chat_id}CallDiv">
+                            <span class="alert">
+                                <div>
+                                    <h1>${notification.chat_name}</h1>
+                                </div>
+                                <div class="callButtonDiv">
+                                    <x-call-button href="${notification.url_chat_decline}" id="${notification.chat_id}CallReclineButton">Wijgeren</x-call-button>
+                                    <x-call-button href="${notification.url_chat_accept}" accept>Opnemen</x-call-button>
+                                </div>
+                            </span>
+                        </div>`;
+
+
+                        callAudio.play()
+                        callAudio.loop = true;
+
+                        document.getElementsByClassName('app')[0].insertAdjacentHTML('afterbegin', htmlString);
+
+                        let alertClose = document.getElementById(`${notification.chat_id}CallReclineButton`);
+
+                        alertClose.addEventListener('click', (e) => {
+                            callAudio.pause()
+                            document.getElementById(`${notification.chat_id}CallDiv`).remove();
+                        })
+                    } else if (notification.type === 'App\\Notifications\\NewMessage') {
+                        let htmlString = `
                         <div class="alertDiv" id="${notification.id}Div">
                             <span class="alert">
                                 <div>
@@ -48,61 +80,21 @@
                             </span>
                         </div>`;
 
-                    document.getElementsByClassName('app')[0].insertAdjacentHTML('afterbegin', htmlString);
+                        document.getElementsByClassName('app')[0].insertAdjacentHTML('afterbegin', htmlString);
 
-                    let alertClose = document.getElementById(`${notification.id}`);
+                        let alertClose = document.getElementById(`${notification.id}`);
 
-                    setTimeout(() => {
-                        document.getElementById(`${notification.id}Div`).innerHTML = "";
-                    }, "5000");
+                        setTimeout(() => {
+                            document.getElementById(`${notification.id}Div`).innerHTML = "";
+                        }, "5000");
 
-                    alertClose.addEventListener('click', (e) => {
-                        document.getElementById(`${notification.id}Div`).innerHTML = "";
-                    })
+                        alertClose.addEventListener('click', (e) => {
+                            document.getElementById(`${notification.id}Div`).innerHTML = "";
+                        })
+                    }
+
                 });
             @endif
-
-            let audioLink = @json(asset('storage/soundEffects/call.mp3'));
-            let urlChat = @json(route('call'));
-            let callAudio = document.createElement('audio')
-            callAudio.src = "http://127.0.0.1:8000/storage/soundEffects/call.mp3";
-
-            @foreach(auth()->user()->chats as $chat)
-            Echo.private(`chat.{{$chat->id}}`)
-                .listen('Peer', (e) => {
-                    let urlChatAccept = `${urlChat}/${e.chat_id}`;
-                    let urlChatDecline = `${urlChat}/${e.chat_id}/decline`;
-
-                    console.log(urlChat)
-
-                    let htmlString = `
-                        <div class="alertDiv" id="${e.chat_id}CallDiv">
-                            <span class="alert">
-                                <div>
-                                    <h1>${e.chat_name}</h1>
-                                </div>
-                                <div class="callButtonDiv">
-                                    <x-call-button href="${urlChatDecline}" id="${e.chat_id}CallReclineButton">Wijgeren</x-call-button>
-                                    <x-call-button href="${urlChatAccept}" accept>Opnemen</x-call-button>
-                                </div>
-                            </span>
-                        </div>`;
-
-
-                    callAudio.play()
-                    callAudio.loop = true;
-
-                    document.getElementsByClassName('app')[0].insertAdjacentHTML('afterbegin', htmlString);
-
-                    let alertClose = document.getElementById(`${e.chat_id}CallReclineButton`);
-
-                    alertClose.addEventListener('click', (e) => {
-                        callAudio.pause()
-                        document.getElementById(`${e.chat_id}CallDiv`).remove();
-                    })
-                    console.log(e)
-                });
-            @endforeach
         </script>
     </body>
 </html>
