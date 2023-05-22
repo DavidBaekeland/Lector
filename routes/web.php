@@ -50,19 +50,6 @@ Route::get('/stop', [CallController::class, 'stopCall'])->middleware(['auth'])->
 
 
 
-
-//Route::post('/peer', function (Request $request) {
-//    try {
-//        event(new \App\Events\Peer($request->peerId));
-//        return response()->json("succes");
-//    } catch (Exception $e)  {
-//        return response()->json($e);
-//    }
-//})->middleware('auth:sanctum');
-
-
-
-
 Route::get('/calender', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('calender');
