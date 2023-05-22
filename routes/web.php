@@ -41,10 +41,10 @@ Route::post('/chat', [MessageController::class, 'store'])->name('message.store')
 
 Route::post('/call', [CallController::class, 'call'])->middleware('auth')->name("call");
 
-Route::get('/call/{otherPeerId}', [CallController::class, 'answer'])->middleware('auth')->name("call.peer");
+Route::get('/call/{chat_id}', [CallController::class, 'answer'])->middleware('auth')->name("call.peer");
 
 // Melding sturen naar persoon die gesprek gestart is
-Route::get('/call/{otherPeerId}/decline', [CallController::class, 'declineOtherPeer'])->middleware('auth')->name("call.decline");
+Route::get('/call/{chat_id}/decline', [CallController::class, 'declineOtherPeer'])->middleware('auth')->name("call.decline");
 
 Route::get('/stop', [CallController::class, 'stopCall'])->middleware(['auth'])->name("call.stop");
 

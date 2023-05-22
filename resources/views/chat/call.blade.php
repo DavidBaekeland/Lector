@@ -1,10 +1,6 @@
 <x-app-layout>
     <x-card-large id="videoCard">
-        <div id="videosDiv">
-            {{--            <video id="localVideo" autoplay playsinline>  </video>--}}
-        </div>
-
-
+        <div id="videosDiv"></div>
 
         <div id="callButtonsDiv">
             <x-chat.button id="audio">
@@ -45,201 +41,131 @@
 
     <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
     <script type="module">
+        const videoGrid = document.getElementById('videosDiv');
 
-        if(@json($otherPeerId)) {
-            let peer = new Peer({
-                host: "localhost",
-                port: 9000,
-                path: "/myapp",
-            });
+        const peer = new Peer({
+            host: "localhost",
+            port: 9000,
+            path: "/myapp",
+        })
 
-            let receivedMediaStream = null;
+        const myVideo = document.createElement('video')
+        myVideo.muted = true;
 
-            document.getElementById("camera").addEventListener("click", (e) => {
-                receivedMediaStream.getTracks().forEach(mediaTrack => {
-                    if(mediaTrack.kind === "video") {
-                        mediaTrack.enabled = !mediaTrack.enabled;
+        navigator.mediaDevices.getUserMedia({
+            video: {
+                'width': {'ideal': 728},
+                'height': {'ideal': 410}
+            },
+            audio: true
+        }).then(stream => {
+            document.getElementById('camera').onclick = (e) => {
+                console.log(stream.getVideoTracks()[0]);
+                stream.getVideoTracks()[0].enabled = !stream.getVideoTracks()[0].enabled;
 
-                        let htmlString;
+                let htmlString;
 
-                        if (!mediaTrack.enabled) {
-                            htmlString = `
+                if (!stream.getVideoTracks()[0].enabled) {
+                    htmlString = `
                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                   <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M12 18.75H4.5a2.25 2.25 0 01-2.25-2.25V9m12.841 9.091L16.5 19.5m-1.409-1.409c.407-.407.659-.97.659-1.591v-9a2.25 2.25 0 00-2.25-2.25h-9c-.621 0-1.184.252-1.591.659m12.182 12.182L2.909 5.909M1.5 4.5l1.409 1.409" />
                                 </svg>
                              `;
 
-                            e.target.innerHTML = htmlString
+                    e.target.innerHTML = htmlString
 
-                        } else {
-                            htmlString = `
+                } else {
+                    htmlString = `
                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                   <path stroke-linecap="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z" />
                                 </svg>
 
                              `;
 
-                            e.target.innerHTML = htmlString
-                        }
-                    }
-                });
-            })
+                    e.target.innerHTML = htmlString
+                }
+            }
 
-            document.getElementById("audio").addEventListener("click", (e) => {
-                receivedMediaStream.getTracks().forEach(mediaTrack => {
-                    if(mediaTrack.kind === "audio") {
-                        mediaTrack.enabled = !mediaTrack.enabled;
+            document.getElementById('audio').onclick = (e) => {
+                console.log(stream.getAudioTracks()[0]);
+                stream.getAudioTracks()[0].enabled = !stream.getAudioTracks()[0].enabled;
 
-                        let htmlString;
+                let htmlString;
 
-                        if (!mediaTrack.enabled) {
-                            htmlString = `
-                                 <!-- Generator: Adobe Illustrator 27.5.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-                                <svg version="1.1" baseProfile="basic" id="Layer_1"
-                                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24"
-                                     xml:space="preserve">
-                                <path fill="none" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12,18.8c3.3,0,6-2.7,6-6
-                                    v-1.5 M12,18.8c-3.3,0-6-2.7-6-6v-1.5 M12,18.8v3.8 M8.2,22.5h7.5 M12,15.8c-1.7,0-3-1.3-3-3V10V9.3V6.3V4.5c0-1.7,1.3-3,3-3
-                                    s3,1.3,3,3v8.2C15,14.4,13.7,15.8,12,15.8z"/>
-                                <line fill="none" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="10" x1="4.4" y1="1.6" x2="19.6" y2="21.6"/>
-                                </svg>
+                if (!stream.getAudioTracks()[0].enabled) {
+                    htmlString = `
+                         <!-- Generator: Adobe Illustrator 27.5.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                        <svg version="1.1" baseProfile="basic" id="Layer_1"
+                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24"
+                             xml:space="preserve">
+                        <path fill="none" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12,18.8c3.3,0,6-2.7,6-6
+                            v-1.5 M12,18.8c-3.3,0-6-2.7-6-6v-1.5 M12,18.8v3.8 M8.2,22.5h7.5 M12,15.8c-1.7,0-3-1.3-3-3V10V9.3V6.3V4.5c0-1.7,1.3-3,3-3
+                            s3,1.3,3,3v8.2C15,14.4,13.7,15.8,12,15.8z"/>
+                        <line fill="none" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="10" x1="4.4" y1="1.6" x2="19.6" y2="21.6"/>
+                        </svg>
                              `;
+                } else {
+                    htmlString = `
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" />
+                            </svg>
+                         `;
+                };
 
-                            e.target.innerHTML = htmlString
+                e.target.innerHTML = htmlString
+            }
 
-                        } else {
-                            htmlString = `
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" />
-                                </svg>
+            addVideoStream(myVideo, stream)
 
-                             `;
-
-                            e.target.innerHTML = htmlString
-                        }
-                    }
-
-                });
-            })
-
-            navigator.mediaDevices.getUserMedia({
-                video: true,
-                audio: false
-            }).then(stream => {
-                receivedMediaStream = stream;
-
-                let call = peer.call(@json($otherPeerId), receivedMediaStream);
-                call.on('stream', function(remoteStream) {
-                    const remoteVideo = document.createElement('video');
-                    remoteVideo.srcObject = remoteStream;
-                    remoteVideo.addEventListener('loadedmetadata', () => {
-                        remoteVideo.play()
-                    })
-                    document.getElementById('videosDiv').append(remoteVideo)
-
-                    console.log(remoteStream)
-                    stylingVideo();
+            peer.on('call', call => {
+                call.answer(stream);
+                const video = document.createElement('video')
+                call.on('stream', userVideoStream => {
+                    console.log(stream)
+                    addVideoStream(video, userVideoStream);
                 })
             })
 
-        }else if(@json($peerUuid)) {
-            let peer = new Peer(@json($peerUuid), {
-                host: "localhost",
-                port: 9000,
-                path: "/myapp",
-            });
+            Echo.private(`chat.{{$chat_id}}`)
+                .listenForWhisper('user-connected', (e) => {
+                    console.log(e)
 
-            let receivedMediaStream = null;
-
-            document.getElementById("camera").addEventListener("click", (e) => {
-                receivedMediaStream.getTracks().forEach(mediaTrack => {
-                    if(mediaTrack.kind === "video") {
-                        mediaTrack.enabled = !mediaTrack.enabled;
-
-                        let htmlString;
-
-                        if (!mediaTrack.enabled) {
-                            htmlString = `
-                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M12 18.75H4.5a2.25 2.25 0 01-2.25-2.25V9m12.841 9.091L16.5 19.5m-1.409-1.409c.407-.407.659-.97.659-1.591v-9a2.25 2.25 0 00-2.25-2.25h-9c-.621 0-1.184.252-1.591.659m12.182 12.182L2.909 5.909M1.5 4.5l1.409 1.409" />
-                                </svg>
-                             `;
-
-                            e.target.innerHTML = htmlString
-
-                        } else {
-                            htmlString = `
-                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                  <path stroke-linecap="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z" />
-                                </svg>
-
-                             `;
-
-                            e.target.innerHTML = htmlString
-                        }
-                    }
+                    connectToNewUser(e.user_id, stream)
                 });
-            })
+        })
 
-            document.getElementById("audio").addEventListener("click", (e) => {
-                receivedMediaStream.getTracks().forEach(mediaTrack => {
-                    if(mediaTrack.kind === "audio") {
-                        mediaTrack.enabled = !mediaTrack.enabled;
 
-                        let htmlString;
+        peer.on('open', id => {
+            console.log(id);
 
-                        if (!mediaTrack.enabled) {
-                            htmlString = `
-                                 <!-- Generator: Adobe Illustrator 27.5.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-                                <svg version="1.1" baseProfile="basic" id="Layer_1"
-                                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24"
-                                     xml:space="preserve">
-                                <path fill="none" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12,18.8c3.3,0,6-2.7,6-6
-                                    v-1.5 M12,18.8c-3.3,0-6-2.7-6-6v-1.5 M12,18.8v3.8 M8.2,22.5h7.5 M12,15.8c-1.7,0-3-1.3-3-3V10V9.3V6.3V4.5c0-1.7,1.3-3,3-3
-                                    s3,1.3,3,3v8.2C15,14.4,13.7,15.8,12,15.8z"/>
-                                <line fill="none" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="10" x1="4.4" y1="1.6" x2="19.6" y2="21.6"/>
-                                </svg>
-                             `;
-
-                            e.target.innerHTML = htmlString
-
-                        } else {
-                            htmlString = `
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" />
-                                </svg>
-
-                             `;
-
-                            e.target.innerHTML = htmlString
-                        }
-                    }
-
-                });
-            })
-
-            navigator.mediaDevices.getUserMedia({
-                video: true,
-                audio: false
-            }).then(stream => {
-                receivedMediaStream = stream;
-
-                peer.on('call', function (call) {
-                    call.answer(receivedMediaStream);
-                    call.on('stream', function (remoteStream) {
-                        const remoteVideo = document.createElement('video');
-                        remoteVideo.srcObject = remoteStream;
-                        remoteVideo.addEventListener('loadedmetadata', () => {
-                            remoteVideo.play()
-                        })
-                        document.getElementById('videosDiv').append(remoteVideo)
-
-                        stylingVideo();
+            setTimeout(() => {
+                Echo.private(`chat.{{$chat_id}}`)
+                    .whisper('user-connected', {
+                        user_id: id
                     });
+            }, 1000);
 
-                    console.log(stream);
-                });
+        })
+
+        function connectToNewUser(userId, stream)  {
+            const call = peer.call(userId, stream)
+            const video = document.createElement('video')
+
+            call.on('stream', userVideoStream => {
+                addVideoStream(video, userVideoStream)
             })
+            call.on('close', () => {
+                video.remove()
+            })
+        }
+
+        function addVideoStream(video, stream)  {
+            video.srcObject = stream;
+            video.addEventListener('loadedmetadata', () => {
+                video.play()
+            })
+            videoGrid.append(video)
+            stylingVideo()
         }
 
         function stylingVideo() {
@@ -253,7 +179,7 @@
                 }
             }
 
-            if (el.length == 2) {
+            if (el.length === 2) {
                 for (let element of el) {
                     element.style.height = "auto"
                     element.style.width = '49%'
@@ -261,7 +187,7 @@
 
             }
 
-            if (el.length == 3) {
+            if (el.length === 3) {
                 for (let element of el) {
                     element.style.height = "auto"
                     element.style.width = '32%'

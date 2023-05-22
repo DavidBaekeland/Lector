@@ -15,7 +15,6 @@ class CallController extends Controller
 
     public function call(Request $request)
     {
-        $peer = Peer::create(["uuid" => Str::uuid()->toString(), "user_id" => auth()->user()->id]);
 
 //    $chat = \App\Models\Chat::where("id", $request->chat_id)->first();
 //    $users = $chat->users;
@@ -29,17 +28,16 @@ class CallController extends Controller
 //        $chatName = $tempUsers->pluck("name")->implode(', ');
 //
 //    }
-        event(new \App\Events\Peer($peer->uuid, $request->chat_id, "sdqfqsdf"));
-
-        return view('chat.call', ["peerUuid" => $peer->uuid, "otherPeerId" => false]);
+        event(new \App\Events\Peer($request->chat_id));
+        return view('chat.call', ["chat_id" => $request->chat_id]);
     }
 
-    public function answer(string $otherPeerId)
+    public function answer(string $chat_id)
     {
-        return view('chat.call', ["peerUuid" => false, "otherPeerId" => $otherPeerId]);
+        return view('chat.call', ["chat_id" => $chat_id]);
     }
 
-    public function declineOtherPeer(string $otherPeerId)
+    public function declineOtherPeer(string $chat_id)
     {
         // melding sturen naar persoon die gesprek gestart is
 
