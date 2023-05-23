@@ -50,18 +50,7 @@
 }
 
 .calendar-item,
-.active-course,
-.active-course-2,
-.active-course-3,
-.active-course-4,
-.active-course-5,
-.active-course-6,
-.active-course-7,
-.active-course-8,
-.active-course-9,
-.active-course-10,
-.active-course-11,
-.active-course-12{
+.active-calendar{
     height: 8.333333333333333%;
 
     display: flex;
@@ -72,131 +61,104 @@
     border-right: 1px solid var(--gray);
 }
 
-.active-course-2 {
+.calendar-2 {
     height: 16.66666%;
 }
 
-.active-course-3 {
+.calendar-3{
     height: 25%;
 }
 
-.active-course-4 {
+.calendar-4{
     height: 34%;
 }
 
-.active-course-5 {
+.calendar-5{
     height: 42%;
 }
 
-.active-course-6 {
+.calendar-6 {
     height: 50%;
 }
 
-.active-course-7 {
+.course-calendar-7{
     height: 58.3333333%;
 }
 
-.active-course-8 {
+.calendar-8{
     height: 67%;
 }
 
-.active-course-9 {
+.calendar-9{
     height: 75%;
 }
 
-.active-course-10 {
+.calendar-10 {
     height: 83.3333333%;
 }
 
-.active-course-11 {
+.calendar-11 {
     height: 92%;
 }
 
-.active-course-12 {
+.calendar-12 {
     height: 100%;
 }
 
-
-.active-course,
-.active-course-2,
-.active-course-3,
-.active-course-4,
-.active-course-5,
-.active-course-6,
-.active-course-7,
-.active-course-8,
-.active-course-9,
-.active-course-10,
-.active-course-11,
-.active-course-12{
-    background-color: var(--red);
+.active-calendar {
     color: #fff;
     border-radius: 10px;
     box-shadow: 0px 3px 6px #76767628;
 }
 
-.active-course .info-active,
-.active-course-2 .info-active,
-.active-course-3 .info-active,
-.active-course-4 .info-active,
-.active-course-5 .info-active,
-.active-course-6 .info-active,
-.active-course-7 .info-active,
-.active-course-8 .info-active,
-.active-course-9 .info-active,
-.active-course-10 .info-active,
-.active-course-11 .info-active,
-.active-course-12 .info-active  {
-    margin: auto;
-
+.course-calendar {
+    background-color: var(--red);
 }
 
-.active-course-2 h2,
-.active-course-3 h2,
-.active-course-4 h2,
-.active-course-5 h2,
-.active-course-6 h2,
-.active-course-7 h2,
-.active-course-8 h2,
-.active-course-9 h2,
-.active-course-10 h2,
-.active-course-11 h2,
-.active-course-12 h2  {
+.personal-calendar {
+    background-color: #4E62E8;
+}
+
+
+.active-calendar .info-active {
+    margin: auto;
+}
+
+.calendar-2 h2,
+.calendar-3 h2,
+.calendar-4 h2,
+.calendar-5 h2,
+.calendar-6 h2,
+.calendar-7 h2,
+.calendar-8 h2,
+.calendar-9 h2,
+.calendar-10 h2,
+.calendar-11 h2,
+.calendar-12 h2 {
     font-size: 20px;
     margin: 0;
     margin-bottom: 10px;
 }
 
-.active-course span,
-.active-course-2 span,
-.active-course-3 span,
-.active-course-4 span,
-.active-course-5 span,
-.active-course-6 span,
-.active-course-7 span,
-.active-course-8 span,
-.active-course-9 span,
-.active-course-10 span,
-.active-course-11 span,
-.active-course-12 span  {
+.active-calendar span {
     font-size: 15px;
     font-weight: 300;
     font-style: normal;
 }
 
-.active-course .info-active {
+.calendar-1 .info-active {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin: auto 10%;
 }
 
-.active-course .info-active h2{
+.calendar-1 .info-active h2 {
     margin: 0;
     font-size: 18px;
 }
 
-.active-course .info-active span{
+.active-calendar .info-active span{
     display: flex;
     flex-direction: column;
     justify-content: center;

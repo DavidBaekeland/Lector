@@ -32,14 +32,14 @@
                     <div class="calendar-item"></div>
                     <div class="calendar-item"></div>
                     <div class="calendar-item"></div>
-                    <div class="active-course">
+                    <div class="active-calendar course-calendar calendar-1">
                         <span class="info-active">
                             <h2>Design V</h2>
                             <span>B1.022</span>
                         </span>
                     </div>
                     <div class="calendar-item"></div>
-                    <div class="active-course-2">
+                    <div class="active-calendar course-calendar calendar-2">
                         <span class="info-active">
                             <h2>Expert Lab</h2>
                             <span>B1.022</span>
@@ -48,7 +48,7 @@
                     <div class="calendar-item"></div>
                 </div>
                 <div class="day">
-                    <div class="active-course-4">
+                    <div class="active-calendar course-calendar calendar-4">
                         <span class="info-active">
                             <h2>Expert Lab</h2>
                             <span>B1.022</span>
@@ -64,19 +64,22 @@
                     <div class="calendar-item"></div>
                 </div>
                 <div class="day">
-                    <div class="active-course-5">
+                    <div class="active-calendar course-calendar calendar-5">
                         <span class="info-active">
                             <h2>Expert Lab</h2>
                             <span>B1.022</span>
                         </span>
                     </div>
+
                     <div class="calendar-item"></div>
                     <div class="calendar-item"></div>
-                    <div class="calendar-item"></div>
-                    <div class="calendar-item"></div>
-                    <div class="calendar-item"></div>
-                    <div class="calendar-item"></div>
-                    <div class="calendar-item"></div>
+
+                    <div class="active-calendar course-calendar calendar-5">
+                        <span class="info-active">
+                            <h2>Expert Lab</h2>
+                            <span>B1.022</span>
+                        </span>
+                    </div>
                 </div>
 
                 <div class="day">
@@ -85,7 +88,7 @@
                     <div class="calendar-item"></div>
                     <div class="calendar-item"></div>
 
-                    <div class="active-course-8">
+                    <div class="active-calendar personal-calendar calendar-8">
                         <span class="info-active">
                             <h2>Expert Lab</h2>
                             <span>B1.022</span>
@@ -94,7 +97,7 @@
                 </div>
 
                 <div class="day">
-                    <div class="active-course-12">9</div>
+                    <div class="active-calendar course-calendar calendar-12">9</div>
                 </div>
             </div>
 
