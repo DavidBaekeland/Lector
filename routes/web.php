@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\PasswordController;
+use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
@@ -36,9 +37,7 @@ Route::post('/chat', [MessageController::class, 'store'])->name('message.store')
 
 
 
-Route::get('/calender', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('calender');
+Route::get('/calendar', [CalendarController::class, 'index'])->middleware(['auth'])->name('calendar.index');
 
 
 Route::resources([
