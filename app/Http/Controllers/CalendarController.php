@@ -11,7 +11,62 @@ use Illuminate\Http\Request;
 class CalendarController extends Controller
 {
     public function index() {
-        return view('calendar.index');
+        $appointmentsDates = auth()->user()->appointments->groupBy("start_date");
+
+
+        $now = Carbon::now();
+
+        $appointmentsDates2 = [];
+        foreach ($appointmentsDates as $key => $appointmentsDate) {
+            $map = [];
+
+            foreach ($appointmentsDate->sortBy('start_time') as $appointment) {
+                switch (Carbon::createFromFormat('H:i:s', $appointment->start_time)->format('H')) {
+                    case "09":
+                        $map["09:00"] = $appointment;
+                        break;
+                    case "10":
+                        $map["10:00"] = $appointment;
+                        break;
+                    case "11":
+                        $map["11:00"] = $appointment;
+                        break;
+                    case "12":
+                        $map["12:00"] = $appointment;
+                        break;
+                    case "13":
+                        $map["13:00"] = $appointment;
+                        break;
+                    case "14":
+                        $map["14:00"] = $appointment;
+                        break;
+                    case "15":
+                        $map["15:00"] = $appointment;
+                        break;
+                    case "16":
+                        $map["16:00"] = $appointment;
+                        break;
+                    case "17":
+                        $map["17:00"] = $appointment;
+                        break;
+                    case "18":
+                        $map["18:00"] = $appointment;
+                        break;
+                    case "19":
+                        $map["19:00"] = $appointment;
+                        break;
+                    case "20":
+                        $map["20:00"] = $appointment;
+                        break;
+                }
+            }
+
+            $appointmentsDates2[$key] = $map;
+        }
+
+        return view('calendar.index')->with(["appointmentsDates" => $appointmentsDates2, "now" => $now]);
+    }
+
     public function create() {
         return view('calendar.create');
     }
