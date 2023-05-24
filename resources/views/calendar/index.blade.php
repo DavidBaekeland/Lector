@@ -38,10 +38,10 @@
                         @foreach($appointmentsDates as $key => $appointmentsDate)
                             @if($key == $now->startOfWeek()->format('Y-m-d'))
                                 @if(isset($appointmentsDate["09:00"]))
-                                    <div class="active-calendar personal-calendar calendar-1">
+                                    <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["09:00"][1]}}">
                                         <span class="info-active">
-                                            <h2>{{$appointmentsDate["09:00"]->title}}</h2>
-                                            <span>{{$appointmentsDate["09:00"]->location}}</span>
+                                            <h2>{{$appointmentsDate["09:00"][0]->title}}</h2>
+                                            <span>{{$appointmentsDate["09:00"][0]->location}}</span>
                                         </span>
                                     </div>
                                 @else
@@ -49,10 +49,10 @@
                                 @endif
 
                                 @if(isset($appointmentsDate["10:00"]))
-                                    <div class="active-calendar personal-calendar calendar-1">
+                                    <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["10:00"][1]}}">
                                     <span class="info-active">
-                                        <h2>{{$appointmentsDate["10:00"]->title}}</h2>
-                                        <span>{{$appointmentsDate["10:00"]->location}}</span>
+                                        <h2>{{$appointmentsDate["10:00"][0]->title}}</h2>
+                                        <span>{{$appointmentsDate["10:00"][0]->location}}</span>
                                     </span>
                                     </div>
                                 @else
@@ -60,10 +60,10 @@
                                 @endif
 
                                 @if(isset($appointmentsDate["11:00"]))
-                                    <div class="active-calendar personal-calendar calendar-1">
+                                    <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["11:00"][1]}}">
                                         <span class="info-active">
-                                            <h2>{{$appointmentsDate["11:00"]->title}}</h2>
-                                            <span>{{$appointmentsDate["11:00"]->location}}</span>
+                                            <h2>{{$appointmentsDate["11:00"][0]->title}}</h2>
+                                            <span>{{$appointmentsDate["11:00"][0]->location}}</span>
                                         </span>
                                     </div>
                                 @else
@@ -71,10 +71,10 @@
                                 @endif
 
                                 @if(isset($appointmentsDate["12:00"]))
-                                    <div class="active-calendar personal-calendar calendar-1">
+                                    <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["12:00"][1]}}">
                                     <span class="info-active">
-                                        <h2>{{$appointmentsDate["12:00"]->title}}</h2>
-                                        <span>{{$appointmentsDate["12:00"]->location}}</span>
+                                        <h2>{{$appointmentsDate["12:00"][0]->title}}</h2>
+                                        <span>{{$appointmentsDate["12:00"][0]->location}}</span>
                                     </span>
                                     </div>
                                 @else
@@ -82,10 +82,10 @@
                                 @endif
 
                                 @if(isset($appointmentsDate["13:00"]))
-                                    <div class="active-calendar personal-calendar calendar-1">
+                                    <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["13:00"][1]}}">
                                         <span class="info-active">
-                                            <h2>{{$appointmentsDate["13:00"]->title}}</h2>
-                                            <span>{{$appointmentsDate["13:00"]->location}}</span>
+                                            <h2>{{$appointmentsDate["13:00"][0]->title}}</h2>
+                                            <span>{{$appointmentsDate["13:00"][0]->location}}</span>
                                         </span>
                                     </div>
                                 @else
@@ -93,10 +93,10 @@
                                 @endif
 
                                 @if(isset($appointmentsDate["14:00"]))
-                                    <div class="active-calendar personal-calendar calendar-1">
+                                    <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["14:00"][1]}}">
                                         <span class="info-active">
-                                            <h2>{{$appointmentsDate["14:00"]->title}}</h2>
-                                            <span>{{$appointmentsDate["14:00"]->location}}</span>
+                                            <h2>{{$appointmentsDate["14:00"][0]->title}}</h2>
+                                            <span>{{$appointmentsDate["14:00"][0]->location}}</span>
                                         </span>
                                     </div>
                                 @else
@@ -104,10 +104,10 @@
                                 @endif
 
                                 @if(isset($appointmentsDate["15:00"]))
-                                    <div class="active-calendar personal-calendar calendar-1">
+                                    <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["15:00"][1]}}">
                                     <span class="info-active">
-                                        <h2>{{$appointmentsDate["15:00"]->title}}</h2>
-                                        <span>{{$appointmentsDate["15:00"]->location}}</span>
+                                        <h2>{{$appointmentsDate["15:00"][0]->title}}</h2>
+                                        <span>{{$appointmentsDate["15:00"][0]->location}}</span>
                                     </span>
                                     </div>
                                 @else
@@ -115,10 +115,10 @@
                                 @endif
 
                                 @if(isset($appointmentsDate["16:00"]))
-                                    <div class="active-calendar personal-calendar calendar-1">
+                                    <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["16:00"][1]}}">
                                     <span class="info-active">
-                                        <h2>{{$appointmentsDate["16:00"]->title}}</h2>
-                                        <span>{{$appointmentsDate["16:00"]->location}}</span>
+                                        <h2>{{$appointmentsDate["16:00"][0]->title}}</h2>
+                                        <span>{{$appointmentsDate["16:00"][0]->location}}</span>
                                     </span>
                                     </div>
                                 @else
@@ -126,10 +126,10 @@
                                 @endif
 
                                 @if(isset($appointmentsDate["17:00"]))
-                                    <div class="active-calendar personal-calendar calendar-1">
+                                    <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["17:00"][1]}}">
                                         <span class="info-active">
-                                            <h2>{{$appointmentsDate["17:00"]->title}}</h2>
-                                            <span>{{$appointmentsDate["17:00"]->location}}</span>
+                                            <h2>{{$appointmentsDate["17:00"][0]->title}}</h2>
+                                            <span>{{$appointmentsDate["17:00"][0]->location}}</span>
                                         </span>
                                     </div>
                                 @else
@@ -137,10 +137,10 @@
                                 @endif
 
                                 @if(isset($appointmentsDate["18:00"]))
-                                    <div class="active-calendar personal-calendar calendar-1">
+                                    <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["18:00"][1]}}">
                                     <span class="info-active">
-                                        <h2>{{$appointmentsDate["18:00"]->title}}</h2>
-                                        <span>{{$appointmentsDate["18:00"]->location}}</span>
+                                        <h2>{{$appointmentsDate["18:00"][0]->title}}</h2>
+                                        <span>{{$appointmentsDate["18:00"][0]->location}}</span>
                                     </span>
                                     </div>
                                 @else
@@ -148,10 +148,10 @@
                                 @endif
 
                                 @if(isset($appointmentsDate["19:00"]))
-                                    <div class="active-calendar personal-calendar calendar-1">
+                                    <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["19:00"][1]}}">
                                         <span class="info-active">
-                                            <h2>{{$appointmentsDate["19:00"]->title}}</h2>
-                                            <span>{{$appointmentsDate["19:00"]->location}}</span>
+                                            <h2>{{$appointmentsDate["19:00"][0]->title}}</h2>
+                                            <span>{{$appointmentsDate["19:00"][0]->location}}</span>
                                         </span>
                                     </div>
                                 @else
@@ -159,10 +159,10 @@
                                 @endif
 
                                 @if(isset($appointmentsDate["20:00"]))
-                                    <div class="active-calendar personal-calendar calendar-1">
+                                    <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["20:00"][1]}}">
                                         <span class="info-active">
-                                            <h2>{{$appointmentsDate["20:00"]->title}}</h2>
-                                            <span>{{$appointmentsDate["20:00"]->location}}</span>
+                                            <h2>{{$appointmentsDate["20:00"][0]->title}}</h2>
+                                            <span>{{$appointmentsDate["20:00"][0]->location}}</span>
                                         </span>
                                     </div>
                                 @else

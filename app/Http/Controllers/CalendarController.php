@@ -16,47 +16,53 @@ class CalendarController extends Controller
 
         $now = Carbon::now();
 
+        $countItems = 12;
+
         $appointmentsDates2 = [];
         foreach ($appointmentsDates as $key => $appointmentsDate) {
             $map = [];
 
+
             foreach ($appointmentsDate->sortBy('start_time') as $appointment) {
+                $difference = Carbon::createFromFormat('H:i:s', $appointment->start_time)->diffInHours(Carbon::createFromFormat('H:i:s', $appointment->end_time));
+
                 switch (Carbon::createFromFormat('H:i:s', $appointment->start_time)->format('H')) {
                     case "09":
-                        $map["09:00"] = $appointment;
+                        $map["09:00"] = [$appointment, $difference];
                         break;
                     case "10":
-                        $map["10:00"] = $appointment;
+                        $map["10:00"] = [$appointment, $difference];
                         break;
                     case "11":
-                        $map["11:00"] = $appointment;
+                        $map["11:00"] = [$appointment, $difference];
                         break;
                     case "12":
-                        $map["12:00"] = $appointment;
+                        $map["12:00"] = [$appointment, $difference];
+
                         break;
                     case "13":
-                        $map["13:00"] = $appointment;
+                        $map["13:00"] = [$appointment, $difference];
                         break;
                     case "14":
-                        $map["14:00"] = $appointment;
+                        $map["14:00"] = [$appointment, $difference];;
                         break;
                     case "15":
-                        $map["15:00"] = $appointment;
+                        $map["15:00"] = [$appointment, $difference];
                         break;
                     case "16":
-                        $map["16:00"] = $appointment;
+                        $map["16:00"] = [$appointment, $difference];
                         break;
                     case "17":
-                        $map["17:00"] = $appointment;
+                        $map["17:00"] = [$appointment, $difference];;
                         break;
                     case "18":
-                        $map["18:00"] = $appointment;
+                        $map["18:00"] = [$appointment, $difference];;
                         break;
                     case "19":
-                        $map["19:00"] = $appointment;
+                        $map["19:00"] = [$appointment, $difference];;
                         break;
                     case "20":
-                        $map["20:00"] = $appointment;
+                        $map["20:00"] = [$appointment, $difference];;
                         break;
                 }
             }
