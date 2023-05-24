@@ -1,3 +1,21 @@
+#calendar {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+}
+
+#appointmentCreate {
+    width: 20px;
+    color: var(--red);
+    text-align: right;
+}
+
+#appointmentCreateDiv {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+}
+
 .dates h1{
     text-align: center;
     font-weight: 900;
@@ -27,7 +45,7 @@
     color: #050505;
 }
 
-#calendar {
+.calendar {
     height: 100%;
     display: flex;
     width: 100%;
@@ -162,4 +180,21 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.dateInput {
+    width: 45%;
+    margin-right: 5px;
+}
+
+.timeInput {
+    width: 30%;
+}
+
+.dates-div {
+    display: flex;
+}
+
+.modal {
+    height: max-content;
 }

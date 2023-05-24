@@ -7,6 +7,12 @@
             <h1>Wo - 24/5</h1>
             <h1>Do - 25/5</h1>
             <h1>Vr - 26/5</h1>
+        <div id="appointmentCreateDiv">
+            <a href="{{ route('calendar.store') }}" id="appointmentCreate">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+                </svg>
+            </a>
         </div>
         <div id="calendar">
             <div class="time">

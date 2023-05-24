@@ -39,6 +39,10 @@ Route::post('/chat', [MessageController::class, 'store'])->name('message.store')
 
 Route::get('/calendar', [CalendarController::class, 'index'])->middleware(['auth'])->name('calendar.index');
 
+Route::get('/calendar/create', [CalendarController::class, 'create'])->middleware(['auth'])->name('calendar.create');
+
+Route::post('/calendar/create', [CalendarController::class, 'store'])->middleware(['auth'])->name('calendar.store');
+
 
 Route::resources([
     'users' => UserController::class,
