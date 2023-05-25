@@ -32,6 +32,7 @@
                     <p class="calendar-time">19:00</p>
                     <p class="calendar-time">20:00</p>
                 </div>
+
                 <div class="days">
                     <div class="day" id="{{$now->startOfWeek()->format('d-m')}}">
 {{--                        @dump($appointmentsDates)--}}
@@ -55,7 +56,7 @@
                                         <span>{{$appointmentsDate["10:00"][0]->location}}</span>
                                     </span>
                                     </div>
-                                @else
+                                @elseif(!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<2)
                                     <div class="calendar-item"></div>
                                 @endif
 
@@ -66,7 +67,7 @@
                                             <span>{{$appointmentsDate["11:00"][0]->location}}</span>
                                         </span>
                                     </div>
-                                @else
+                                @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<3) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<2))
                                     <div class="calendar-item"></div>
                                 @endif
 
@@ -77,7 +78,7 @@
                                         <span>{{$appointmentsDate["12:00"][0]->location}}</span>
                                     </span>
                                     </div>
-                                @else
+                                @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<4) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<3) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<2))
                                     <div class="calendar-item"></div>
                                 @endif
 
@@ -88,7 +89,7 @@
                                             <span>{{$appointmentsDate["13:00"][0]->location}}</span>
                                         </span>
                                     </div>
-                                @else
+                                @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<5) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<4) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<3) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<2))
                                     <div class="calendar-item"></div>
                                 @endif
 
@@ -99,7 +100,7 @@
                                             <span>{{$appointmentsDate["14:00"][0]->location}}</span>
                                         </span>
                                     </div>
-                                @else
+                                @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<6) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<5) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<4) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<3) && (!isset($appointmentsDate["13:00"]) || $appointmentsDate["13:00"][1]<2))
                                     <div class="calendar-item"></div>
                                 @endif
 
@@ -110,7 +111,7 @@
                                         <span>{{$appointmentsDate["15:00"][0]->location}}</span>
                                     </span>
                                     </div>
-                                @else
+                                @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<7) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<6) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<5) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<4) && (!isset($appointmentsDate["13:00"]) || $appointmentsDate["13:00"][1]<3) && (!isset($appointmentsDate["14:00"]) || $appointmentsDate["14:00"][1]<2))
                                     <div class="calendar-item"></div>
                                 @endif
 
@@ -121,7 +122,7 @@
                                         <span>{{$appointmentsDate["16:00"][0]->location}}</span>
                                     </span>
                                     </div>
-                                @else
+                                @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<8) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<7) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<6) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<5) && (!isset($appointmentsDate["13:00"]) || $appointmentsDate["13:00"][1]<4) && (!isset($appointmentsDate["14:00"]) || $appointmentsDate["14:00"][1]<3) && (!isset($appointmentsDate["15:00"]) ||$appointmentsDate["15:00"][1]<2))
                                     <div class="calendar-item"></div>
                                 @endif
 
@@ -132,7 +133,7 @@
                                             <span>{{$appointmentsDate["17:00"][0]->location}}</span>
                                         </span>
                                     </div>
-                                @else
+                                @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<9) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<8) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<7) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<6) && (!isset($appointmentsDate["13:00"]) || $appointmentsDate["13:00"][1]<5) && (!isset($appointmentsDate["14:00"]) || $appointmentsDate["14:00"][1]<4) && (!isset($appointmentsDate["15:00"]) || $appointmentsDate["15:00"][1]<3) && (!isset($appointmentsDate["16:00"]) || $appointmentsDate["16:00"][1]<2))
                                     <div class="calendar-item"></div>
                                 @endif
 
@@ -143,7 +144,7 @@
                                         <span>{{$appointmentsDate["18:00"][0]->location}}</span>
                                     </span>
                                     </div>
-                                @else
+                                @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<10) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<9) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<8) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<7) && (!isset($appointmentsDate["13:00"]) || $appointmentsDate["13:00"][1]<6) && (!isset($appointmentsDate["14:00"]) || $appointmentsDate["14:00"][1]<5) && (!isset($appointmentsDate["15:00"]) || $appointmentsDate["15:00"][1]<4) && (!isset($appointmentsDate["16:00"]) || $appointmentsDate["16:00"][1]<3) && (!isset($appointmentsDate["17:00"]) || $appointmentsDate["17:00"][1]<2))
                                     <div class="calendar-item"></div>
                                 @endif
 
@@ -154,7 +155,7 @@
                                             <span>{{$appointmentsDate["19:00"][0]->location}}</span>
                                         </span>
                                     </div>
-                                @else
+                                @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<11) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<10) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<9) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<8) && (!isset($appointmentsDate["13:00"]) || $appointmentsDate["13:00"][1]<7) && (!isset($appointmentsDate["14:00"]) || $appointmentsDate["14:00"][1]<6) && (!isset($appointmentsDate["15:00"]) || $appointmentsDate["15:00"][1]<5) && (!isset($appointmentsDate["16:00"]) || $appointmentsDate["16:00"][1]<4) && (!isset($appointmentsDate["17:00"]) || $appointmentsDate["17:00"][1]<3) && (!isset($appointmentsDate["18:00"]) || $appointmentsDate["18:00"][1]<2))
                                     <div class="calendar-item"></div>
                                 @endif
 
@@ -165,7 +166,7 @@
                                             <span>{{$appointmentsDate["20:00"][0]->location}}</span>
                                         </span>
                                     </div>
-                                @else
+                                @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<12) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<11) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<10) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<9) && (!isset($appointmentsDate["13:00"]) || $appointmentsDate["13:00"][1]<8) && (!isset($appointmentsDate["14:00"]) || $appointmentsDate["14:00"][1]<7) && (!isset($appointmentsDate["15:00"]) || $appointmentsDate["15:00"][1]<6) && (!isset($appointmentsDate["16:00"]) || $appointmentsDate["16:00"][1]<5) && (!isset($appointmentsDate["17:00"]) || $appointmentsDate["17:00"][1]<4) && (!isset($appointmentsDate["18:00"]) || $appointmentsDate["18:00"][1]<3) && (!isset($appointmentsDate["19:00"]) || $appointmentsDate["19:00"][1]<2))
                                     <div class="calendar-item"></div>
                                 @endif
                             @endif
