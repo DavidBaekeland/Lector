@@ -35,8 +35,8 @@
 
                 <div class="days">
                     <div class="day" id="{{$now->startOfWeek()->format('d-m')}}">
-{{--                        @dump($appointmentsDates)--}}
-                        @foreach($appointmentsDates as $key => $appointmentsDate)
+                        @if(array_key_exists($now->startOfWeek()->format('Y-m-d'), $appointmentsDates))
+                            @foreach($appointmentsDates as $key => $appointmentsDate)
                             @if($key == $now->startOfWeek()->format('Y-m-d'))
                                 @if(isset($appointmentsDate["09:00"]))
                                     <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["09:00"][1]}}">
@@ -171,58 +171,585 @@
                                 @endif
                             @endif
                         @endforeach
+                        @else
+                            @for($i = 0; $i<=11; $i++)
+                                <div class="calendar-item"></div>
+                            @endfor
+                        @endif
                     </div>
                     <div class="day" id="{{$now->startOfWeek()->addDay()->format('d-m')}}">
-                        <div class="active-calendar course-calendar calendar-4">
-                        <span class="info-active">
-                            <h2>Expert Lab</h2>
-                            <span>B1.022</span>
-                        </span>
-                        </div>
-                        <div class="calendar-item"></div>
-                        <div class="calendar-item"></div>
-                        <div class="calendar-item"></div>
-                        <div class="calendar-item"></div>
-                        <div class="calendar-item"></div>
-                        <div class="calendar-item"></div>
-                        <div class="calendar-item"></div>
-                        <div class="calendar-item"></div>
+                        @if(array_key_exists($now->startOfWeek()->addDay()->format('Y-m-d'), $appointmentsDates))
+                            @foreach($appointmentsDates as $key => $appointmentsDate)
+                                @if($key == $now->startOfWeek()->addDay()->format('Y-m-d'))
+                                    @if(isset($appointmentsDate["09:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["09:00"][1]}}">
+                                        <span class="info-active">
+                                            <h2>{{$appointmentsDate["09:00"][0]->title}}</h2>
+                                            <span>{{$appointmentsDate["09:00"][0]->location}}</span>
+                                        </span>
+                                        </div>
+                                    @else
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["10:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["10:00"][1]}}">
+                                    <span class="info-active">
+                                        <h2>{{$appointmentsDate["10:00"][0]->title}}</h2>
+                                        <span>{{$appointmentsDate["10:00"][0]->location}}</span>
+                                    </span>
+                                        </div>
+                                    @elseif(!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<2)
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["11:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["11:00"][1]}}">
+                                        <span class="info-active">
+                                            <h2>{{$appointmentsDate["11:00"][0]->title}}</h2>
+                                            <span>{{$appointmentsDate["11:00"][0]->location}}</span>
+                                        </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<3) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["12:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["12:00"][1]}}">
+                                    <span class="info-active">
+                                        <h2>{{$appointmentsDate["12:00"][0]->title}}</h2>
+                                        <span>{{$appointmentsDate["12:00"][0]->location}}</span>
+                                    </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<4) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<3) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["13:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["13:00"][1]}}">
+                                        <span class="info-active">
+                                            <h2>{{$appointmentsDate["13:00"][0]->title}}</h2>
+                                            <span>{{$appointmentsDate["13:00"][0]->location}}</span>
+                                        </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<5) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<4) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<3) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["14:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["14:00"][1]}}">
+                                        <span class="info-active">
+                                            <h2>{{$appointmentsDate["14:00"][0]->title}}</h2>
+                                            <span>{{$appointmentsDate["14:00"][0]->location}}</span>
+                                        </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<6) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<5) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<4) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<3) && (!isset($appointmentsDate["13:00"]) || $appointmentsDate["13:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["15:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["15:00"][1]}}">
+                                    <span class="info-active">
+                                        <h2>{{$appointmentsDate["15:00"][0]->title}}</h2>
+                                        <span>{{$appointmentsDate["15:00"][0]->location}}</span>
+                                    </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<7) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<6) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<5) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<4) && (!isset($appointmentsDate["13:00"]) || $appointmentsDate["13:00"][1]<3) && (!isset($appointmentsDate["14:00"]) || $appointmentsDate["14:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["16:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["16:00"][1]}}">
+                                    <span class="info-active">
+                                        <h2>{{$appointmentsDate["16:00"][0]->title}}</h2>
+                                        <span>{{$appointmentsDate["16:00"][0]->location}}</span>
+                                    </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<8) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<7) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<6) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<5) && (!isset($appointmentsDate["13:00"]) || $appointmentsDate["13:00"][1]<4) && (!isset($appointmentsDate["14:00"]) || $appointmentsDate["14:00"][1]<3) && (!isset($appointmentsDate["15:00"]) ||$appointmentsDate["15:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["17:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["17:00"][1]}}">
+                                        <span class="info-active">
+                                            <h2>{{$appointmentsDate["17:00"][0]->title}}</h2>
+                                            <span>{{$appointmentsDate["17:00"][0]->location}}</span>
+                                        </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<9) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<8) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<7) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<6) && (!isset($appointmentsDate["13:00"]) || $appointmentsDate["13:00"][1]<5) && (!isset($appointmentsDate["14:00"]) || $appointmentsDate["14:00"][1]<4) && (!isset($appointmentsDate["15:00"]) || $appointmentsDate["15:00"][1]<3) && (!isset($appointmentsDate["16:00"]) || $appointmentsDate["16:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["18:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["18:00"][1]}}">
+                                    <span class="info-active">
+                                        <h2>{{$appointmentsDate["18:00"][0]->title}}</h2>
+                                        <span>{{$appointmentsDate["18:00"][0]->location}}</span>
+                                    </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<10) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<9) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<8) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<7) && (!isset($appointmentsDate["13:00"]) || $appointmentsDate["13:00"][1]<6) && (!isset($appointmentsDate["14:00"]) || $appointmentsDate["14:00"][1]<5) && (!isset($appointmentsDate["15:00"]) || $appointmentsDate["15:00"][1]<4) && (!isset($appointmentsDate["16:00"]) || $appointmentsDate["16:00"][1]<3) && (!isset($appointmentsDate["17:00"]) || $appointmentsDate["17:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["19:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["19:00"][1]}}">
+                                        <span class="info-active">
+                                            <h2>{{$appointmentsDate["19:00"][0]->title}}</h2>
+                                            <span>{{$appointmentsDate["19:00"][0]->location}}</span>
+                                        </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<11) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<10) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<9) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<8) && (!isset($appointmentsDate["13:00"]) || $appointmentsDate["13:00"][1]<7) && (!isset($appointmentsDate["14:00"]) || $appointmentsDate["14:00"][1]<6) && (!isset($appointmentsDate["15:00"]) || $appointmentsDate["15:00"][1]<5) && (!isset($appointmentsDate["16:00"]) || $appointmentsDate["16:00"][1]<4) && (!isset($appointmentsDate["17:00"]) || $appointmentsDate["17:00"][1]<3) && (!isset($appointmentsDate["18:00"]) || $appointmentsDate["18:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["20:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["20:00"][1]}}">
+                                        <span class="info-active">
+                                            <h2>{{$appointmentsDate["20:00"][0]->title}}</h2>
+                                            <span>{{$appointmentsDate["20:00"][0]->location}}</span>
+                                        </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<12) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<11) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<10) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<9) && (!isset($appointmentsDate["13:00"]) || $appointmentsDate["13:00"][1]<8) && (!isset($appointmentsDate["14:00"]) || $appointmentsDate["14:00"][1]<7) && (!isset($appointmentsDate["15:00"]) || $appointmentsDate["15:00"][1]<6) && (!isset($appointmentsDate["16:00"]) || $appointmentsDate["16:00"][1]<5) && (!isset($appointmentsDate["17:00"]) || $appointmentsDate["17:00"][1]<4) && (!isset($appointmentsDate["18:00"]) || $appointmentsDate["18:00"][1]<3) && (!isset($appointmentsDate["19:00"]) || $appointmentsDate["19:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+                                @endif
+                            @endforeach
+                        @else
+                            @for($i = 0; $i<=11; $i++)
+                                <div class="calendar-item"></div>
+                            @endfor
+                        @endif
                     </div>
                     <div class="day" id="{{ $now->startOfWeek()->addDays(2)->format('d-m') }}">
-                        <div class="active-calendar course-calendar calendar-5">
-                        <span class="info-active">
-                            <h2>Expert Lab</h2>
-                            <span>B1.022</span>
-                        </span>
-                        </div>
+                        @if(array_key_exists($now->startOfWeek()->addDays(2)->format('Y-m-d'), $appointmentsDates))
+                            @foreach($appointmentsDates as $key => $appointmentsDate)
+                                @if($key == $now->startOfWeek()->addDays(2)->format('Y-m-d'))
+                                    @if(isset($appointmentsDate["09:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["09:00"][1]}}">
+                                        <span class="info-active">
+                                            <h2>{{$appointmentsDate["09:00"][0]->title}}</h2>
+                                            <span>{{$appointmentsDate["09:00"][0]->location}}</span>
+                                        </span>
+                                        </div>
+                                    @else
+                                        <div class="calendar-item"></div>
+                                    @endif
 
-                        <div class="calendar-item"></div>
-                        <div class="calendar-item"></div>
+                                    @if(isset($appointmentsDate["10:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["10:00"][1]}}">
+                                    <span class="info-active">
+                                        <h2>{{$appointmentsDate["10:00"][0]->title}}</h2>
+                                        <span>{{$appointmentsDate["10:00"][0]->location}}</span>
+                                    </span>
+                                        </div>
+                                    @elseif(!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<2)
+                                        <div class="calendar-item"></div>
+                                    @endif
 
-                        <div class="active-calendar course-calendar calendar-5">
-                        <span class="info-active">
-                            <h2>Expert Lab</h2>
-                            <span>B1.022</span>
-                        </span>
-                        </div>
+                                    @if(isset($appointmentsDate["11:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["11:00"][1]}}">
+                                        <span class="info-active">
+                                            <h2>{{$appointmentsDate["11:00"][0]->title}}</h2>
+                                            <span>{{$appointmentsDate["11:00"][0]->location}}</span>
+                                        </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<3) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["12:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["12:00"][1]}}">
+                                    <span class="info-active">
+                                        <h2>{{$appointmentsDate["12:00"][0]->title}}</h2>
+                                        <span>{{$appointmentsDate["12:00"][0]->location}}</span>
+                                    </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<4) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<3) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["13:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["13:00"][1]}}">
+                                        <span class="info-active">
+                                            <h2>{{$appointmentsDate["13:00"][0]->title}}</h2>
+                                            <span>{{$appointmentsDate["13:00"][0]->location}}</span>
+                                        </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<5) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<4) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<3) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["14:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["14:00"][1]}}">
+                                        <span class="info-active">
+                                            <h2>{{$appointmentsDate["14:00"][0]->title}}</h2>
+                                            <span>{{$appointmentsDate["14:00"][0]->location}}</span>
+                                        </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<6) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<5) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<4) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<3) && (!isset($appointmentsDate["13:00"]) || $appointmentsDate["13:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["15:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["15:00"][1]}}">
+                                    <span class="info-active">
+                                        <h2>{{$appointmentsDate["15:00"][0]->title}}</h2>
+                                        <span>{{$appointmentsDate["15:00"][0]->location}}</span>
+                                    </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<7) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<6) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<5) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<4) && (!isset($appointmentsDate["13:00"]) || $appointmentsDate["13:00"][1]<3) && (!isset($appointmentsDate["14:00"]) || $appointmentsDate["14:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["16:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["16:00"][1]}}">
+                                    <span class="info-active">
+                                        <h2>{{$appointmentsDate["16:00"][0]->title}}</h2>
+                                        <span>{{$appointmentsDate["16:00"][0]->location}}</span>
+                                    </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<8) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<7) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<6) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<5) && (!isset($appointmentsDate["13:00"]) || $appointmentsDate["13:00"][1]<4) && (!isset($appointmentsDate["14:00"]) || $appointmentsDate["14:00"][1]<3) && (!isset($appointmentsDate["15:00"]) ||$appointmentsDate["15:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["17:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["17:00"][1]}}">
+                                        <span class="info-active">
+                                            <h2>{{$appointmentsDate["17:00"][0]->title}}</h2>
+                                            <span>{{$appointmentsDate["17:00"][0]->location}}</span>
+                                        </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<9) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<8) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<7) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<6) && (!isset($appointmentsDate["13:00"]) || $appointmentsDate["13:00"][1]<5) && (!isset($appointmentsDate["14:00"]) || $appointmentsDate["14:00"][1]<4) && (!isset($appointmentsDate["15:00"]) || $appointmentsDate["15:00"][1]<3) && (!isset($appointmentsDate["16:00"]) || $appointmentsDate["16:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["18:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["18:00"][1]}}">
+                                    <span class="info-active">
+                                        <h2>{{$appointmentsDate["18:00"][0]->title}}</h2>
+                                        <span>{{$appointmentsDate["18:00"][0]->location}}</span>
+                                    </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<10) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<9) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<8) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<7) && (!isset($appointmentsDate["13:00"]) || $appointmentsDate["13:00"][1]<6) && (!isset($appointmentsDate["14:00"]) || $appointmentsDate["14:00"][1]<5) && (!isset($appointmentsDate["15:00"]) || $appointmentsDate["15:00"][1]<4) && (!isset($appointmentsDate["16:00"]) || $appointmentsDate["16:00"][1]<3) && (!isset($appointmentsDate["17:00"]) || $appointmentsDate["17:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["19:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["19:00"][1]}}">
+                                        <span class="info-active">
+                                            <h2>{{$appointmentsDate["19:00"][0]->title}}</h2>
+                                            <span>{{$appointmentsDate["19:00"][0]->location}}</span>
+                                        </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<11) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<10) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<9) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<8) && (!isset($appointmentsDate["13:00"]) || $appointmentsDate["13:00"][1]<7) && (!isset($appointmentsDate["14:00"]) || $appointmentsDate["14:00"][1]<6) && (!isset($appointmentsDate["15:00"]) || $appointmentsDate["15:00"][1]<5) && (!isset($appointmentsDate["16:00"]) || $appointmentsDate["16:00"][1]<4) && (!isset($appointmentsDate["17:00"]) || $appointmentsDate["17:00"][1]<3) && (!isset($appointmentsDate["18:00"]) || $appointmentsDate["18:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["20:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["20:00"][1]}}">
+                                        <span class="info-active">
+                                            <h2>{{$appointmentsDate["20:00"][0]->title}}</h2>
+                                            <span>{{$appointmentsDate["20:00"][0]->location}}</span>
+                                        </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<12) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<11) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<10) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<9) && (!isset($appointmentsDate["13:00"]) || $appointmentsDate["13:00"][1]<8) && (!isset($appointmentsDate["14:00"]) || $appointmentsDate["14:00"][1]<7) && (!isset($appointmentsDate["15:00"]) || $appointmentsDate["15:00"][1]<6) && (!isset($appointmentsDate["16:00"]) || $appointmentsDate["16:00"][1]<5) && (!isset($appointmentsDate["17:00"]) || $appointmentsDate["17:00"][1]<4) && (!isset($appointmentsDate["18:00"]) || $appointmentsDate["18:00"][1]<3) && (!isset($appointmentsDate["19:00"]) || $appointmentsDate["19:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+                                @endif
+                            @endforeach
+                        @else
+                            @for($i = 0; $i<=11; $i++)
+                                <div class="calendar-item"></div>
+                            @endfor
+                        @endif
                     </div>
 
                     <div class="day" id="{{ $now->startOfWeek()->addDays(3)->format('d-m') }}">
-                        <div class="calendar-item"></div>
-                        <div class="calendar-item"></div>
-                        <div class="calendar-item"></div>
-                        <div class="calendar-item"></div>
+                        @if(array_key_exists($now->startOfWeek()->addDays(3)->format('Y-m-d'), $appointmentsDates))
+                            @foreach($appointmentsDates as $key => $appointmentsDate)
+                                @if($key == $now->startOfWeek()->addDays(3)->format('Y-m-d'))
+                                    @if(isset($appointmentsDate["09:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["09:00"][1]}}">
+                                        <span class="info-active">
+                                            <h2>{{$appointmentsDate["09:00"][0]->title}}</h2>
+                                            <span>{{$appointmentsDate["09:00"][0]->location}}</span>
+                                        </span>
+                                        </div>
+                                    @else
+                                        <div class="calendar-item"></div>
+                                    @endif
 
-                        <div class="active-calendar personal-calendar calendar-8">
-                        <span class="info-active">
-                            <h2>Expert Lab</h2>
-                            <span>B1.022</span>
-                        </span>
-                        </div>
+                                    @if(isset($appointmentsDate["10:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["10:00"][1]}}">
+                                    <span class="info-active">
+                                        <h2>{{$appointmentsDate["10:00"][0]->title}}</h2>
+                                        <span>{{$appointmentsDate["10:00"][0]->location}}</span>
+                                    </span>
+                                        </div>
+                                    @elseif(!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<2)
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["11:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["11:00"][1]}}">
+                                        <span class="info-active">
+                                            <h2>{{$appointmentsDate["11:00"][0]->title}}</h2>
+                                            <span>{{$appointmentsDate["11:00"][0]->location}}</span>
+                                        </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<3) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["12:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["12:00"][1]}}">
+                                    <span class="info-active">
+                                        <h2>{{$appointmentsDate["12:00"][0]->title}}</h2>
+                                        <span>{{$appointmentsDate["12:00"][0]->location}}</span>
+                                    </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<4) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<3) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["13:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["13:00"][1]}}">
+                                        <span class="info-active">
+                                            <h2>{{$appointmentsDate["13:00"][0]->title}}</h2>
+                                            <span>{{$appointmentsDate["13:00"][0]->location}}</span>
+                                        </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<5) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<4) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<3) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["14:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["14:00"][1]}}">
+                                        <span class="info-active">
+                                            <h2>{{$appointmentsDate["14:00"][0]->title}}</h2>
+                                            <span>{{$appointmentsDate["14:00"][0]->location}}</span>
+                                        </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<6) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<5) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<4) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<3) && (!isset($appointmentsDate["13:00"]) || $appointmentsDate["13:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["15:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["15:00"][1]}}">
+                                    <span class="info-active">
+                                        <h2>{{$appointmentsDate["15:00"][0]->title}}</h2>
+                                        <span>{{$appointmentsDate["15:00"][0]->location}}</span>
+                                    </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<7) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<6) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<5) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<4) && (!isset($appointmentsDate["13:00"]) || $appointmentsDate["13:00"][1]<3) && (!isset($appointmentsDate["14:00"]) || $appointmentsDate["14:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["16:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["16:00"][1]}}">
+                                    <span class="info-active">
+                                        <h2>{{$appointmentsDate["16:00"][0]->title}}</h2>
+                                        <span>{{$appointmentsDate["16:00"][0]->location}}</span>
+                                    </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<8) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<7) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<6) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<5) && (!isset($appointmentsDate["13:00"]) || $appointmentsDate["13:00"][1]<4) && (!isset($appointmentsDate["14:00"]) || $appointmentsDate["14:00"][1]<3) && (!isset($appointmentsDate["15:00"]) ||$appointmentsDate["15:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["17:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["17:00"][1]}}">
+                                        <span class="info-active">
+                                            <h2>{{$appointmentsDate["17:00"][0]->title}}</h2>
+                                            <span>{{$appointmentsDate["17:00"][0]->location}}</span>
+                                        </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<9) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<8) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<7) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<6) && (!isset($appointmentsDate["13:00"]) || $appointmentsDate["13:00"][1]<5) && (!isset($appointmentsDate["14:00"]) || $appointmentsDate["14:00"][1]<4) && (!isset($appointmentsDate["15:00"]) || $appointmentsDate["15:00"][1]<3) && (!isset($appointmentsDate["16:00"]) || $appointmentsDate["16:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["18:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["18:00"][1]}}">
+                                    <span class="info-active">
+                                        <h2>{{$appointmentsDate["18:00"][0]->title}}</h2>
+                                        <span>{{$appointmentsDate["18:00"][0]->location}}</span>
+                                    </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<10) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<9) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<8) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<7) && (!isset($appointmentsDate["13:00"]) || $appointmentsDate["13:00"][1]<6) && (!isset($appointmentsDate["14:00"]) || $appointmentsDate["14:00"][1]<5) && (!isset($appointmentsDate["15:00"]) || $appointmentsDate["15:00"][1]<4) && (!isset($appointmentsDate["16:00"]) || $appointmentsDate["16:00"][1]<3) && (!isset($appointmentsDate["17:00"]) || $appointmentsDate["17:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["19:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["19:00"][1]}}">
+                                        <span class="info-active">
+                                            <h2>{{$appointmentsDate["19:00"][0]->title}}</h2>
+                                            <span>{{$appointmentsDate["19:00"][0]->location}}</span>
+                                        </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<11) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<10) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<9) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<8) && (!isset($appointmentsDate["13:00"]) || $appointmentsDate["13:00"][1]<7) && (!isset($appointmentsDate["14:00"]) || $appointmentsDate["14:00"][1]<6) && (!isset($appointmentsDate["15:00"]) || $appointmentsDate["15:00"][1]<5) && (!isset($appointmentsDate["16:00"]) || $appointmentsDate["16:00"][1]<4) && (!isset($appointmentsDate["17:00"]) || $appointmentsDate["17:00"][1]<3) && (!isset($appointmentsDate["18:00"]) || $appointmentsDate["18:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["20:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["20:00"][1]}}">
+                                        <span class="info-active">
+                                            <h2>{{$appointmentsDate["20:00"][0]->title}}</h2>
+                                            <span>{{$appointmentsDate["20:00"][0]->location}}</span>
+                                        </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<12) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<11) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<10) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<9) && (!isset($appointmentsDate["13:00"]) || $appointmentsDate["13:00"][1]<8) && (!isset($appointmentsDate["14:00"]) || $appointmentsDate["14:00"][1]<7) && (!isset($appointmentsDate["15:00"]) || $appointmentsDate["15:00"][1]<6) && (!isset($appointmentsDate["16:00"]) || $appointmentsDate["16:00"][1]<5) && (!isset($appointmentsDate["17:00"]) || $appointmentsDate["17:00"][1]<4) && (!isset($appointmentsDate["18:00"]) || $appointmentsDate["18:00"][1]<3) && (!isset($appointmentsDate["19:00"]) || $appointmentsDate["19:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+                                @endif
+                            @endforeach
+                        @else
+                            @for($i = 0; $i<=11; $i++)
+                                <div class="calendar-item"></div>
+                            @endfor
+                        @endif
                     </div>
 
                     <div class="day" id="{{ $now->startOfWeek()->addDays(4)->format('d-m') }}">
-                        <div class="active-calendar course-calendar calendar-12">9</div>
+                        @if(array_key_exists($now->startOfWeek()->addDays(4)->format('Y-m-d'), $appointmentsDates))
+                            @foreach($appointmentsDates as $key => $appointmentsDate)
+                                @if($key == $now->startOfWeek()->addDays(4)->format('Y-m-d'))
+                                    @if(isset($appointmentsDate["09:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["09:00"][1]}}">
+                                        <span class="info-active">
+                                            <h2>{{$appointmentsDate["09:00"][0]->title}}</h2>
+                                            <span>{{$appointmentsDate["09:00"][0]->location}}</span>
+                                        </span>
+                                        </div>
+                                    @else
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["10:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["10:00"][1]}}">
+                                    <span class="info-active">
+                                        <h2>{{$appointmentsDate["10:00"][0]->title}}</h2>
+                                        <span>{{$appointmentsDate["10:00"][0]->location}}</span>
+                                    </span>
+                                        </div>
+                                    @elseif(!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<2)
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["11:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["11:00"][1]}}">
+                                        <span class="info-active">
+                                            <h2>{{$appointmentsDate["11:00"][0]->title}}</h2>
+                                            <span>{{$appointmentsDate["11:00"][0]->location}}</span>
+                                        </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<3) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["12:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["12:00"][1]}}">
+                                    <span class="info-active">
+                                        <h2>{{$appointmentsDate["12:00"][0]->title}}</h2>
+                                        <span>{{$appointmentsDate["12:00"][0]->location}}</span>
+                                    </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<4) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<3) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["13:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["13:00"][1]}}">
+                                        <span class="info-active">
+                                            <h2>{{$appointmentsDate["13:00"][0]->title}}</h2>
+                                            <span>{{$appointmentsDate["13:00"][0]->location}}</span>
+                                        </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<5) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<4) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<3) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["14:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["14:00"][1]}}">
+                                        <span class="info-active">
+                                            <h2>{{$appointmentsDate["14:00"][0]->title}}</h2>
+                                            <span>{{$appointmentsDate["14:00"][0]->location}}</span>
+                                        </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<6) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<5) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<4) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<3) && (!isset($appointmentsDate["13:00"]) || $appointmentsDate["13:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["15:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["15:00"][1]}}">
+                                    <span class="info-active">
+                                        <h2>{{$appointmentsDate["15:00"][0]->title}}</h2>
+                                        <span>{{$appointmentsDate["15:00"][0]->location}}</span>
+                                    </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<7) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<6) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<5) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<4) && (!isset($appointmentsDate["13:00"]) || $appointmentsDate["13:00"][1]<3) && (!isset($appointmentsDate["14:00"]) || $appointmentsDate["14:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["16:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["16:00"][1]}}">
+                                    <span class="info-active">
+                                        <h2>{{$appointmentsDate["16:00"][0]->title}}</h2>
+                                        <span>{{$appointmentsDate["16:00"][0]->location}}</span>
+                                    </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<8) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<7) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<6) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<5) && (!isset($appointmentsDate["13:00"]) || $appointmentsDate["13:00"][1]<4) && (!isset($appointmentsDate["14:00"]) || $appointmentsDate["14:00"][1]<3) && (!isset($appointmentsDate["15:00"]) ||$appointmentsDate["15:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["17:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["17:00"][1]}}">
+                                        <span class="info-active">
+                                            <h2>{{$appointmentsDate["17:00"][0]->title}}</h2>
+                                            <span>{{$appointmentsDate["17:00"][0]->location}}</span>
+                                        </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<9) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<8) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<7) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<6) && (!isset($appointmentsDate["13:00"]) || $appointmentsDate["13:00"][1]<5) && (!isset($appointmentsDate["14:00"]) || $appointmentsDate["14:00"][1]<4) && (!isset($appointmentsDate["15:00"]) || $appointmentsDate["15:00"][1]<3) && (!isset($appointmentsDate["16:00"]) || $appointmentsDate["16:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["18:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["18:00"][1]}}">
+                                    <span class="info-active">
+                                        <h2>{{$appointmentsDate["18:00"][0]->title}}</h2>
+                                        <span>{{$appointmentsDate["18:00"][0]->location}}</span>
+                                    </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<10) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<9) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<8) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<7) && (!isset($appointmentsDate["13:00"]) || $appointmentsDate["13:00"][1]<6) && (!isset($appointmentsDate["14:00"]) || $appointmentsDate["14:00"][1]<5) && (!isset($appointmentsDate["15:00"]) || $appointmentsDate["15:00"][1]<4) && (!isset($appointmentsDate["16:00"]) || $appointmentsDate["16:00"][1]<3) && (!isset($appointmentsDate["17:00"]) || $appointmentsDate["17:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["19:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["19:00"][1]}}">
+                                        <span class="info-active">
+                                            <h2>{{$appointmentsDate["19:00"][0]->title}}</h2>
+                                            <span>{{$appointmentsDate["19:00"][0]->location}}</span>
+                                        </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<11) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<10) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<9) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<8) && (!isset($appointmentsDate["13:00"]) || $appointmentsDate["13:00"][1]<7) && (!isset($appointmentsDate["14:00"]) || $appointmentsDate["14:00"][1]<6) && (!isset($appointmentsDate["15:00"]) || $appointmentsDate["15:00"][1]<5) && (!isset($appointmentsDate["16:00"]) || $appointmentsDate["16:00"][1]<4) && (!isset($appointmentsDate["17:00"]) || $appointmentsDate["17:00"][1]<3) && (!isset($appointmentsDate["18:00"]) || $appointmentsDate["18:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+
+                                    @if(isset($appointmentsDate["20:00"]))
+                                        <div class="active-calendar personal-calendar calendar-{{$appointmentsDate["20:00"][1]}}">
+                                        <span class="info-active">
+                                            <h2>{{$appointmentsDate["20:00"][0]->title}}</h2>
+                                            <span>{{$appointmentsDate["20:00"][0]->location}}</span>
+                                        </span>
+                                        </div>
+                                    @elseif((!isset($appointmentsDate["09:00"]) || $appointmentsDate["09:00"][1]<12) && (!isset($appointmentsDate["10:00"]) || $appointmentsDate["10:00"][1]<11) && (!isset($appointmentsDate["11:00"]) || $appointmentsDate["11:00"][1]<10) && (!isset($appointmentsDate["12:00"]) || $appointmentsDate["12:00"][1]<9) && (!isset($appointmentsDate["13:00"]) || $appointmentsDate["13:00"][1]<8) && (!isset($appointmentsDate["14:00"]) || $appointmentsDate["14:00"][1]<7) && (!isset($appointmentsDate["15:00"]) || $appointmentsDate["15:00"][1]<6) && (!isset($appointmentsDate["16:00"]) || $appointmentsDate["16:00"][1]<5) && (!isset($appointmentsDate["17:00"]) || $appointmentsDate["17:00"][1]<4) && (!isset($appointmentsDate["18:00"]) || $appointmentsDate["18:00"][1]<3) && (!isset($appointmentsDate["19:00"]) || $appointmentsDate["19:00"][1]<2))
+                                        <div class="calendar-item"></div>
+                                    @endif
+                                @endif
+                            @endforeach
+                        @else
+                            @for($i = 0; $i<=11; $i++)
+                                <div class="calendar-item"></div>
+                            @endfor
+                        @endif
                     </div>
                 </div>
 
