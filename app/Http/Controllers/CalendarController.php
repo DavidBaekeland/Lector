@@ -4,26 +4,67 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAppointmentRequest;
 use App\Models\Appointment;
-use App\Models\Date;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 class CalendarController extends Controller
 {
     public function index() {
-        $appointmentsDates = auth()->user()->appointments->groupBy("start_date");
+        $appointmentsDatesUser = auth()->user()->appointments->groupBy("start_date");
 
+        $appointmentsDatesSubjects = [];
+
+        foreach(auth()->user()->course->subjects as $subject)
+        {
+            foreach ($subject->appointments as $appointment)
+            {
+                $appointmentsDatesSubjects[] = $appointment;
+
+            }
+        }
+
+        $datesSubjects = collect($appointmentsDatesSubjects)->groupBy("start_date")->map(function ($dates) {
+            return $dates->map(function ($date) {
+                return $date;
+            });
+        });
+
+        $appointmentsPersonalDates = $appointmentsDatesUser->map(function ($dates) {
+            return $dates->map(function ($date) {
+                return $date;
+            });
+        });
+
+
+        $combinedAppointmentsPerDayCollection = [];
+        foreach ($datesSubjects as $keySubject => $value)
+        {
+            $day[$keySubject] = [];
+
+            foreach ($value as $appointment)
+            {
+                $day[$keySubject][] = $appointment;
+            }
+
+            foreach ($appointmentsPersonalDates as $keyPersonal => $datesPersonal)
+            {
+                if ($keySubject == $keyPersonal)
+                {
+                    foreach ($datesPersonal as $datePersonal) {
+                        $day[$keySubject][] = $datePersonal;
+                    }
+                } 
+            }
+
+            $combinedAppointmentsPerDayCollection[$keySubject] = $day[$keySubject];
+        }
 
         $now = Carbon::now();
 
-        $countItems = 12;
-
         $appointmentsDates2 = [];
-        foreach ($appointmentsDates as $key => $appointmentsDate) {
+        foreach ($combinedAppointmentsPerDayCollection as $key => $appointmentsDate) {
             $map = [];
 
-
-            foreach ($appointmentsDate->sortBy('start_time') as $appointment) {
+            foreach ($appointmentsDate as $appointment) {
                 $difference = Carbon::createFromFormat('H:i:s', $appointment->start_time)->diffInHours(Carbon::createFromFormat('H:i:s', $appointment->end_time));
 
                 switch (Carbon::createFromFormat('H:i:s', $appointment->start_time)->format('H')) {
@@ -69,6 +110,7 @@ class CalendarController extends Controller
 
             $appointmentsDates2[$key] = $map;
         }
+
 
         return view('calendar.index')->with(["appointmentsDates" => $appointmentsDates2, "now" => $now]);
     }
