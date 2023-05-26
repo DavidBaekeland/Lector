@@ -22,45 +22,32 @@ class CalendarController extends Controller
             }
         }
 
+        // All() -> collection to array
         $datesSubjects = collect($appointmentsDatesSubjects)->groupBy("start_date")->map(function ($dates) {
             return $dates->map(function ($date) {
                 return $date;
             });
-        });
+        })->all();
 
         $appointmentsPersonalDates = $appointmentsDatesUser->map(function ($dates) {
             return $dates->map(function ($date) {
                 return $date;
             });
-        });
+        })->all();
 
+        $datesSubjects = array_map(function ($day) {
+            return $day->all();
+        }, $datesSubjects);
 
-        $combinedAppointmentsPerDayCollection = [];
-        foreach ($datesSubjects as $keySubject => $value)
-        {
-            $day[$keySubject] = [];
+        $appointmentsPersonalDates = array_map(function ($day) {
+            return $day->all();
+        }, $appointmentsPersonalDates);
 
-            foreach ($value as $appointment)
-            {
-                $day[$keySubject][] = $appointment;
-            }
-
-            foreach ($appointmentsPersonalDates as $keyPersonal => $datesPersonal)
-            {
-                if ($keySubject == $keyPersonal)
-                {
-                    foreach ($datesPersonal as $datePersonal) {
-                        $day[$keySubject][] = $datePersonal;
-                    }
-                } 
-            }
-
-            $combinedAppointmentsPerDayCollection[$keySubject] = $day[$keySubject];
-        }
+        $combinedAppointmentsPerDayCollection = array_merge_recursive($datesSubjects, $appointmentsPersonalDates);
 
         $now = Carbon::now();
 
-        $appointmentsDates2 = [];
+        $appointmentsDatesTime = [];
         foreach ($combinedAppointmentsPerDayCollection as $key => $appointmentsDate) {
             $map = [];
 
@@ -108,11 +95,11 @@ class CalendarController extends Controller
                 }
             }
 
-            $appointmentsDates2[$key] = $map;
+            $appointmentsDatesTime[$key] = $map;
         }
 
 
-        return view('calendar.index')->with(["appointmentsDates" => $appointmentsDates2, "now" => $now]);
+        return view('calendar.index')->with(["appointmentsDatesTime" => $appointmentsDatesTime, "now" => $now]);
     }
 
     public function create() {

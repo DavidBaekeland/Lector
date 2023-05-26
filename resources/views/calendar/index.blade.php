@@ -35,8 +35,8 @@
 
                 <div class="days">
                     <div class="day" id="{{$now->startOfWeek()->format('d-m')}}">
-                        @if(array_key_exists($now->startOfWeek()->format('Y-m-d'), $appointmentsDates))
-                            @foreach($appointmentsDates as $key => $appointmentsDate)
+                        @if(array_key_exists($now->startOfWeek()->format('Y-m-d'), $appointmentsDatesTime))
+                            @foreach($appointmentsDatesTime as $key => $appointmentsDate)
                             @if($key == $now->startOfWeek()->format('Y-m-d'))
                                 @if(isset($appointmentsDate["09:00"]))
                                     <div @class([
@@ -226,8 +226,8 @@
                         @endif
                     </div>
                     <div class="day" id="{{$now->startOfWeek()->addDay()->format('d-m')}}">
-                        @if(array_key_exists($now->startOfWeek()->addDay()->format('Y-m-d'), $appointmentsDates))
-                            @foreach($appointmentsDates as $key => $appointmentsDate)
+                        @if(array_key_exists($now->startOfWeek()->addDay()->format('Y-m-d'), $appointmentsDatesTime))
+                            @foreach($appointmentsDatesTime as $key => $appointmentsDate)
                                 @if($key == $now->startOfWeek()->addDay()->format('Y-m-d'))
                                     @if(isset($appointmentsDate["09:00"]))
                                         <div @class([
@@ -417,8 +417,8 @@
                         @endif
                     </div>
                     <div class="day" id="{{ $now->startOfWeek()->addDays(2)->format('d-m') }}">
-                        @if(array_key_exists($now->startOfWeek()->addDays(2)->format('Y-m-d'), $appointmentsDates))
-                            @foreach($appointmentsDates as $key => $appointmentsDate)
+                        @if(array_key_exists($now->startOfWeek()->addDays(2)->format('Y-m-d'), $appointmentsDatesTime))
+                            @foreach($appointmentsDatesTime as $key => $appointmentsDate)
                                 @if($key == $now->startOfWeek()->addDays(2)->format('Y-m-d'))
                                     @if(isset($appointmentsDate["09:00"]))
                                         <div @class([
@@ -609,8 +609,8 @@
                     </div>
 
                     <div class="day" id="{{ $now->startOfWeek()->addDays(3)->format('d-m') }}">
-                        @if(array_key_exists($now->startOfWeek()->addDays(3)->format('Y-m-d'), $appointmentsDates))
-                            @foreach($appointmentsDates as $key => $appointmentsDate)
+                        @if(array_key_exists($now->startOfWeek()->addDays(3)->format('Y-m-d'), $appointmentsDatesTime))
+                            @foreach($appointmentsDatesTime as $key => $appointmentsDate)
                                 @if($key == $now->startOfWeek()->addDays(3)->format('Y-m-d'))
                                     @if(isset($appointmentsDate["09:00"]))
                                         <div @class([
@@ -801,8 +801,8 @@
                     </div>
 
                     <div class="day" id="{{ $now->startOfWeek()->addDays(4)->format('d-m') }}">
-                        @if(array_key_exists($now->startOfWeek()->addDays(4)->format('Y-m-d'), $appointmentsDates))
-                            @foreach($appointmentsDates as $key => $appointmentsDate)
+                        @if(array_key_exists($now->startOfWeek()->addDays(4)->format('Y-m-d'), $appointmentsDatesTime))
+                            @foreach($appointmentsDatesTime as $key => $appointmentsDate)
                                 @if($key == $now->startOfWeek()->addDays(4)->format('Y-m-d'))
                                     @if(isset($appointmentsDate["09:00"]))
                                         <div @class([
