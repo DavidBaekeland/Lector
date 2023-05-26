@@ -13,21 +13,6 @@ class CalendarController extends Controller
 
         $appointmentsDatesSubjects = [];
 
-        foreach(auth()->user()->course->subjects as $subject)
-        {
-            foreach ($subject->appointments as $appointment)
-            {
-                $appointmentsDatesSubjects[] = $appointment;
-
-            }
-        }
-
-        // All() -> collection to array
-        $datesSubjects = collect($appointmentsDatesSubjects)->groupBy("start_date")->map(function ($dates) {
-            return $dates->map(function ($date) {
-                return $date;
-            });
-        })->all();
 
         $appointmentsPersonalDates = $appointmentsDatesUser->map(function ($dates) {
             return $dates->map(function ($date) {
@@ -35,16 +20,39 @@ class CalendarController extends Controller
             });
         })->all();
 
-        $datesSubjects = array_map(function ($day) {
-            return $day->all();
-        }, $datesSubjects);
-
         $appointmentsPersonalDates = array_map(function ($day) {
             return $day->all();
         }, $appointmentsPersonalDates);
 
-        $combinedAppointmentsPerDayCollection = array_merge_recursive($datesSubjects, $appointmentsPersonalDates);
 
+
+        if (isset(auth()->user()->course->subjects))
+        {
+            foreach(auth()->user()->course->subjects as $subject)
+            {
+                foreach ($subject->appointments as $appointment)
+                {
+                    $appointmentsDatesSubjects[] = $appointment;
+                }
+            }
+
+            // All() -> collection to array
+            $datesSubjects = collect($appointmentsDatesSubjects)->groupBy("start_date")->map(function ($dates) {
+                return $dates->map(function ($date) {
+                    return $date;
+                });
+            })->all();
+
+            $datesSubjects = array_map(function ($day) {
+                return $day->all();
+            }, $datesSubjects);
+
+            $combinedAppointmentsPerDayCollection = array_merge_recursive($datesSubjects, $appointmentsPersonalDates);
+        } else {
+            $combinedAppointmentsPerDayCollection = $appointmentsPersonalDates;
+        }
+
+        
         $now = Carbon::now();
 
         $appointmentsDatesTime = [];
