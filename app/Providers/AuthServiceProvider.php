@@ -34,5 +34,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('store_message', function(User $user, Chat $chat) {
             return $user->hasChat($chat->id);
         });
+
+        Gate::define('manage_subjects', function(User $user) {
+            return ($user->role->name == "docent" || $user->role->name == "admin");
+        });
     }
 }
