@@ -22,7 +22,20 @@ class Appointment extends Model
         'end_date',
         'start_time',
         'end_time',
+        'subject_id'
     ];
+
+    /** Attibutes */
+    public function getTitleAttribute($title)
+    {
+        if ($title)
+        {
+            return $title;
+        } else
+        {
+            return $this->subject->name;
+        }
+    }
 
     /** Relationships */
     public function users(): BelongsToMany
