@@ -50,13 +50,7 @@ class MessageController extends Controller
 
         foreach ($users as $user)
         {
-            $tempUsers = $users->filter(function ($tempUser) use ($user){
-                return $user->id != $tempUser->id;
-            });
-
-            $chatName = $tempUsers->pluck("name")->implode(', ');
-
-            Notification::send($user, new NewMessage($message, $chat, $chatName));
+            Notification::send($user, new NewMessage($message, $chat));
         }
 
         return response()->json("succes");
