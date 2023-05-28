@@ -1,0 +1,249 @@
+#calendar {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+}
+
+#appointmentCreate {
+    width: 20px;
+    color: var(--red);
+    text-align: right;
+}
+
+#appointmentCreateDiv {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+}
+
+.dates h1{
+    text-align: center;
+    font-weight: 900;
+    font-size: 18px;
+    color: var(--red);
+}
+
+.dates {
+    display: grid;
+    grid-template-columns: 80px auto auto auto auto auto;
+    margin-bottom: 30px;
+}
+
+.time {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 80px;
+    margin-top: 0;
+}
+
+.calendar-time {
+    margin: 0;
+    border-top: 1px solid var(--gray);
+    height: 8.333333333333333%;
+    font-size: 18px;
+    color: #050505;
+}
+
+.calendar {
+    height: 100%;
+    display: flex;
+    width: 100%;
+}
+
+.days {
+    display: flex;
+    width: 100%;
+    border-top: 1px solid var(--gray);
+    border-left: 1px solid var(--gray);
+
+}
+
+.day {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 20%;
+}
+
+.calendar-item,
+.active-calendar{
+    height: 8.333333333333333%;
+
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+    border-bottom: 1px solid var(--gray);
+    border-right: 1px solid var(--gray);
+}
+
+.calendar-2 {
+    height: 16.66666%;
+}
+
+.calendar-3{
+    height: 25%;
+}
+
+.calendar-4{
+    height: 34%;
+}
+
+.calendar-5{
+    height: 42%;
+}
+
+.calendar-6 {
+    height: 50%;
+}
+
+.calendar-7{
+    height: 58.3333333%;
+}
+
+.calendar-8{
+    height: 67%;
+}
+
+.calendar-9{
+    height: 75%;
+}
+
+.calendar-10 {
+    height: 83.3333333%;
+}
+
+.calendar-11 {
+    height: 92%;
+}
+
+.calendar-12 {
+    height: 100%;
+}
+
+.active-calendar {
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 3px 6px #76767628;
+}
+
+.course-calendar {
+    background-color: var(--red);
+}
+
+.personal-calendar {
+    background-color: #4E62E8;
+}
+
+
+.active-calendar .info-active {
+    margin: auto;
+}
+
+.calendar-2 h2,
+.calendar-3 h2,
+.calendar-4 h2,
+.calendar-5 h2,
+.calendar-6 h2,
+.calendar-7 h2,
+.calendar-8 h2,
+.calendar-9 h2,
+.calendar-10 h2,
+.calendar-11 h2,
+.calendar-12 h2 {
+    font-size: 20px;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.active-calendar span {
+    font-size: 15px;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.calendar-1 .info-active {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: auto 10%;
+}
+
+.calendar-1 .info-active h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.active-calendar .info-active span{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dateInput {
+    width: 45%;
+    margin-right: 5px;
+}
+
+.timeInput {
+    width: 30%;
+}
+
+.dates-div {
+    display: flex;
+}
+
+.modal {
+    height: max-content;
+}
+
+#subjectCheckbox {
+    width: 100%;
+    border: 0;
+    opacity: 0;
+
+}
+
+#subjectCheckboxDiv {
+    position: relative;
+    display: flex;
+    width: 30%;
+    height: 30px;
+    background-color: var(--gray);
+    border-radius: 30px;
+}
+
+#slider {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 18%;
+    left: 8%;
+    bottom: 0;
+    border-radius: 30px;
+    background-color: #fff;
+}
+
+#subjectCheckboxDiv:has(#subjectCheckbox:checked)  {
+    background-color: var(--red);
+}
+
+#subjectCheckbox:checked + #slider {
+    transform: translateX(130%);
+    transition: 0.4s;
+}
+
+#subjectCheckbox:not(:checked) + #slider {
+    transform: translateX(0%);
+    transition: 0.4s;
+}
+
+#appointmentsToggle {
+    display: flex;
+    margin-bottom: 20px;
+    width: 40%;
+    justify-content: space-between;
+    align-items: center;
+}
