@@ -66,6 +66,7 @@ class Create extends Component
         'startTime' => ['required'],
         'endDate' => ['required'],
         'endTime' => ['required'],
+        'user' => ['required', 'int', 'exists:users']
     ];
 
     public function submitPersonalAppointment()

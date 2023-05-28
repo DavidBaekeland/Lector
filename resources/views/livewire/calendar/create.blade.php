@@ -37,17 +37,19 @@
 
             <div class="input-div">
                 <div class="selectedUsers">
-                <span>
-                    @if($selectedUsers)
-                        @foreach($selectedUsers as $selectedUser)
-                            <a class="chatItem chatItemSelected">{{\App\Models\User::find($selectedUser)->name}}</a>
-                        @endforeach
-                    @endif
-                </span>
+                    <span>
+                        @if($selectedUsers)
+                            @foreach($selectedUsers as $selectedUser)
+                                <a class="chatItem chatItemSelected">{{\App\Models\User::find($selectedUser)->name}}</a>
+                            @endforeach
+                        @endif
+                    </span>
 
                     <input type="text" wire:model="user"  name="userInput"  autocomplete="off">
 
                 </div>
+
+                <x-input-error :messages="$errors->get('user')"/>
 
 
                 <div id="showUsersDiv">
