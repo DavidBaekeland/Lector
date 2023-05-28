@@ -1,5 +1,7 @@
 @import "nav.css";
 @import "footer.css";
+@import "video.css";
+
 
 
 :root {
@@ -414,7 +416,7 @@ table {
     margin-right: 30px;
 }
 
-#chat-list {
+.chat-list {
     list-style: none;
     display: flex;
     flex-direction: column;
@@ -422,9 +424,10 @@ table {
     -ms-overflow-style: none;
     scrollbar-width: none;
     padding-left: 0;
+    height: 100%;
 }
 
-#chat-list::-webkit-scrollbar {
+.chat-list::-webkit-scrollbar {
     display: none;
 }
 
@@ -534,7 +537,7 @@ table {
     color: #fff;
 }
 
-#chatCreate {
+.chatTitle{
     display: flex;
     flex-direction: row;
     color: var(--red);
@@ -547,11 +550,16 @@ table {
 }
 
 
-#chatCreate a {
+.chatTitle a {
     display: flex;
 }
 
-#chatCreate a svg {
+#videoLink svg {
+    fill: none;
+    stroke-width: 1.5px;
+}
+
+.chatTitle a svg {
     stroke: var(--red);
     stroke-width: 5px;
     width: 20px;
@@ -606,4 +614,109 @@ table {
     margin: 0 2px;
     padding: 4px 8px;
     font-family: Roboto;
+}
+
+
+.callButtonDiv {
+    display: flex;
+    justify-content: space-between;
+}
+
+.button {
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    color: #fff;
+    padding: 10px 0;
+    border-radius: 8px;
+    margin-top: 40px;
+    width: 48%;
+    text-decoration: none;
+}
+
+.acceptButton {
+    background-color: #34982a;
+}
+
+.declineButton {
+    background-color: #D2323F;
+}
+
+.cardsDashboard {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 50%;
+}
+
+
+.info h2, .info2 h2 {
+    margin: 0 0 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.info2 {
+    width: 50%;
+}
+
+.chat-dashboard {
+    border: 1px solid var(--gray);
+    display: flex;
+    padding: 15px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #050505;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.timeLocationDashboard {
+    font-weight: bolder;
+    color: var(--red);
+}
+
+.card-dashboard {
+    background-color: white;
+    width: 100%;
+    margin: 16px;
+    padding: 40px;
+    border-radius: 10px;
+    border: 1px solid #E4E4E4;
+    box-shadow: var(--boxShadowCard);
+}
+
+.dashboard-settings {
+    display: flex;
+    justify-content: right;
+    width: 100%;
+}
+
+.dashboard-settings-link {
+    display: flex;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    background-color: #E84E4E;
+    padding: 10px;
+    border-radius: 12px;
+
+    border: 1px solid #E84E4E;
+    box-shadow: 0px 3px 7px #76767629;
+}
+
+#dashboard {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }

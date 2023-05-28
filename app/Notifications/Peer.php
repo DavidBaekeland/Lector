@@ -3,29 +3,37 @@
 namespace App\Notifications;
 
 use App\Models\Chat;
-use App\Models\Message;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewMessage extends Notification
+class Peer extends Notification
 {
     use Queueable;
 
-    public Message $message;
-    public Chat $chat;
+    public $user_id;
+
+    public ?string $chatName;
+    private string $urlChatAccept;
+    private string $urlChatDecline;
+    private Chat $chat;
 
 
     /**
-     * Create a new notification instance.
+     * Create a new event instance.
      */
-    public function __construct(Message $message, Chat $chat)
+    public function __construct(Chat $chat, ?String $chatName = null)
     {
-        $this->message = $message;
         $this->chat = $chat;
+        $this->chatName = $chatName;
+
+        $this->urlChatAccept = route('call.peer', $this->chat->id);
+        $this->urlChatDecline = route('call.decline', $this->chat->id);
+        $this->audioLink = asset('storage/soundEffects/call.mp3');
     }
+
 
     /**
      * Get the notification's delivery channels.
@@ -66,9 +74,12 @@ class NewMessage extends Notification
     public function toBroadcast(object $notifiable): BroadcastMessage
     {
         return new BroadcastMessage([
-            'chatId' => $this->chat->id,
-            'chatName' => $this->chat->name,
-            'message' => $this->message->message,
+            'chat_id' => $this->chat->id,
+            'chat_name' => ($this->chat->name) ? $this->chat->name : $this->chatName,
+            'url_chat_accept' => $this->urlChatAccept,
+            'url_chat_decline' => $this->urlChatDecline,
+            'audio_link' => $this->audioLink
+
         ]);
     }
 }

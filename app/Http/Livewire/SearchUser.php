@@ -38,26 +38,7 @@ class SearchUser extends Component
 
     public function submit()
     {
-        $nameChat = "";
-        $users = [];
-
-        foreach ($this->selectedUsers as $key => $selectedUserId)
-        {
-            $selectedUser = User::find($selectedUserId);
-            $users[] = $selectedUser;
-
-            if ($key == 0)
-            {
-                $nameChat = $selectedUser->name;
-            } else
-            {
-                $nameChat = $nameChat.", ".$selectedUser->name;
-            }
-        }
-
-        $chat = \App\Models\Chat::create([
-            "name" => $nameChat
-        ]);
+        $chat = \App\Models\Chat::create();
 
         $chat->users()->sync([...$this->selectedUsers, auth()->user()->id]);
 
@@ -68,7 +49,12 @@ class SearchUser extends Component
             "user_id" => auth()->user()->id
         ]);
 
-        Notification::send($users, new NewMessage($message, $chat));
+        $users = $chat->users;
+
+        foreach ($users as $user)
+        {
+            Notification::send($user, new NewMessage($message, $chat));
+        }
 
         return redirect()->route('chat');
     }
