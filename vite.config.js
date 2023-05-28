@@ -9,6 +9,8 @@ export default defineConfig({
                 'resources/css/nav.css',
                 'resources/js/app.js',
                 'resources/js/chat.js',
+                'resources/css/calendar.css',
+                'resources/js/calendar.js',
             ],
             refresh: true,
         }),

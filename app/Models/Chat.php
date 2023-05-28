@@ -17,6 +17,32 @@ class Chat extends Model
         'name',
     ];
 
+    /** Attibutes */
+    public function getNameAttribute($name)
+    {
+        if ($name) {
+            return $name;
+        }
+
+        $name = "";
+
+        foreach($this->users as $chatUser)
+        {
+            if($chatUser->id != auth()->user()->id)
+            {
+                if ($name == "")
+                {
+                    $name = "$chatUser->name";
+                } else
+                {
+                    $name = "$name, $chatUser->name";
+                }
+            }
+        }
+
+        return $name;
+    }
+
     /** Relationships */
     public function users(): BelongsToMany
     {

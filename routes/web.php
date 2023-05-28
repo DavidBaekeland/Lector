@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\CallController;
+use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -23,9 +25,7 @@ use Illuminate\Support\Str;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
 Route::get('/courses', function () {
     return view('dashboard');
@@ -50,9 +50,11 @@ Route::get('/stop', [CallController::class, 'stopCall'])->middleware(['auth'])->
 
 
 
-Route::get('/calender', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('calender');
+Route::get('/calendar', [CalendarController::class, 'index'])->middleware(['auth'])->name('calendar.index');
+
+Route::get('/calendar/create', [CalendarController::class, 'create'])->middleware(['auth'])->name('calendar.create');
+
+Route::post('/calendar/create', [CalendarController::class, 'store'])->middleware(['auth'])->name('calendar.store');
 
 
 Route::resources([

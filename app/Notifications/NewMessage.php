@@ -16,17 +16,15 @@ class NewMessage extends Notification
 
     public Message $message;
     public Chat $chat;
-    public ?string $chatName;
 
 
     /**
      * Create a new notification instance.
      */
-    public function __construct(Message $message, Chat $chat, ?String $chatName = null)
+    public function __construct(Message $message, Chat $chat)
     {
         $this->message = $message;
         $this->chat = $chat;
-        $this->chatName = $chatName;
     }
 
     /**
@@ -69,7 +67,7 @@ class NewMessage extends Notification
     {
         return new BroadcastMessage([
             'chatId' => $this->chat->id,
-            'chatName' => ($this->chat->name) ? $this->chat->name : $this->chatName,
+            'chatName' => $this->chat->name,
             'message' => $this->message->message,
         ]);
     }
