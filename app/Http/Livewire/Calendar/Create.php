@@ -4,10 +4,15 @@ namespace App\Http\Livewire\Calendar;
 
 use App\Models\Appointment;
 use App\Models\User;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Response;
 use Livewire\Component;
 
 class Create extends Component
 {
+    use AuthorizesRequests;
+
     public string $user;
 
     public $subjectCheckbox = false;
@@ -85,7 +90,10 @@ class Create extends Component
     public function submitCourseAppointment()
     {
         //validatie
-        $appointment = Appointment::create([
+
+        $this->authorize('manage_subjects');
+
+        Appointment::create([
             "location" => $this->location,
             "start_date" => $this->startDate,
             "start_time" => $this->startTime,
