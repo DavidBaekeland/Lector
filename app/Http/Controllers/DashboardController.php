@@ -35,17 +35,14 @@ class DashboardController extends Controller
 
         if ($appointmentsPersonal && $appointmentsSubjects)
         {
-
             $datesAppointments = array_merge($appointmentsSubjects, $appointmentsPersonal->all());
-            $datesAppointments = array_slice($datesAppointments, 0, 5);
-
-        } elseif ($appointmentsPersonal->count()>0)
+        } elseif ($appointmentsPersonal->count() > 0)
         {
-            $datesAppointments = array_slice($appointmentsPersonal, 0, 5);
+            $datesAppointments = $appointmentsPersonal;
 
         } elseif ($appointmentsSubjects)
         {
-            $datesAppointments = array_slice($appointmentsSubjects, 0, 5);
+            $datesAppointments = $appointmentsSubjects;
         }
 
         if (count($datesAppointments) > 0) {
