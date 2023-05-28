@@ -1,13 +1,18 @@
 <?php
 
 use App\Http\Controllers\Auth\PasswordController;
+use App\Http\Controllers\CallController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Models\Peer;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +38,15 @@ Route::get('/chat/create', [ChatController::class, 'create'])->name('chat.create
 Route::post('/chat', [MessageController::class, 'store'])->name('message.store');
 
 
+
+Route::post('/call', [CallController::class, 'call'])->middleware('auth')->name("call");
+
+Route::get('/call/{chat_id}', [CallController::class, 'answer'])->middleware('auth')->name("call.peer");
+
+// Melding sturen naar persoon die gesprek gestart is
+Route::get('/call/{chat_id}/decline', [CallController::class, 'declineOtherPeer'])->middleware('auth')->name("call.decline");
+
+Route::get('/stop', [CallController::class, 'stopCall'])->middleware(['auth'])->name("call.stop");
 
 
 

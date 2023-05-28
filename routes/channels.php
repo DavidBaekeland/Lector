@@ -24,3 +24,7 @@ Broadcast::channel('messages', function ($user, $id) {
 Broadcast::channel('chat.{chatId}', function ($user, $chatId) {
     return $user->hasChat($chatId);
 });
+
+Broadcast::channel('peer', function () {
+    return true;
+});
