@@ -53,13 +53,7 @@ class SearchUser extends Component
 
         foreach ($users as $user)
         {
-            $tempUsers = $users->filter(function ($tempUser) use ($user){
-                return $user->id != $tempUser->id;
-            });
-
-            $chatName = $tempUsers->pluck("name")->implode(', ');
-
-            Notification::send($user, new NewMessage($message, $chat, $chatName));
+            Notification::send($user, new NewMessage($message, $chat));
         }
 
         return redirect()->route('chat');
