@@ -198,3 +198,52 @@
 .modal {
     height: max-content;
 }
+
+#subjectCheckbox {
+    width: 100%;
+    border: 0;
+    opacity: 0;
+
+}
+
+#subjectCheckboxDiv {
+    position: relative;
+    display: flex;
+    width: 30%;
+    height: 30px;
+    background-color: var(--gray);
+    border-radius: 30px;
+}
+
+#slider {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 18%;
+    left: 8%;
+    bottom: 0;
+    border-radius: 30px;
+    background-color: #fff;
+}
+
+#subjectCheckboxDiv:has(#subjectCheckbox:checked)  {
+    background-color: var(--red);
+}
+
+#subjectCheckbox:checked + #slider {
+    transform: translateX(130%);
+    transition: 0.4s;
+}
+
+#subjectCheckbox:not(:checked) + #slider {
+    transform: translateX(0%);
+    transition: 0.4s;
+}
+
+#appointmentsToggle {
+    display: flex;
+    margin-bottom: 20px;
+    width: 40%;
+    justify-content: space-between;
+    align-items: center;
+}

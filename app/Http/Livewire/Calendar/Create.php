@@ -54,6 +54,11 @@ class Create extends Component
         }
     }
 
+    public function changeSubjectCheckbox()
+    {
+        $this->subjectCheckbox = !$this->subjectCheckbox;
+    }
+
     protected $rules = [
         'name' => ['required', 'string', 'max:255'],
         'location' => ['required', 'string', 'max:255'],

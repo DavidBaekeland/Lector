@@ -1,6 +1,13 @@
 <x-card class="modal">
     @can('manage_subjects')
-        <input type="checkbox" wire:model="subjectCheckbox">
+        <div id="appointmentsToggle">
+            <span>Persoonlijk</span>
+                <div id="subjectCheckboxDiv">
+                    <input type="checkbox" wire:model="subjectCheckbox" id="subjectCheckbox">
+                    <span id="slider" wire:click="changeSubjectCheckbox"></span>
+                </div>
+            <span>Cursus</span>
+        </div>
     @endcan
 
     @if($subjectCheckbox && Auth::user()->can('manage_subjects'))
