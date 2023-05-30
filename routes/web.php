@@ -31,6 +31,12 @@ Route::get('/', [DashboardController::class, 'index'])->middleware(['auth'])->na
 
 Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
 
+Route::get('/courses/{slug}', [CourseController::class, 'show'])->name('courses.show');
+
+
+
+
+
 
 Route::get('/chat', [ChatController::class, 'index'])->name('chat');
 

@@ -17,4 +17,11 @@ class CourseController extends Controller
         return view('courses.index', compact('subjects'));
     }
 
+    public function show($slug) {
+        $subjects = auth()->user()->course->subjects;
+
+        $selectedSubject = Subject::where('id', '=', $slug)->first();
+
+        return view('courses.show', compact('subjects', 'selectedSubject'));
+    }
 }
