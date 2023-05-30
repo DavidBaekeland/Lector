@@ -40,7 +40,7 @@
                     <span>
                         @if($selectedUsers)
                             @foreach($selectedUsers as $selectedUser)
-                                <a class="chatItem chatItemSelected">{{\App\Models\User::find($selectedUser)->name}}</a>
+                                <a class="card-small-item card-small-item-selected">{{\App\Models\User::find($selectedUser)->name}}</a>
                             @endforeach
                         @endif
                     </span>

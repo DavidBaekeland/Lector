@@ -1,10 +1,10 @@
 <x-app-layout>
     <x-card-small>
-        <div class="chatTitle">
+        <div class="card-small-title">
             <span>Cursussen</span>
         </div>
 
-        <div class="chat-list" id="chats">
+        <div class="card-small-list">
             @foreach($subjects as $subject)
                 <a href="{{ route('courses.show', $subject->id) }}">{{$subject->name}}</a>
             @endforeach

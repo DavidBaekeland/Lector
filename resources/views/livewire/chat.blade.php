@@ -1,6 +1,6 @@
 <div class="livewire">
     <x-card-small>
-        <div class="chatTitle">
+        <div class="card-small-title">
             <span>CHAT</span>
             <a href="{{ route("chat.create") }}">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -8,11 +8,11 @@
                 </svg>
             </a>
         </div>
-        <div class="chat-list" id="chats">
+        <div class="card-small-list" id="chats">
             @foreach($authUserChats as $chat)
                 <a wire:click="chat({{ $chat->id}})" @class([
-                "chatItem",
-                "chatItemSelected" => $chatLivewire->id == $chat->id
+                "card-small-item",
+                "card-small-item-selected" => $chatLivewire->id == $chat->id
             ])>
                     @if($chat->name)
                         {{$chat->name}}
@@ -33,7 +33,7 @@
 
     <x-card-large class="space-between">
         @if(isset($chatLivewire))
-        <div class="chatTitle">
+        <div class="card-small-title">
             @if($chatLivewire->name)
                 {{$chatLivewire->name}}
             @else
@@ -57,7 +57,7 @@
                 </form>
 
         </div>
-        <ul id="chat-list" class="chat-list">
+        <ul id="chat-list" class="card-small-list">
             @if($chatLivewire)
                 @foreach($chatLivewire->messages as $message)
                     <x-chat.message :message="$message"></x-chat.message>
