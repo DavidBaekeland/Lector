@@ -69,6 +69,7 @@ body{
 
 .card-announcement {
     margin: 0;
+    margin-bottom: 20px;
     padding: 0;
     box-sizing: border-box;
 }
@@ -78,15 +79,23 @@ body{
     box-shadow: 0px 3px 12px #AE949629;
 }
 
+.announcement-title h3, .announcement-title-active h3 {
+    margin: 0;
+
+}
+
+.announcement-title, .announcement-title-active {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
 .announcement-title {
-    margin: 0;
-    padding: 40px 40px 40px;
+    padding: 20px 40px 20px;
 }
 
 .announcement-title-active {
-    margin: 0;
-    padding: 40px 40px 20px;
+    padding: 20px 40px 10px;
 }
 
 hr {
@@ -95,7 +104,17 @@ hr {
 }
 
 .announcement {
-    padding: 20px 40px 20px;
+    padding: 10px 40px 10px;
+}
+
+#subject-card {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow-y: scroll;
+}
+
+#subject-card::-webkit-scrollbar {
+    display: none;
 }
 
 .alert {
