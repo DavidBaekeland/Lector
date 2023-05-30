@@ -6,7 +6,12 @@
 
         <div class="card-small-list">
             @foreach($subjects as $subject)
-                <a href="{{ route('courses.show', $subject->id) }}">{{$subject->name}}</a>
+                <a href="{{ route('courses.show', $subject->id) }}" @class([
+                    "card-small-item",
+                    "card-small-item-selected" => $selectedSubject->id == $subject->id
+                ])>
+                    {{$subject->name}}
+                </a>
             @endforeach
         </div>
     </x-card-small>
