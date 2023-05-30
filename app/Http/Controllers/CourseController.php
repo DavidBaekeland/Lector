@@ -22,6 +22,8 @@ class CourseController extends Controller
 
         $selectedSubject = Subject::where('id', '=', $slug)->first();
 
-        return view('courses.show', compact('subjects', 'selectedSubject'));
+        $announcements = $selectedSubject->announcements()->orderByDesc("created_at")->get();
+
+        return view('courses.show', compact('subjects', 'selectedSubject', 'announcements'));
     }
 }

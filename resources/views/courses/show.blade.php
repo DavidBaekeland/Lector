@@ -11,8 +11,8 @@
         </div>
     </x-card-small>
 
-    <x-card-large>
-        @foreach($selectedSubject->announcements as $announcement)
+    <x-card-large id="subject-card">
+        @foreach($announcements as $announcement)
             <x-card-announcement x-data="{ open: false }" x-on:click="open = ! open">
                 <h3  x-bind:class="open ? 'announcement-title-active' : 'announcement-title'">{{ $announcement->title }}</h3>
                 <span x-show="open">
