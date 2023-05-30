@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="livewire">
-        <x-card-large class="small">
+        <x-card-small>
             <div class="chatTitle">
                 <span>CHAT</span>
                 <a href="{{ route("chat.create") }}">
@@ -23,7 +23,7 @@
                 </a>
             @endforeach
 
-        </x-card-large>
+        </x-card-small>
 
 
         <x-card-large>
