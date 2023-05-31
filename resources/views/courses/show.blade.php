@@ -43,5 +43,14 @@
             </div>
         </div>
 
+        <div>
+            @foreach($announcements as $announcement)
+                @if($loop->first)
+                    <x-card-announcement :announcement="$announcement" open />
+                @else
+                    <x-card-announcement :announcement="$announcement" />
+                @endif
+            @endforeach
+        </div>
     </x-card-large>
 </x-app-layout>
