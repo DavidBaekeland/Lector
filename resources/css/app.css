@@ -785,3 +785,42 @@ table {
 
     background-color: var(--red);
 }
+
+.info-tasks {
+    display: flex;
+    justify-content: space-between;
+}
+
+.info-tasks p{
+    border: 1px solid var(--gray);
+    border-radius: 5px;
+    padding: 5px 5px;
+    width: 46%;
+    text-align: center;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+#tasks {
+    display: flex;
+    margin: auto;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.card-task {
+    margin: 0;
+    margin-bottom: 20px;
+    padding: 0;
+    box-sizing: border-box;
+    width: 48%;
+}
+
+
+.task-button {
+    width: 30%;
+    margin: auto auto 40px;
+    padding: 2% 0;
+    justify-content: center;
+}

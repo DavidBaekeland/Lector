@@ -43,8 +43,10 @@
             </div>
         </div>
 
-        <div>
-
+        <div id="tasks">
+            @foreach($selectedSubject->tasks as $task)
+                <x-card-task :task="$task" />
+            @endforeach
         </div>
     </x-card-large>
 </x-app-layout>
