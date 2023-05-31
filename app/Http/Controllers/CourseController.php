@@ -26,4 +26,20 @@ class CourseController extends Controller
 
         return view('courses.show', compact('subjects', 'selectedSubject', 'announcements'));
     }
+
+    public function tasks($slug) {
+        $subjects = auth()->user()->course->subjects;
+
+        $selectedSubject = Subject::where('id', '=', $slug)->first();
+
+        return view('courses.tasks', compact('subjects', 'selectedSubject'));
+    }
+    
+    public function documents($slug) {
+        $subjects = auth()->user()->course->subjects;
+
+        $selectedSubject = Subject::where('id', '=', $slug)->first();
+
+        return view('courses.documents', compact('subjects', 'selectedSubject'));
+    }
 }

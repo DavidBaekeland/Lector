@@ -33,6 +33,11 @@ Route::get('/courses', [CourseController::class, 'index'])->name('courses.index'
 
 Route::get('/courses/{slug}', [CourseController::class, 'show'])->name('courses.show');
 
+Route::get('/courses/{slug}/tasks', [CourseController::class, 'tasks'])->name('courses.tasks');
+
+Route::get('/courses/{slug}/documents', [CourseController::class, 'documents'])->name('courses.documents');
+
+
 
 
 
