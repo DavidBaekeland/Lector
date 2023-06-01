@@ -30,7 +30,6 @@
                     </div>
 
                     <div id="checkFiles-{{$task->id}}" class="checkFiles">
-                        <x-primary-button>Uploaden</x-primary-button>
                     </div>
                 </span>
 
@@ -51,8 +50,23 @@
                     document.getElementById("fileDiv-{{$task->id}}").classList.remove("fileDiv-active");
                     document.getElementById("checkFiles-{{$task->id}}").classList.remove("checkFiles-active");
                 }
-
             })
+
+            function deleteButton(files, taskId) {
+                let deleteFilesButtons = document.getElementsByClassName("deleteFile")
+
+                Array.prototype.forEach.call(deleteFilesButtons, button => {
+                    button.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        if(Array.isArray(files)) {
+                            files = files.filter((file, index) => index != button.value, 1);
+                        } else {
+                            files = Array.from(files).filter((file, index) => index != button.value, 1);
+                        }
+                        deleteInputElement(files, taskId);
+                    })
+                })
+            }
 
             function deleteInputElement(files, taskId) {
                 let checkFiles = document.getElementById(`checkFiles-${taskId}`);
@@ -70,7 +84,10 @@
                 `;
                 }
 
-                checkFiles.insertAdjacentHTML("afterbegin", htmlString)
+                htmlString += `<x-primary-button>Uploaden</x-primary-button>`
+                checkFiles.innerHTML = htmlString
+
+                deleteButton(files, taskId)
             }
         </script>
     </dialog>
