@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CourseController extends Controller
 {
@@ -38,7 +39,16 @@ class CourseController extends Controller
 
         return view('courses.tasks', compact('subjects', 'selectedSubject'));
     }
-    
+
+    public function tasksUpload(Request $request, $slug) {
+        foreach ($request->files as $key => $file)
+        {
+            $request->file($key)->storeAs('tasks/'.$request->task, $request->file($key)->getClientOriginalName());
+        }
+
+        return response()->json("success");
+    }
+
     public function documents($slug) {
         $subjects = auth()->user()->course->subjects;
 

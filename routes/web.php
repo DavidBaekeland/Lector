@@ -35,6 +35,9 @@ Route::get('/courses/{slug}', [CourseController::class, 'show'])->name('courses.
 
 Route::get('/courses/{slug}/tasks', [CourseController::class, 'tasks'])->name('courses.tasks');
 
+Route::post('/courses/{slug}/tasks/upload', [CourseController::class, 'tasksUpload'])->name('courses.tasks.upload');
+
+
 Route::get('/courses/{slug}/documents', [CourseController::class, 'documents'])->name('courses.documents');
 
 

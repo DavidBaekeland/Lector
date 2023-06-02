@@ -849,7 +849,7 @@ table {
 
 
 
-#fileForm{
+.fileForm{
     height: 250px;
 }
 
@@ -927,3 +927,21 @@ table {
     margin: 0 0 10px;
 }
 
+
+
+.progress {
+    position: relative;
+    height: 270px;
+    display: flex;
+    justify-content: center;
+}
+
+.progress > svg {
+    height: 100%;
+    display: block;
+}
+
+.progressValue {
+    position: absolute;
+    top: 45%;
+}
