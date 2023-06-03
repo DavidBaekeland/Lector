@@ -134,7 +134,9 @@
                         document.getElementById('progress-{{$task->id}}').appendChild(value);
                     }
 
-                    circle{{$task->id}}.set(e.loaded / e.total);
+                    circle{{$task->id}}.animate(e.loaded / e.total, {
+                        duration: 90
+                    });
                     document.getElementById("progressValue-{{$task->id}}").innerHTML = Math.round(percent_completed) + "%";
                 });
 
