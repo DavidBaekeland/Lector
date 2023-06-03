@@ -37,6 +37,13 @@ Route::get('/courses/{slug}/tasks', [CourseController::class, 'tasks'])->name('c
 
 Route::post('/courses/{slug}/tasks/upload', [CourseController::class, 'tasksUpload'])->name('courses.tasks.upload');
 
+Route::get('/courses/{slug}/tasks/{task}', [CourseController::class, 'checkTasks'])->name('courses.tasks.check');
+
+//Route::get('/courses/{slug}/tasks/{task}/{file}', [CourseController::class, 'downloadTask'])->name('courses.tasks.download');
+Route::post('/courses/{slug}/tasks', [CourseController::class, 'downloadTask'])->name('courses.tasks.download');
+
+Route::post('/courses/{slug}/tasks/{task}', [CourseController::class, 'gradeTask'])->name('courses.tasks.grade');
+
 
 Route::get('/courses/{slug}/documents', [CourseController::class, 'documents'])->name('courses.documents');
 
