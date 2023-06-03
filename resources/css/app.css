@@ -941,3 +941,28 @@ table {
 .task-icon {
     width: 20px;
 }
+
+.subject-name-passed {
+    color: #5DCD70;
+}
+
+.download-tasks-span {
+    display: grid;
+    grid-template-columns: 400px 30px;
+}
+
+.download-tasks-span button {
+    background: none;
+    border: none;
+    width: 30px;
+    height: 30px;
+}
+
+.uploaded-task-card {
+    display: flex;
+    width: 90%;
+}
+
+.uploaded-task-card-grade-form {
+    margin: auto;
+}

@@ -20,6 +20,16 @@ class Task extends Model
             ->withTimestamps();
     }
 
+    /** Relationships */
+    public function user($user): BelongsToMany
+    {
+        return $this->belongsToMany(User::class)
+            ->withPivot('points', 'file_name')
+            ->withTimestamps()
+            ->where('user_id', '=', $user);
+    }
+
+
     public function subject(): BelongsTo
     {
         return $this->belongsTo(Subject::class);
