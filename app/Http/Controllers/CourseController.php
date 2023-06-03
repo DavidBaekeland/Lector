@@ -16,10 +16,12 @@ class CourseController extends Controller
 
     public function index() {
         $subjects = auth()->user()->course->subjects;
+
         return view('courses.index', compact('subjects'));
     }
 
-    public function show($slug) {
+    public function show($slug, string $selectedAnnouncement = null)
+    {
         $subjects = auth()->user()->course->subjects;
 
         $selectedSubject = Subject::where('id', '=', $slug)->first();
@@ -30,6 +32,11 @@ class CourseController extends Controller
 
         $announcements = $selectedSubject->announcements->sortByDesc("created_at");
 
+        if (isset($selectedAnnouncement))
+        {
+            return view('courses.show', compact('subjects', 'selectedSubject', 'announcements', 'selectedAnnouncement'));
+        }
+
         return view('courses.show', compact('subjects', 'selectedSubject', 'announcements'));
     }
 
@@ -37,6 +44,10 @@ class CourseController extends Controller
         $subjects = auth()->user()->course->subjects;
 
         $selectedSubject = Subject::where('id', '=', $slug)->first();
+
+        $selectedSubject->load([
+            "tasks"
+        ]);
 
         return view('courses.tasks', compact('subjects', 'selectedSubject'));
     }

@@ -45,7 +45,9 @@
 
         <div>
             @foreach($announcements as $announcement)
-                @if($loop->first)
+                @if(isset($selectedAnnouncement) && $announcement->id == $selectedAnnouncement)
+                    <x-card-announcement :announcement="$announcement" open />
+                @elseif(!isset($selectedAnnouncement) && $loop->first)
                     <x-card-announcement :announcement="$announcement" open />
                 @else
                     <x-card-announcement :announcement="$announcement" />
