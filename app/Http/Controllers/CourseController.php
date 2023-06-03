@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Subject;
+use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -42,9 +43,11 @@ class CourseController extends Controller
 
     public function tasksUpload(Request $request, $slug) {
         $task = Task::find($request->task);
+
+        $path = 'tasks/'.$request->task.'/'.auth()->user()->id;
         foreach ($request->files as $key => $file)
         {
-            $request->file($key)->storeAs('tasks/'.$request->task, $request->file($key)->getClientOriginalName());
+            $request->file($key)->storeAs($path, $request->file($key)->getClientOriginalName());
             $task->users()->attach(auth()->user()->id, ['points' => 0, 'date_submitted' => now(), 'file_name' => $request->file($key)->getClientOriginalName()]);
         }
 

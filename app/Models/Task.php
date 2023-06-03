@@ -16,7 +16,7 @@ class Task extends Model
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class)
-            ->withPivot('grade', 'date_submitted', 'points', 'file_name')
+            ->withPivot('points', 'file_name')
             ->withTimestamps();
     }
 
