@@ -936,3 +936,8 @@ table {
     position: absolute;
     top: 45%;
 }
+
+
+.task-icon {
+    width: 20px;
+}
