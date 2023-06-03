@@ -772,8 +772,8 @@ table {
 #titleSubject {
     font-weight: 500;
     color: var(--red);
-    font-size: 30px;
-    margin: 0;
+    font-size: 25px;
+    margin: auto;
     text-align: center;
 }
 
