@@ -13,7 +13,7 @@
         <div class="input-div">
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" type="email" name="email" :value="old('email')" required autofocus />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            <x-input-error :messages="$errors->get('email')"/>
         </div>
 
         <x-primary-button>
