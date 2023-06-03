@@ -41,9 +41,11 @@ class CourseController extends Controller
     }
 
     public function tasksUpload(Request $request, $slug) {
+        $task = Task::find($request->task);
         foreach ($request->files as $key => $file)
         {
             $request->file($key)->storeAs('tasks/'.$request->task, $request->file($key)->getClientOriginalName());
+            $task->users()->attach(auth()->user()->id, ['points' => 0, 'date_submitted' => now(), 'file_name' => $request->file($key)->getClientOriginalName()]);
         }
 
         return response()->json("success");
