@@ -73,7 +73,6 @@
                         <x-input-error :messages="$errors->get('deadlineTime')"/>
                     </div>
 
-                    <x-primary-button>Opslaan</x-primary-button>
                     <x-secondary-button>Opslaan</x-secondary-button>
                 </form>
             </dialog>
