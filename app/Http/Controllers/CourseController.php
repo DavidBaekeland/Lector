@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chapter;
+use App\Models\Document;
 use App\Models\Subject;
 use App\Models\Task;
 use Illuminate\Http\Request;
@@ -159,5 +161,24 @@ class CourseController extends Controller
 
         return view('courses.documents', compact('subjects', 'selectedSubject', 'slug'));
     }
+
+    public function storeChapter(Request $request, $slug)
+    {
+        $chapter = Chapter::create([
+            "title" => $request->title,
+            "subject_id" => $slug
+        ]);
+
+        $path = 'chapters/'.$chapter->id;
+        foreach ($request->files as $key => $file)
+        {
+            $request->file($key)->storeAs($path, $request->file($key)->getClientOriginalName());
+            Document::create([
+                "file_name" =>  $request->file($key)->getClientOriginalName(),
+                "chapter_id" => $chapter->id
+            ]);
+        }
+
+        return response()->json("success");
     }
 }

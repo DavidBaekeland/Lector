@@ -48,7 +48,7 @@ Route::post('/courses/{slug}/tasks/{task}', [CourseController::class, 'gradeTask
 
 Route::get('/courses/{slug}/documents', [CourseController::class, 'documents'])->name('courses.documents');
 
-
+Route::post('/courses/{slug}/documents', [CourseController::class, 'storeChapter'])->name('courses.chapter.store');
 
 
 

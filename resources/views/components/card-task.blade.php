@@ -41,14 +41,14 @@
             </div>
             <div class="uploadDiv" id="uploadDiv-{{$task->id}}" >
                 <form method="POST" id="fileForm-{{$task->id}}" class="fileForm" enctype='multipart/form-data'>
-                <span class="inputFiles">
-                    <div id="fileDiv-{{$task->id}}" class="fileDiv">
-                        <input type="file" name="fileInput[]" class="file" id="file-{{$task->id}}" multiple>
-                    </div>
+                    <span class="inputFiles">
+                        <div id="fileDiv-{{$task->id}}" class="fileDiv">
+                            <input type="file" name="fileInput[]" class="file" id="file-{{$task->id}}" multiple>
+                        </div>
 
-                    <div id="checkFiles-{{$task->id}}" class="checkFiles">
-                    </div>
-                </span>
+                        <div id="checkFiles-{{$task->id}}" class="checkFiles">
+                        </div>
+                    </span>
                 </form>
             </div>
 
