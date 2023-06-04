@@ -270,17 +270,24 @@ th {
     margin-bottom: 30px;
 }
 
-.primary-button{
+.primary-button, .secondary-button{
     font-weight: bold;
     font-size: 18px;
     display: flex;
     color: #fff;
-    padding: 3% 25%;
     border: none;
     background-color: #D2323F;
     border-radius: 8px;
     margin: 0 auto;
     margin-top: 40px;
+}
+
+.primary-button{
+    padding: 3% 25%;
+}
+
+.secondary-button{
+    padding: 17px 100px;
 }
 
 .input-error {

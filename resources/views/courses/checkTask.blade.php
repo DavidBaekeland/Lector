@@ -62,9 +62,9 @@
                         <input name="user_id" type="hidden" value="{{"$pivot->user_id"}}">
                         <x-text-input id="points" type="number" name="points" :value="old('points')" required />
                         <x-input-error :messages="$errors->get('points')" />
-                        <x-primary-button>
+                        <x-secondary-button>
                             {{ __('Opslaan') }}
-                        </x-primary-button>
+                        </x-secondary-button>
                     </form>
                 </div>
             </x-card-small>
