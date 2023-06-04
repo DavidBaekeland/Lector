@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Announcement;
 use App\Models\Chapter;
 use App\Models\Document;
 use App\Models\Subject;
@@ -189,5 +190,16 @@ class CourseController extends Controller
     public function downloadDocument(Request $request, $slug)
     {
         return Storage::download($request->file_name);
+    }
+
+    public function storeAnnouncement(Request $request, $slug)
+    {
+        Announcement::create([
+            "title" => $request->title,
+            "announcement" => $request->announcement,
+            "subject_id" => $slug
+        ]);
+
+        return redirect()->route("courses.show", $slug);
     }
 }

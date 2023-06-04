@@ -46,10 +46,14 @@ Route::post('/courses/{slug}/tasks', [CourseController::class, 'downloadTask'])-
 Route::post('/courses/{slug}/tasks/{task}', [CourseController::class, 'gradeTask'])->name('courses.tasks.grade');
 
 
+
 Route::get('/courses/{slug}/documents', [CourseController::class, 'documents'])->name('courses.documents');
+
+Route::post('/courses/{slug}/documents/download', [CourseController::class, 'downloadDocument'])->name('courses.documents.download');
 
 Route::post('/courses/{slug}/documents', [CourseController::class, 'storeChapter'])->name('courses.chapter.store');
 
+Route::post('/courses/{slug}/announcement/create', [CourseController::class, 'storeAnnouncement'])->name('courses.announcement.store');
 
 
 
