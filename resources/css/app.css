@@ -820,6 +820,10 @@ table {
     width: 50%;
 }
 
+.dialog-document{
+    margin: auto;
+}
+
 .task-button {
     width: 30%;
     margin: auto auto 40px;
@@ -921,6 +925,10 @@ table {
     height: 100%;
 }
 
+#inputFilesChapter {
+    height: 200px;
+}
+
 .checkFilesInfo .fileName {
     margin: 0 0 10px;
 }
@@ -958,7 +966,7 @@ table {
     grid-template-columns: 400px 30px;
 }
 
-.download-tasks-span button {
+.download-tasks-span button, .download-document-span button {
     background: none;
     border: none;
     width: 30px;
@@ -1037,4 +1045,17 @@ table {
 
 .dates-div {
     display: flex;
+}
+
+.download-document-span {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.chapterDiv {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }

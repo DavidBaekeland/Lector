@@ -146,11 +146,18 @@ class CourseController extends Controller
         return redirect()->route("courses.tasks", $request->slug);
     }
 
-    public function documents($slug) {
+    public function documents($slug)
+    {
         $subjects = auth()->user()->course->subjects;
 
         $selectedSubject = Subject::where('id', '=', $slug)->first();
 
-        return view('courses.documents', compact('subjects', 'selectedSubject'));
+        $selectedSubject->load([
+            'chapters',
+            'documents'
+        ]);
+
+        return view('courses.documents', compact('subjects', 'selectedSubject', 'slug'));
+    }
     }
 }

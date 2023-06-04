@@ -25,8 +25,10 @@
             <x-nav-subject :selectedSubject="$selectedSubject" />
         </div>
 
-        <div>
-
+        <div class="chapterDiv">
+            @foreach($selectedSubject->chapters as $chapter)
+                <x-card-chapter :chapter="$chapter"></x-card-chapter>
+            @endforeach
         </div>
     </x-card-large>
 </x-app-layout>
