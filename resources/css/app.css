@@ -221,7 +221,7 @@ th {
     height: 43px;
     box-sizing: border-box;
     margin-top: 5px;
-    padding: 10px 10px 10px 40px;
+    padding: 10px 40px 10px 40px;
     font-family: effra;
     font-size: 18px;
     color: #050505;
@@ -730,7 +730,7 @@ table {
     background-color: white;
     width: 100%;
     margin: 16px;
-    padding: 40px;
+    padding: 35px;
     border-radius: 10px;
     border: 1px solid #E4E4E4;
     box-shadow: var(--boxShadowCard);
@@ -965,4 +965,57 @@ table {
 
 .uploaded-task-card-grade-form {
     margin: auto;
+}
+
+.points {
+    height: 60px;
+    width: 60px;
+}
+
+.pointsSubject {
+    display: flex;
+}
+
+.subject-name {
+    margin-left: 20px;
+    font-weight: 900;
+    font-size: 16px;
+    margin-bottom: auto;
+    margin-top: auto;
+}
+
+#pointsDiv {
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 10px;
+    row-gap: 10px;
+}
+
+
+.link-add {
+    width: 40px;
+    height: 40px;
+}
+
+.textarea {
+    height: 170px;
+    padding: 30px 40px 10px 40px;
+
+}
+
+.textarea::-webkit-scrollbar {
+    display: none;
+}
+
+.dateInput {
+    width: 45%;
+    margin-right: 5px;
+}
+
+.timeInput {
+    width: 30%;
+}
+
+.dates-div {
+    display: flex;
 }

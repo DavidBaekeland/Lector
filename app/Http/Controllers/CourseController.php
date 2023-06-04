@@ -127,6 +127,25 @@ class CourseController extends Controller
         return response()->json("success");
     }
 
+    public function storeTask(Request $request)
+    {
+        if (! Gate::allows('manage_tasks')) {
+            abort(403);
+        }
+
+        $deadline = date("Y-m-d H:i", strtotime("$request->deadlineDate $request->deadlineTime"));
+
+        Task::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'deadline' => $deadline,
+            'points' => $request->points,
+            'subject_id' => $request->slug,
+        ]);
+
+        return redirect()->route("courses.tasks", $request->slug);
+    }
+
     public function documents($slug) {
         $subjects = auth()->user()->course->subjects;
 

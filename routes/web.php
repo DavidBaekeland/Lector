@@ -35,11 +35,12 @@ Route::get('/courses/{slug}', [CourseController::class, 'show'])->name('courses.
 
 Route::get('/courses/{slug}/tasks', [CourseController::class, 'tasks'])->name('courses.tasks');
 
+Route::post('/courses/{slug}/tasks/create', [CourseController::class, 'storeTask'])->name('courses.tasks.store');
+
 Route::post('/courses/{slug}/tasks/upload', [CourseController::class, 'tasksUpload'])->name('courses.tasks.upload');
 
 Route::get('/courses/{slug}/tasks/{task}', [CourseController::class, 'checkTasks'])->name('courses.tasks.check');
 
-//Route::get('/courses/{slug}/tasks/{task}/{file}', [CourseController::class, 'downloadTask'])->name('courses.tasks.download');
 Route::post('/courses/{slug}/tasks', [CourseController::class, 'downloadTask'])->name('courses.tasks.download');
 
 Route::post('/courses/{slug}/tasks/{task}', [CourseController::class, 'gradeTask'])->name('courses.tasks.grade');

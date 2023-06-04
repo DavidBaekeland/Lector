@@ -182,19 +182,6 @@
     justify-content: center;
 }
 
-.dateInput {
-    width: 45%;
-    margin-right: 5px;
-}
-
-.timeInput {
-    width: 30%;
-}
-
-.dates-div {
-    display: flex;
-}
-
 .modal {
     height: max-content;
 }

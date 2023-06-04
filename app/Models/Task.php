@@ -12,6 +12,14 @@ class Task extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'description',
+        'deadline',
+        'points',
+        'subject_id',
+    ];
+
     /** Relationships */
     public function users(): BelongsToMany
     {
