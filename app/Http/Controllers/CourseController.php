@@ -164,6 +164,10 @@ class CourseController extends Controller
 
     public function storeChapter(Request $request, $slug)
     {
+        if (! Gate::allows('manage_subjects')) {
+            abort(403);
+        }
+
         $chapter = Chapter::create([
             "title" => $request->title,
             "subject_id" => $slug
