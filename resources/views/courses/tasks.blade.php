@@ -45,6 +45,11 @@
             <dialog class="card dialog-task" x-bind:open="open">
                 <form action="{{ route('courses.tasks.store', $selectedSubject->id) }}" method="POST">
                     @csrf
+                    <a x-on:click="open = !open" class="link-close">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </a>
 
                     <div class="input-div">
                         <x-text-input type="text" name="name" :value="old('name')" placeholder="Naam" required autofocus autocomple="off" />
