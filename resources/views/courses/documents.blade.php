@@ -34,7 +34,7 @@
 
         <div class="chapterDiv">
             @foreach($selectedSubject->chapters as $chapter)
-                <x-card-chapter :chapter="$chapter"></x-card-chapter>
+                <x-card-chapter :chapter="$chapter" :slug="$slug"></x-card-chapter>
             @endforeach
         </div>
         @can("manage_tasks")

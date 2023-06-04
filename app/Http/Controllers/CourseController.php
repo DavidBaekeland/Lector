@@ -181,4 +181,9 @@ class CourseController extends Controller
 
         return response()->json("success");
     }
+
+    public function downloadDocument(Request $request, $slug)
+    {
+        return Storage::download($request->file_name);
+    }
 }
