@@ -26,4 +26,8 @@ class Subject extends Model
     {
         return $this->hasMany(Task::class);
     }
+    public function chapters(): HasMany
+    {
+        return $this->hasMany(Chapter::class);
+    }
 }
