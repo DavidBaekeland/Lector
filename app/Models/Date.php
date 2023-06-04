@@ -18,15 +18,6 @@ class Date extends Model
         'appointment_id'
     ];
 
-
-//    protected $fillable = [
-//        'start_date',
-//        'start_time',
-//        'end_date',
-//        'end_time',
-//        'appointment_id'
-//    ];
-
     /** Relationships */
     public function appointment(): BelongsTo
     {
