@@ -324,6 +324,9 @@ table {
     color: var(--red);
 }
 
+.link-task {
+    color: #050505;
+}
 .delete-button {
     background-color: var(--red);
     border-radius: 20%;
