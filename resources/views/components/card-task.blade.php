@@ -28,7 +28,7 @@
             <p>{{$task->points}} punten</p>
         </div>
         <p class="announcement">
-            {!! $task->description !!}
+            {!! nl2br($task->description) !!}
         </p>
     </span>
 

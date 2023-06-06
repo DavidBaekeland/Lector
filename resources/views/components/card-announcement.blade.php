@@ -15,7 +15,7 @@
     <span x-show="open">
         <hr>
         <p class="announcement">
-            {!! $announcement->announcement !!}
+            {!! nl2br($announcement->announcement) !!}
         </p>
     </span>
 </div>
