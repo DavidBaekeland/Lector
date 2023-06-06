@@ -182,8 +182,8 @@
                         let data = JSON.parse(request.response);
 
                         if (request.status === 200) {
-                            //document.getElementById('dialog-document').close();
-                            //location.replace("{{ route('courses.documents', $slug) }}");
+                            document.getElementById('dialog-document').close();
+                            location.replace("{{ route('courses.documents', $slug) }}");
                         } else {
                             document.getElementById('uploadDiv').innerHTML = data;
                         }
