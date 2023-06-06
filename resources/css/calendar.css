@@ -26,7 +26,6 @@
 .dates {
     display: grid;
     grid-template-columns: 80px auto auto auto auto auto;
-    margin-bottom: 30px;
 }
 
 .time {
@@ -190,7 +189,6 @@
     width: 100%;
     border: 0;
     opacity: 0;
-
 }
 
 #subjectCheckboxDiv {
