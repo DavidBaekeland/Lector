@@ -66,7 +66,7 @@ class CourseController extends Controller
         foreach ($request->files as $key => $file)
         {
             $request->file($key)->storeAs($path, $request->file($key)->getClientOriginalName());
-            $task->users()->attach(auth()->user()->id, ['points' => 0, 'date_submitted' => now(), 'file_name' => $request->file($key)->getClientOriginalName()]);
+            $task->users()->attach(auth()->user()->id, ['points' => 0, 'file_name' => $request->file($key)->getClientOriginalName()]);
         }
 
         return response()->json("success");
