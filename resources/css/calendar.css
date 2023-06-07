@@ -26,7 +26,6 @@
 .dates {
     display: grid;
     grid-template-columns: 80px auto auto auto auto auto;
-    margin-bottom: 30px;
 }
 
 .time {
@@ -182,19 +181,6 @@
     justify-content: center;
 }
 
-.dateInput {
-    width: 45%;
-    margin-right: 5px;
-}
-
-.timeInput {
-    width: 30%;
-}
-
-.dates-div {
-    display: flex;
-}
-
 .modal {
     height: max-content;
 }
@@ -203,7 +189,6 @@
     width: 100%;
     border: 0;
     opacity: 0;
-
 }
 
 #subjectCheckboxDiv {

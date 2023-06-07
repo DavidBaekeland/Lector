@@ -32,6 +32,47 @@ nav {
 }
 
 
+
+#navSubject {
+    display: flex;
+    flex-direction: row;
+    width: 180px;
+    height: 40px;
+    margin: auto 0 auto auto;
+    justify-content: space-between;
+}
+
+
+.nav-subject-link {
+    width: 20px;
+    height: 20px;
+    color: #fff;
+    padding: 10px;
+    border-radius: 12px;
+
+    box-shadow: 0px 3px 6px #76767628;
+}
+
+.nav-subject-link svg {
+    stroke-width: 2px;
+    width: 18px;
+    height: 18px;
+    margin: auto;
+}
+
+.subject-active-link {
+    fill: #fff;
+    stroke: white;
+    background-color: #F87171;
+    border: 1px solid #F87171;
+}
+
+.subject-normal-link {
+    fill: none;
+    stroke: #F87171;
+}
+
+
 @media only screen and (max-width: 600px) {
     nav {
         flex-direction: row;

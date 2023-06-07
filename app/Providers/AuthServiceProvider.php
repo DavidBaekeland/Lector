@@ -4,6 +4,7 @@ namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
 use App\Models\Chat;
+use App\Models\Task;
 use App\Models\User;
 use App\Policies\ChatPolicy;
 use App\Policies\UserPolicy;
@@ -37,6 +38,18 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('manage_subjects', function(User $user) {
             return ($user->role->name == "docent" || $user->role->name == "admin");
+        });
+
+        Gate::define('manage_tasks', function(User $user) {
+            return ($user->role->name == "docent" || $user->role->name == "admin");
+        });
+
+        Gate::define('upload_task', function(User $user, Task $task) {
+            return $user->hasTask($task->id) &&$user->role->name == "student";
+        });
+
+        Gate::define('see_points', function(User $user) {
+            return $user->role->name == "student";
         });
     }
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\CallController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
@@ -27,9 +28,35 @@ use Illuminate\Support\Str;
 
 Route::get('/', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
-Route::get('/courses', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('courses');
+
+Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
+
+Route::get('/courses/{slug}', [CourseController::class, 'show'])->name('courses.show');
+
+Route::get('/courses/{slug}/tasks', [CourseController::class, 'tasks'])->name('courses.tasks');
+
+Route::post('/courses/{slug}/tasks/create', [CourseController::class, 'storeTask'])->name('courses.tasks.store');
+
+Route::post('/courses/{slug}/tasks/upload', [CourseController::class, 'tasksUpload'])->name('courses.tasks.upload');
+
+Route::get('/courses/{slug}/tasks/{task}', [CourseController::class, 'checkTasks'])->name('courses.tasks.check');
+
+Route::post('/courses/{slug}/tasks', [CourseController::class, 'downloadTask'])->name('courses.tasks.download');
+
+Route::post('/courses/{slug}/tasks/{task}', [CourseController::class, 'gradeTask'])->name('courses.tasks.grade');
+
+
+
+Route::get('/courses/{slug}/documents', [CourseController::class, 'documents'])->name('courses.documents');
+
+Route::post('/courses/{slug}/documents/download', [CourseController::class, 'downloadDocument'])->name('courses.documents.download');
+
+Route::post('/courses/{slug}/documents', [CourseController::class, 'storeChapter'])->name('courses.chapter.store');
+
+Route::post('/courses/{slug}/announcement/create', [CourseController::class, 'storeAnnouncement'])->name('courses.announcement.store');
+
+
+
 
 Route::get('/chat', [ChatController::class, 'index'])->name('chat');
 

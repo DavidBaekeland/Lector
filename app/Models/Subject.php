@@ -16,4 +16,18 @@ class Subject extends Model
     {
         return $this->hasMany(Appointment::class);
     }
+
+    public function announcements(): HasMany
+    {
+        return $this->hasMany(Announcement::class);
+    }
+
+    public function tasks(): HasMany
+    {
+        return $this->hasMany(Task::class);
+    }
+    public function chapters(): HasMany
+    {
+        return $this->hasMany(Chapter::class);
+    }
 }

@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-modal id="register-modal">
-        <x-card>
+        <x-card-small>
             <x-auth.register :courses="$courses" :users="$users" :roles="$roles"></x-auth.register>
-        </x-card>
+        </x-card-small>
     </x-modal>
     <x-card-large>
         <form action="{{ route('users.multiple.delete') }}" method="post" id="delete-user-form">

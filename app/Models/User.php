@@ -76,6 +76,13 @@ class User extends Authenticatable
         return $this->chats()->where('chat_id', $chat)->exists();
     }
 
+    public function hasTaskSubmitted($task) {
+        return $this->tasks()->where('task_id', $task)->exists();
+    }
+
+    public function hasTask($task) {
+        return $this->course->subjects()->where('subject_id', Task::find($task)->pluck("subject_id")->first())->exists();
+    }
     public function latestChat()
     {
         return $this->belongsToMany(Chat::class)->latest("updated_at")->first();
@@ -105,5 +112,10 @@ class User extends Authenticatable
     public function appointments(): BelongsToMany
     {
         return $this->belongsToMany(Appointment::class);
+    }
+
+    public function tasks(): BelongsToMany
+    {
+        return $this->belongsToMany(Task::class);
     }
 }
