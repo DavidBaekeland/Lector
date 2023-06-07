@@ -48,6 +48,10 @@ class AuthServiceProvider extends ServiceProvider
             return $user->hasTask($task->id) &&$user->role->name == "student";
         });
 
+        Gate::define('see_deadlines', function(User $user) {
+            return $user->role->name == "student";
+        });
+
         Gate::define('see_points', function(User $user) {
             return $user->role->name == "student";
         });

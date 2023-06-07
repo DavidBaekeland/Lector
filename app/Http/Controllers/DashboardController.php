@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Appointment;
+use App\Models\Dashboard;
+use App\Models\Document;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class DashboardController extends Controller
 {
@@ -15,11 +18,19 @@ class DashboardController extends Controller
         })->get();
 
         $appointmentsSubjects = [];
+        $announcements = [];
         $course = auth()->user()->course;
 
         if ($course)
         {
-            foreach ($course->subjects as $subject)
+            $subjects = $course->subjects;
+
+            $subjects->load([
+                "appointments",
+                "announcements",
+            ]);
+
+            foreach ($subjects as $subject)
             {
                 foreach ($subject->appointments as $appointmentSubject)
                 {
@@ -27,6 +38,11 @@ class DashboardController extends Controller
                     {
                         $appointmentsSubjects[] = $appointmentSubject;
                     }
+                }
+
+                foreach ($subject->announcements as $announcementSubject)
+                {
+                    $announcements[] = $announcementSubject;
                 }
             }
         }
@@ -45,8 +61,71 @@ class DashboardController extends Controller
             $datesAppointments = $appointmentsSubjects;
         }
 
-        if (count($datesAppointments) > 0) {
-            $datesAppointments = collect([...$datesAppointments])->sortBy("start_date")->take(3);
+        if (count($datesAppointments) > 0)
+        {
+            $datesAppointments = collect($datesAppointments)->sortBy("start_date")->take(3);
+        }
+
+        if (count($announcements) > 0)
+        {
+            $announcements = collect($announcements)->sortBy("created_at")->take(3);
+        }
+
+        $tasks = [];
+
+        if (isset($subjects))
+        {
+            foreach ($subjects as $subject)
+            {
+                foreach ($subject->tasks as $task)
+                {
+                    if ($task->deadline>= now())
+                    {
+                        $tasks[] = $task;
+                    }
+                }
+            }
+
+            $deadlines = collect($tasks)->sortBy("deadline")->take(4);
+        } else
+        {
+            $deadlines = [];
+        }
+
+
+
+        if (Gate::allows('see_points'))
+        {
+            $subjects = $course->subjects;
+            $subjectPoints = [];
+
+            foreach ($subjects as $subject)
+            {
+                $userPoints = 0;
+                $taskPoints = 0;
+                if($subject->pastTasks->isNotEmpty())
+                {
+                    foreach ($subject->pastTasks as $pastTask)
+                    {
+                        if (count($pastTask->user(auth()->user()->id)->get()) > 0)
+                        {
+                            $userPoints += $pastTask->user(auth()->user()->id)->first()->pivot->points;
+                        }
+                        $taskPoints += $pastTask->points;
+                    }
+                    $subjectPoints[$subject->name] = $userPoints/$taskPoints;
+                } else
+                {
+                    $subjectPoints[$subject->name] = 1;
+                }
+
+            }
+
+            return view('dashboard', compact('chats', 'datesAppointments', 'announcements', 'subjectPoints', 'deadlines'));
+        } else {
+            return view('dashboard', compact('chats', 'datesAppointments', 'announcements', 'deadlines'));
+        }
+    }
         }
 
         return view('dashboard', compact('chats', 'datesAppointments'));

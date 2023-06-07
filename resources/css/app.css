@@ -327,6 +327,7 @@ table {
 .link-task {
     color: #050505;
 }
+
 .delete-button {
     background-color: var(--red);
     border-radius: 20%;
@@ -986,8 +987,8 @@ table {
 }
 
 .points {
-    height: 60px;
-    width: 60px;
+    min-height: 60px;
+    min-width: 60px;
 }
 
 .pointsSubject {
@@ -1061,4 +1062,25 @@ table {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
+}
+
+.deadline-date {
+    background-color: var(--red);
+    font-weight: 500;
+    color: #fff;
+    border-radius: 6px;
+    padding: 7px 10px;
+    margin-right: 15px;
+    box-shadow: 0px 3px 7px #76767629;
+}
+
+.deadline-name {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.dashboard-deadline {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
 }
