@@ -126,8 +126,17 @@ class DashboardController extends Controller
             return view('dashboard', compact('chats', 'datesAppointments', 'announcements', 'deadlines'));
         }
     }
+
+    public function update(Request $request)
+    {
+        if (isset($request->dashboard))
+        {
+            auth()->user()->dashboard()->sync(array_keys($request->dashboard));
+        } else
+        {
+            auth()->user()->dashboard()->detach();
         }
 
-        return view('dashboard', compact('chats', 'datesAppointments'));
+        return redirect()->back();
     }
 }
