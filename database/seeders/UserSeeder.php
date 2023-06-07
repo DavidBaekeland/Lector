@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
         ]);
 
         $task = Task::all()->first();
-        $task->users()->attach($student->id, ['points' => 80, 'file_name' => "DavidBaekeland.pdf"]);
+        $task->users()->attach($student->id, ['points' => 40, 'file_name' => $task->name.".pdf"]);
 
         $appointment = Appointment::where("title", "=", "Persoonlijke afspraak")->pluck("id")->first();
 

@@ -63,7 +63,7 @@ class CourseSeeder extends Seeder
         Task::create([
             "name" => "Gebruikers documentatie",
             "description" => "In week 8 werken we een pitch presentatie uit waarin de deliverables van de voorbije weken worden toegelicht en het prototype wordt voorgesteld. Daarin ligt je op logische wijze het verloop van het project toe. <br> <br> - Initiële vraagstelling <br>- Observaties en interviews en de daaruit volgende bevindingen <br>- De ontwikkeling van je ideeën <br>- Het bepalen van de scope <br>- De uitwerking van het prototype <br>- Het prototype <br><br>Geef daarbij voldoende aandacht aan de waarom van de bepaalde scope op basis van de bevindingen uit je onderzoek en de manier waarop je een oplossing biedt met je prototype. Voor dat laatste zijn de testen die je doet met het prototype waardevol als bewijs dat je oplossing doet wat je hebt beoogd.",
-            "deadline" => now(),
+            "deadline" => now()->addDay(),
             "points" => 40,
             "subject_id" => $subject->id
         ]);
