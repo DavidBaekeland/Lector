@@ -47,7 +47,6 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('upload_task', function(User $user, Task $task) {
             return $user->hasTask($task->id) &&$user->role->name == "student";
         });
-        });
 
         Gate::define('see_points', function(User $user) {
             return $user->role->name == "student";
