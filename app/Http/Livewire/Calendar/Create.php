@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Calendar;
 
 use App\Models\Appointment;
+use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Gate;
@@ -35,6 +36,13 @@ class Create extends Component
     public $location;
 
     public $subjectId;
+
+    public $subjects;
+
+    public function mount() {
+        $this->subjects = Subject::all();
+        $this->subjectId = $this->subjects->first()->id;
+    }
 
     public function selectUser($user)
     {
