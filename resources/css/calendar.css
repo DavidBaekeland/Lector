@@ -163,14 +163,14 @@
     font-style: normal;
 }
 
-.calendar-1 .info-active {
+.calendar-1 .info-active, .calendar-0 .info-active {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin: auto 10%;
 }
 
-.calendar-1 .info-active h2 {
+.calendar-1 .info-active h2, .calendar-0 .info-active h2  {
     margin: 0;
     font-size: 18px;
 }
@@ -183,6 +183,7 @@
 
 .modal {
     height: max-content;
+    width: max-content;
 }
 
 #subjectCheckbox {
@@ -228,7 +229,62 @@
 #appointmentsToggle {
     display: flex;
     margin-bottom: 20px;
-    width: 40%;
+    width: 60%;
     justify-content: space-between;
     align-items: center;
+}
+
+#calendar-mobile {
+    display: none;
+}
+
+@media only screen and (max-width: 600px) {
+    .time, #calendar{
+        display: none;
+    }
+
+    #calendar-modal {
+        width: 100%;
+    }
+
+    #calendar-mobile {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    #calendar-mobile div {
+        width: auto;
+        border: none;
+        display: table;
+    }
+
+    .active-calendar .info-active{
+        margin: 0;
+    }
+
+    .active-calendar .info-active h2 {
+        margin: 2% 0;
+    }
+
+    #appointmentsToggle {
+        width: auto;
+    }
+
+    .timeInput, .dateInput {
+        width: 50%;
+        padding: 10px;
+    }
+
+    #subjectCheckbox:checked + #slider {
+        transform: translateX(175%);
+    }
+
+    #appointmentCreateDiv {
+        padding-bottom: 20px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+
 }

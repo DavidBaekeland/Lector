@@ -1,6 +1,7 @@
 @import "nav.css";
 @import "footer.css";
 @import "video.css";
+@import url("https://use.typekit.net/jir0vic.css");
 
 
 
@@ -28,7 +29,7 @@ main {
 body{
     background-image:  linear-gradient(rgba(112, 112, 112, 0.05) 1px, transparent 1px), linear-gradient(to right, rgba(112, 112, 112, 0.05) 1px, transparent 1px);
     background-size: 40px 40px;
-    font-family: effra;
+    font-family: effra, sans-serif;
     margin: 0;
     position: relative;
 }
@@ -375,6 +376,10 @@ table {
     color: var(--grayText);
 }
 
+.remember-div  {
+    width: 50%;
+}
+
 .container-checkbox {
     display: block;
     position: relative;
@@ -428,6 +433,8 @@ table {
 
 .password-reset {
     color: var(--grayText);
+    width: 50%;
+    text-align: end;
     text-decoration-color: var(--grayText);
 }
 
@@ -601,19 +608,23 @@ table {
     margin-bottom: 20px;
 }
 
+#video-link-form {
+    margin: 0;
+}
+
 
 .card-small-title a {
     display: flex;
 }
 
-#videoLink svg {
+.videoLink svg {
     fill: none;
     stroke-width: 1.5px;
 }
 
 .card-small-title a svg {
     stroke: var(--red);
-    stroke-width: 5px;
+    stroke-width: 1.5px;
     width: 20px;
     height: 20px;
 }
@@ -638,8 +649,8 @@ table {
     border: 1px solid var(--gray);
     border-radius: 8px;
     display: flex;
-    width: 100%;
-    height: 43px;
+    flex-direction: row;
+    flex-wrap: wrap;
     margin-top: 5px;
     font-size: 18px;
     padding: 5px;
@@ -649,7 +660,7 @@ table {
     border: none;
     height: 100%;
     font-family: Roboto;
-
+    margin: 10px;
 }
 
 .selectedUsers input:focus{
@@ -658,8 +669,9 @@ table {
 
 
 .selectedUsers span{
-    margin: 10px;
+    margin: 10px 0 10px 10px;
     font-family: Roboto;
+    width: fit-content;
 }
 
 .selectedUsers span a{
@@ -732,6 +744,10 @@ table {
     margin-bottom: 10px;
 }
 
+#chat-back, .course-back {
+    display: none;
+}
+
 .timeLocationDashboard {
     font-weight: bolder;
     color: var(--red);
@@ -774,8 +790,12 @@ table {
 }
 
 #headerSubject {
-    display: grid;
-    grid-template-columns: 33% 33% 33%;
+    /*display: grid;*/
+    /*grid-template-columns: 33% 33% 33%;*/
+
+    display: flex;
+    flex-direction: row;
+
     margin: 0 auto 40px;
     width: 100%;
 }
@@ -784,7 +804,7 @@ table {
     font-weight: 500;
     color: var(--red);
     font-size: 25px;
-    margin: auto;
+    margin: auto 0;
     text-align: center;
 }
 
@@ -816,7 +836,7 @@ table {
     margin-bottom: 20px;
     padding: 0;
     box-sizing: border-box;
-    width: 48%;
+    width: 47%;
 }
 
 .dialog-task {
@@ -1083,4 +1103,175 @@ table {
     display: flex;
     flex-direction: row;
     margin-bottom: 10px;
+}
+
+.chekcboxDashboard {
+    margin-bottom: 10px;
+}
+
+.chekcboxDashboard:last-of-type {
+    margin-bottom: 0;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+    .app {
+        flex-direction: column-reverse;
+        padding: 30px;
+        max-width: 100vw;
+        max-height: 92.5vh;
+        justify-content: space-between;
+    }
+
+    main {
+        overflow-y: scroll;
+        height: 100vh;
+    }
+
+    .links {
+        flex-direction: row;
+        margin: 0;
+        margin-top: 15px;
+    }
+
+    .cardsDashboard, .row {
+        flex-direction: column;
+    }
+
+    .card-dashboard{
+        margin: 10px 0;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .cardsDashboard {
+        box-sizing: border-box;
+        flex-wrap: nowrap;
+    }
+
+    .chat-dashboard {
+        padding: 14px;
+    }
+
+    .row:first-child {
+        height: auto;
+    }
+
+    .livewire {
+        flex-direction: column;
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+    .card {
+        /*padding: 20px;*/
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    dialog.card {
+        margin: 30px;
+        width: auto;
+    }
+
+    #chat-form {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    #chat-card {
+        width: 100%;
+        height: 100vh;
+    }
+
+    #messages-card {
+        height: 100%;
+    }
+
+    #chat-input-div {
+        width: 100%;
+    }
+
+    #messageInput {
+        width: 80%;
+    }
+
+    #submit-chat {
+        width: 20%;
+    }
+
+    #chat-form {
+        position: sticky;
+        position: -webkit-sticky; /* Safari */
+        bottom: 0;
+        background-color: #fff;
+    }
+
+    .card-small {
+        width: 100%;
+    }
+
+    .mobile {
+        display: none;
+    }
+
+    .announcement, .announcement-title, .announcement-title-active {
+        padding: 18px 20px 18px;
+    }
+
+    .card .announcement {
+        margin-bottom: 0;
+    }
+
+    #titleSubject {
+        font-size: 20px;
+    }
+
+
+    #headerSubject {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+    }
+
+    #navSubject {
+        width: 80%;
+        margin: auto;
+    }
+
+    .card-task {
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+
+
+    .task-button {
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 20px;
+        padding: 12px 60px 12px;
+    }
+
+    #tasks {
+        flex-direction: column;
+    }
+
+    .info-tasks {
+        padding-bottom: 0;
+    }
+
+    #course-back {
+        display: block;
+        width: 20px;
+        height: 20px;
+        color: var(--red);
+    }
+
+    .login .card {
+        width: 90%;
+        margin: 16px;
+    }
 }
