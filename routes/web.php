@@ -28,6 +28,8 @@ use Illuminate\Support\Str;
 
 Route::get('/', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
+Route::post('/cards', [DashboardController::class, 'update'])->middleware(['auth'])->name('dashboard.cards.update');
+
 
 Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
 

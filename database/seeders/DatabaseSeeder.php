@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             AppointmentSeeder::class,
             ChatSeeder::class,
             CourseSeeder::class,
+            DashboardSeeder::class,
             MessageSeeder::class,
             RoleSeeder::class,
             UserSeeder::class

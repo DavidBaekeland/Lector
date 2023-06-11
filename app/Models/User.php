@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\ResetPasswordNotification;
+use Database\Seeders\DashboardSeeder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -83,6 +84,15 @@ class User extends Authenticatable
     public function hasTask($task) {
         return $this->course->subjects()->where('subject_id', Task::find($task)->pluck("subject_id")->first())->exists();
     }
+
+    public function hasDashboard($dashboard) {
+        return $this->dashboard()->where('dashboard_id', $dashboard)->exists();
+    }
+
+    public function hasDashboardTitle($dashboard) {
+        return $this->dashboard->contains('title', $dashboard);
+    }
+
     public function latestChat()
     {
         return $this->belongsToMany(Chat::class)->latest("updated_at")->first();
@@ -114,8 +124,19 @@ class User extends Authenticatable
         return $this->belongsToMany(Appointment::class);
     }
 
+    public function appointmentsPersonal(): BelongsToMany
+    {
+        return $this->belongsToMany(Appointment::class)
+            ->where("start_date", ">=", now());
+    }
+
     public function tasks(): BelongsToMany
     {
         return $this->belongsToMany(Task::class);
+    }
+
+    public function dashboard(): BelongsToMany
+    {
+        return $this->belongsToMany(Dashboard::class);
     }
 }
