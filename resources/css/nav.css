@@ -36,9 +36,10 @@ nav {
 #navSubject {
     display: flex;
     flex-direction: row;
-    width: 180px;
+    width: 55%;
+    max-width: 180px;
     height: 40px;
-    margin: auto 0 auto auto;
+    /*margin: auto 0 auto auto;*/
     justify-content: space-between;
 }
 
@@ -72,12 +73,41 @@ nav {
     stroke: #F87171;
 }
 
+.mobileHeaderSubject {
+    display: none;
+}
+
+.desktopHeaderSubject {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    width: 100%;
+}
+
+.desktopHeaderSubject #navSubject {
+    margin: auto 0 auto auto;
+}
 
 @media only screen and (max-width: 600px) {
     nav {
         flex-direction: row;
         width: 45vw;
         height: 4vh;
-        margin: auto;
+        margin: 0;
+    }
+
+    .desktopHeaderSubject {
+        display: none;
+    }
+
+    .mobileHeaderSubject {
+        display: block;
+    }
+
+    .mobileHeaderSubject span {
+        display: grid;
+        grid-template-columns: 10% 80% 10%;
+        vertical-align: baseline;
+
+        margin-bottom: 20px;
     }
 }

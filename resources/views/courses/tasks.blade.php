@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-card-small>
+    <x-card-small class="mobile">
         <div class="card-small-title">
             <span>Cursussen</span>
         </div>
@@ -18,20 +18,51 @@
 
     <x-card-large id="subject-card" x-data="{ open: false }">
         <div id="headerSubject">
-            @can("manage_tasks")
-                <button x-on:click="open = ! open" class="link-add">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                    </svg>
-                </button>
-            @else
-                <span></span>
-            @endcan
+            <span class="desktopHeaderSubject">
+                @can("manage_tasks")
+                    <button x-on:click="open = ! open" class="link-add">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                    </button>
+                @else
+                    <a id="course-back" href="{{ route('courses.index') }}" class="videoLink backLinkCourse">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="0.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                        </svg>
+                    </a>
+                @endcan
 
-            <h3 id="titleSubject">{{ $selectedSubject->name }}</h3>
+                <h3 id="titleSubject">{{ $selectedSubject->name }}</h3>
 
-            <x-nav-subject :selectedSubject="$selectedSubject" />
+                <x-nav-subject :selectedSubject="$selectedSubject" />
+
+            </span>
+
+            <span class="mobileHeaderSubject">
+                <span>
+                    <a id="course-back" href="{{ route('courses.index') }}" class="videoLink backLinkCourse">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="0.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                        </svg>
+                    </a>
+
+                <h3 id="titleSubject">{{ $selectedSubject->name }}</h3>
+
+                @can("manage_tasks")
+                    <button x-on:click="open = ! open" class="link-add link-add-mobile">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                    </button>
+                @endcan
+            </span>
+
+                <x-nav-subject :selectedSubject="$selectedSubject" />
+            </span>
+
         </div>
+
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/progressbar.js/0.6.1/progressbar.js" integrity="sha512-31I8S0k9PCZb3or2whlgM88rgY9mvkSXTxIQMXMkc8N79b29nKc+MN8qVVJT0vE5D8uy1sVuNWrkAt6zEh+PZg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 

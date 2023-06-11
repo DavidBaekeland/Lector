@@ -995,6 +995,25 @@
 
             </div>
         </div>
+
+        <div id="calendar-mobile">
+            @foreach($appointmentsDatesTime as $key => $appointmentsDay)
+                @foreach($appointmentsDay as $appointment)
+                    <div @class([
+                        "active-calendar chat-dashboard",
+                        "personal-calendar" => !$appointment[0]->subject,
+                        "course-calendar" => $appointment[0]->subject,
+                    ])>
+                        <span class="info-active">
+                            <span>{{\Carbon\Carbon::create($appointment[0]->start_time)->format('H:m')}} - {{\Carbon\Carbon::create($appointment[0]->end_time)->format('H:m')}}</span>
+                            <h2>{{$appointment[0]->title}}</h2>
+                            <span>{{$appointment[0]->location}}</span>
+                        </span>
+                    </div>
+
+                @endforeach
+            @endforeach
+        </div>
     </x-card-large>
 
     @vite(['resources/css/calendar.css', 'resources/js/calendar.js'])

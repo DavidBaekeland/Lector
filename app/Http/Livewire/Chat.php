@@ -19,19 +19,20 @@ class Chat extends Component
 
         $this->authUserChats = auth()->user()->chats->sortByDesc('updated_at');
 
-        if ($this->chatLivewire)
-        {
-            JavaScript::put(["urlChat" => url('chat'), "userId" => auth()->user()->id, "userName" => auth()->user()->first_name, 'chatId' => $this->chatLivewire->id]);
-        }else
-        {
+
             JavaScript::put(["urlChat" => url('chat'), "userId" => auth()->user()->id, "userName" => auth()->user()->first_name, 'chatId' => null]);
-        }
+
     }
 
     public function notifyMessage()
     {
         $this->dispatchBrowserEvent('newMessage');
         $this->authUserChats = auth()->user()->chats->sortByDesc('updated_at');
+    }
+
+    public function chatBack()
+    {
+        $this->chatLivewire = null;
     }
 
 

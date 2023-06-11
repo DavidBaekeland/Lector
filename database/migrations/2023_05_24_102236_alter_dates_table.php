@@ -12,9 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('dates', function (Blueprint $table) {
-            $table->renameColumn('start_date', 'date');
-            $table->renameColumn('start_time', 'time');
-
             $table->dropColumn('end_date');
             $table->dropColumn('end_time');
 
