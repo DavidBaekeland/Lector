@@ -18,7 +18,22 @@
                 @csrf
 
                 @foreach(\App\Models\Dashboard::all() as $dashboardCard)
-                    <x-checkbox id="{{$dashboardCard->title}}Dashboard" name="dashboard[{{$dashboardCard->id}}]" valueLabel="{{$dashboardCard->title}}" :checked="auth()->user()->hasDashboard($dashboardCard->id)"/>
+                    @switch($dashboardCard->title)
+                        @case("Punten")
+                            @if(auth()->user()->can("see_points"))
+                                <x-checkbox class="chekcboxDashboard" id="{{$dashboardCard->title}}Dashboard" name="dashboard[{{$dashboardCard->id}}]" valueLabel="{{$dashboardCard->title}}" :checked="auth()->user()->hasDashboard($dashboardCard->id)"/>
+                            @endif
+
+                            @break
+                        @case("Deadlines")
+                            @if(auth()->user()->can("see_deadlines"))
+                                <x-checkbox class="chekcboxDashboard" id="{{$dashboardCard->title}}Dashboard" name="dashboard[{{$dashboardCard->id}}]" valueLabel="{{$dashboardCard->title}}" :checked="auth()->user()->hasDashboard($dashboardCard->id)"/>
+                            @endif
+                            @break
+
+                        @default
+                            <x-checkbox class="chekcboxDashboard" id="{{$dashboardCard->title}}Dashboard" name="dashboard[{{$dashboardCard->id}}]" valueLabel="{{$dashboardCard->title}}" :checked="auth()->user()->hasDashboard($dashboardCard->id)"/>
+                    @endswitch
                 @endforeach
                 <!-- <x-checkbox id="announcementDashboard" name="announcementDashboard" valueLabel="Aankondigingen"/>
                 <x-checkbox id="pointsDashboard" name="pointsDashboard" valueLabel="Punten"/>
