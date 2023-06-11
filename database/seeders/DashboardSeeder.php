@@ -23,7 +23,7 @@ class DashboardSeeder extends Seeder
         ]);
 
         Dashboard::create([
-            'title' => 'Deadline'
+            'title' => 'Deadlines'
         ]);
 
         Dashboard::create([
