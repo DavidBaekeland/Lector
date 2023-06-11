@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="livewire">
-        <x-card-large class="small">
-            <div class="chatTitle">
+        <x-card-small>
+            <div class="card-small-title">
                 <span>CHAT</span>
                 <a href="{{ route("chat.create") }}">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -9,21 +9,24 @@
                     </svg>
                 </a>
             </div>
-            @foreach(auth()->user()->chats as $chat)
-                <a href="{{ route('chat') }}" class="chatItem">
-                    @if($chat->name)
-                        {{$chat->name}}
-                    @else
-                        @foreach($chat->users as $chatUser)
-                            @if($chatUser->id != auth()->user()->id)
-                                {{$chatUser->name}}
-                            @endif
-                        @endforeach
-                    @endif
-                </a>
-            @endforeach
+            <div class="card-small-list">
+                @foreach(auth()->user()->chats as $chat)
+                    <a href="{{ route('chat') }}" class="card-small-item">
+                        @if($chat->name)
+                            {{$chat->name}}
+                        @else
+                            @foreach($chat->users as $chatUser)
+                                @if($chatUser->id != auth()->user()->id)
+                                    {{$chatUser->name}}
+                                @endif
+                            @endforeach
+                        @endif
+                    </a>
+                @endforeach
+            </div>
 
-        </x-card-large>
+
+        </x-card-small>
 
 
         <x-card-large>

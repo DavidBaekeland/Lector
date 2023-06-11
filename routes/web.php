@@ -4,14 +4,11 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\CallController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MessageController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
-use App\Models\Peer;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
 
 
 /*
@@ -27,9 +24,37 @@ use Illuminate\Support\Str;
 
 Route::get('/', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
-Route::get('/courses', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('courses');
+Route::post('/cards', [DashboardController::class, 'update'])->middleware(['auth'])->name('dashboard.cards.update');
+
+
+Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
+
+Route::get('/courses/{slug}', [CourseController::class, 'show'])->name('courses.show');
+
+Route::get('/courses/{slug}/tasks', [CourseController::class, 'tasks'])->name('courses.tasks');
+
+Route::post('/courses/{slug}/tasks/create', [CourseController::class, 'storeTask'])->name('courses.tasks.store');
+
+Route::post('/courses/{slug}/tasks/upload', [CourseController::class, 'tasksUpload'])->name('courses.tasks.upload');
+
+Route::get('/courses/{slug}/tasks/{task}', [CourseController::class, 'checkTasks'])->name('courses.tasks.check');
+
+Route::post('/courses/{slug}/tasks', [CourseController::class, 'downloadTask'])->name('courses.tasks.download');
+
+Route::post('/courses/{slug}/tasks/{task}', [CourseController::class, 'gradeTask'])->name('courses.tasks.grade');
+
+
+
+Route::get('/courses/{slug}/documents', [CourseController::class, 'documents'])->name('courses.documents');
+
+Route::post('/courses/{slug}/documents/download', [CourseController::class, 'downloadDocument'])->name('courses.documents.download');
+
+Route::post('/courses/{slug}/documents', [CourseController::class, 'storeChapter'])->name('courses.chapter.store');
+
+Route::post('/courses/{slug}/announcement/create', [CourseController::class, 'storeAnnouncement'])->name('courses.announcement.store');
+
+
+
 
 Route::get('/chat', [ChatController::class, 'index'])->name('chat');
 
@@ -71,12 +96,5 @@ Route::get('/activate-account/{token}/{email}', [PasswordController::class, 'cre
 Route::post('/activate-account', [PasswordController::class, 'store'])
     ->middleware('guest')
     ->name('user.activate');
-
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
 require __DIR__.'/auth.php';

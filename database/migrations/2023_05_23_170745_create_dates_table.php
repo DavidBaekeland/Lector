@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('dates', function (Blueprint $table) {
             $table->id();
-            $table->date("start_date");
-            $table->time("start_time");
+            $table->date("date");
+            $table->time("time");
             $table->date("end_date");
             $table->time("end_time");
             $table->unsignedBigInteger('appointment_id');

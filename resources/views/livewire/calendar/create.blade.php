@@ -1,4 +1,4 @@
-<x-card class="modal">
+<x-card class="modal" id="calendar-modal">
     @can('manage_subjects')
         <div id="appointmentsToggle">
             <span>Persoonlijk</span>
@@ -16,13 +16,12 @@
 
             <div class="input-div">
                 <select wire:model="subjectId" class="role-input">
-                    <option value="Cursus" disabled selected>Cursus</option>
-
-                    @foreach(\App\Models\Subject::all() as $subject)
+                    @foreach($subjects as $subject)
                         <option value="{{ $subject->id }}">
                             {{$subject->name}}
                         </option>
                     @endforeach
+
                 </select>
 
                 <x-input-error :messages="$errors->get('subject')"/>
@@ -40,7 +39,7 @@
                     <span>
                         @if($selectedUsers)
                             @foreach($selectedUsers as $selectedUser)
-                                <a class="chatItem chatItemSelected">{{\App\Models\User::find($selectedUser)->name}}</a>
+                                <a class="card-small-item card-small-item-selected">{{\App\Models\User::find($selectedUser)->name}}</a>
                             @endforeach
                         @endif
                     </span>
