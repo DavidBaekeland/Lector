@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Appointment;
 use App\Models\Dashboard;
 use App\Models\Document;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -13,9 +14,7 @@ class DashboardController extends Controller
     public function index() {
         $chats = auth()->user()->chats->take(3);
 
-        $appointmentsPersonal = Appointment::whereHas('users', function ($query) {
-            return $query->where('start_date', '>=', now())->where('user_id', '=', auth()->user()->id);
-        })->get();
+        $appointmentsPersonal = auth()->user()->appointmentsPersonal;
 
         $appointmentsSubjects = [];
         $announcements = [];
@@ -34,7 +33,7 @@ class DashboardController extends Controller
             {
                 foreach ($subject->appointments as $appointmentSubject)
                 {
-                    if($appointmentSubject->start_date >= now())
+                    if(Carbon::create($appointmentSubject->start_date) >= today())
                     {
                         $appointmentsSubjects[] = $appointmentSubject;
                     }

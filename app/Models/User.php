@@ -124,6 +124,12 @@ class User extends Authenticatable
         return $this->belongsToMany(Appointment::class);
     }
 
+    public function appointmentsPersonal(): BelongsToMany
+    {
+        return $this->belongsToMany(Appointment::class)
+            ->where("start_date", ">=", now());
+    }
+
     public function tasks(): BelongsToMany
     {
         return $this->belongsToMany(Task::class);
