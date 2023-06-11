@@ -12,9 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('last_name')->after('name');
-            $table->renameColumn('name', 'first_name');
-            $table->unsignedBigInteger('course_id')->nullable()->after('role_id');
+            $table->string('last_name')->after('first_name');
+            $table->unsignedBigInteger('course_id')->nullable()->default(null)->after('role_id');
             $table->foreign('course_id')
                 ->references('id')
                 ->on('courses');
