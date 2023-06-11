@@ -52,7 +52,7 @@ class CalendarController extends Controller
             $combinedAppointmentsPerDayCollection = $appointmentsPersonalDates;
         }
 
-        
+
         $now = Carbon::now();
 
         $appointmentsDatesTime = [];
@@ -126,28 +126,6 @@ class CalendarController extends Controller
         ]);
 
         $appointment->users()->sync(auth()->user());
-
-//        $date = Date::create([
-//            "date" => $request->startDate,
-//            "time" => $request->startTime,
-//            "appointment_id" => $appointment->id
-//        ]);
-
-//        $date2 = Date::create([
-//            "date" => $request->endDate,
-//            "time" => $request->endTime,
-//            "appointment_id" => $appointment->id
-//        ]);
-
-
-//        $date = Date::create([
-//            "start_date" => date('Y-m-d H:i', strtotime("$request->startDate $request->startTime")),
-//            "start_time" => $request->startTime,
-//            "end_date" => $request->endDate,
-//            "end_time" => $request->endTime,
-//            "appointment_id" => $appointment->id
-//        ]);
-
 
         return redirect()->route("calendar.index");
     }
