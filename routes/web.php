@@ -7,12 +7,8 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MessageController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
-use App\Models\Peer;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
 
 
 /*
@@ -100,12 +96,5 @@ Route::get('/activate-account/{token}/{email}', [PasswordController::class, 'cre
 Route::post('/activate-account', [PasswordController::class, 'store'])
     ->middleware('guest')
     ->name('user.activate');
-
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
 require __DIR__.'/auth.php';
