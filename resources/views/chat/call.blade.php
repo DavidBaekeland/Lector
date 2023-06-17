@@ -43,11 +43,7 @@
     <script type="module">
         const videoGrid = document.getElementById('videosDiv');
 
-        const peer = new Peer({
-            host: "localhost",
-            port: 9000,
-            path: "/peerserver",
-        })
+        const peer = new Peer();
 
         const myVideo = document.createElement('video')
         myVideo.muted = true;
@@ -136,15 +132,12 @@
 
 
         peer.on('open', id => {
-            console.log(id);
-
             setTimeout(() => {
                 Echo.private(`chat.{{$chat_id}}`)
                     .whisper('user-connected', {
                         user_id: id
                     });
             }, 1000);
-
         })
 
         function connectToNewUser(userId, stream)  {
