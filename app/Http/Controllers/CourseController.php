@@ -158,7 +158,6 @@ class CourseController extends Controller
 
         $selectedSubject->load([
             'chapters',
-            'documents'
         ]);
 
         return view('courses.documents', compact('subjects', 'selectedSubject', 'slug'));
