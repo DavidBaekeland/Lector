@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Chat;
 use App\Models\Peer;
+use App\Models\User;
 use App\Notifications\NewMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
@@ -23,13 +24,14 @@ class CallController extends Controller
 
         foreach ($users as $user)
         {
-            $tempUsers = $users->filter(function ($tempUser) use ($user){
-                return $user->id != $tempUser->id;
-            });
+            $tempUsers = $chat->users->where("id", '!=', $user->id);
 
             $chatName = $tempUsers->pluck("name")->implode(', ');
 
-            Notification::send($user, new \App\Notifications\Peer($chat, $chatName));
+            if (auth()->user()->id != $user->id)
+            {
+                Notification::send($user, new \App\Notifications\Peer($chat, $chatName));
+            }
         }
 
         return view('chat.call', ["chat_id" => $request->chat_id]);

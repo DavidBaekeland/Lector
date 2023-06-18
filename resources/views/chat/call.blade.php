@@ -40,8 +40,8 @@
 
         navigator.mediaDevices.getUserMedia({
             video: {
-                'width': {'ideal': 728},
-                'height': {'ideal': 410}
+                'width': {'max': 728},
+                'height': {'max': 410}
             },
             audio: true
         }).then(stream => {

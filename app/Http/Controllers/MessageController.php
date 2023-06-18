@@ -18,7 +18,7 @@ class MessageController extends Controller
 
     public function store(Request $request)
     {
-        $chat = Chat::find($request->chat_id);
+        $chat = \App\Models\Chat::find($request->chat_id);
 
         if (! Gate::allows('store_message', $chat)) {
             return response()->json("Your are not allowed to send a message in this chat.", 403);

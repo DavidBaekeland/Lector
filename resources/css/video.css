@@ -2,6 +2,7 @@ video {
     height: auto;
     width: 100%;
     max-width: 30vw;
+    max-height: 55%;
     margin: auto;
     border-radius: 10px;
 }
@@ -46,5 +47,6 @@ video {
 
 #videosDiv {
     display: inline-flex;
+    height: 90%;
 }
 
