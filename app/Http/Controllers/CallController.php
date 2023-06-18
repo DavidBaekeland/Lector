@@ -42,15 +42,11 @@ class CallController extends Controller
 
     public function declineOtherPeer(string $chat_id)
     {
-        // melding sturen naar persoon die gesprek gestart is
-
         return redirect()->back();
     }
 
     public function stopCall()
     {
-        // JS
-        // Voor iedereen?
         return redirect()->route('chat');
     }
 
