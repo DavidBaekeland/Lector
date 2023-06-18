@@ -18,7 +18,7 @@ class MessageController extends Controller
 
     public function store(Request $request)
     {
-        $chat = \App\Models\Chat::find($request->chat_id);
+        $chat = Chat::find($request->chat_id);
 
         if (! Gate::allows('store_message', $chat)) {
             return response()->json("Your are not allowed to send a message in this chat.", 403);
@@ -35,9 +35,7 @@ class MessageController extends Controller
 
         event(new \App\Events\Chat($message));
 
-        $users = $chat->users;
-
-        foreach ($users as $user)
+        foreach ($chat->users as $user)
         {
             Notification::send($user, new NewMessage($message, $chat));
         }

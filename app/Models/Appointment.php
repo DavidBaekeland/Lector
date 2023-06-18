@@ -43,7 +43,6 @@ class Appointment extends Model
         return $this->belongsToMany(User::class);
     }
 
-    // Controleren -> in Date model
     public function dates(): HasMany
     {
         return $this->HasMany(Date::class);

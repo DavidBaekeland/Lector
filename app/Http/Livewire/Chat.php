@@ -19,9 +19,7 @@ class Chat extends Component
 
         $this->authUserChats = auth()->user()->chats->sortByDesc('updated_at');
 
-
-            JavaScript::put(["urlChat" => url('chat'), "userId" => auth()->user()->id, "userName" => auth()->user()->first_name, 'chatId' => null]);
-
+        JavaScript::put(["urlChat" => url('chat'), "userId" => auth()->user()->id, "userName" => auth()->user()->first_name, 'chatId' => null]);
     }
 
     public function notifyMessage()
@@ -34,7 +32,6 @@ class Chat extends Component
     {
         $this->chatLivewire = null;
     }
-
 
     public function chat(\App\Models\Chat $chat)
     {
