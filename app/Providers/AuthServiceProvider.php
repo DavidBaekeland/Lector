@@ -44,6 +44,10 @@ class AuthServiceProvider extends ServiceProvider
             return ($user->role->name == "docent" || $user->role->name == "admin");
         });
 
+        Gate::define('manage_announcements', function(User $user) {
+            return ($user->role->name == "docent" || $user->role->name == "admin");
+        });
+
         Gate::define('upload_task', function(User $user, Task $task) {
             return $user->hasTask($task->id) &&$user->role->name == "student";
         });

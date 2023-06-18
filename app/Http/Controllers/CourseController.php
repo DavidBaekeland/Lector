@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreAnnouncementRequest;
+use App\Http\Requests\StoreChapterRequest;
+use App\Http\Requests\StoreTaskRequest;
+use App\Http\Requests\UploadTaskRequest;
 use App\Models\Announcement;
 use App\Models\Chapter;
 use App\Models\Document;
@@ -103,7 +107,7 @@ class CourseController extends Controller
         return Storage::download($request->file_name);
     }
 
-    public function tasksUpload(Request $request, $slug)
+    public function tasksUpload(UploadTaskRequest $request, $slug)
     {
         $task = Task::find($request->task);
 
@@ -117,7 +121,7 @@ class CourseController extends Controller
         return response()->json("success");
     }
 
-    public function storeTask(Request $request)
+    public function storeTask(StoreTaskRequest $request)
     {
         if (! Gate::allows('manage_tasks')) {
             abort(403);
@@ -149,7 +153,7 @@ class CourseController extends Controller
         return view('courses.documents', compact('subjects', 'selectedSubject', 'slug'));
     }
 
-    public function storeChapter(Request $request, $slug)
+    public function storeChapter(StoreChapterRequest $request, $slug)
     {
         if (! Gate::allows('manage_subjects')) {
             abort(403);
@@ -182,7 +186,7 @@ class CourseController extends Controller
         return Storage::download($request->file_name);
     }
 
-    public function storeAnnouncement(Request $request, $slug)
+    public function storeAnnouncement(StoreAnnouncementRequest $request, $slug)
     {
         Announcement::create([
             "title" => $request->title,

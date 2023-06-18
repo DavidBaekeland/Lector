@@ -87,7 +87,7 @@
                     </div>
 
                     <div class="input-div">
-                        <x-input-textarea name="announcement" maxlength="1000" required placeholder="Aankondiging"></x-input-textarea>
+                        <x-input-textarea name="announcement" maxlength="1000" required :value="old('announcement')" placeholder="Aankondiging"></x-input-textarea>
                         <x-input-error :messages="$errors->get('announcement')"/>
                     </div>
 
