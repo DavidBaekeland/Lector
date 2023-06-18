@@ -36,7 +36,6 @@ class CalendarController extends Controller
                 }
             }
 
-            // All() -> collection to array
             $datesSubjects = collect($appointmentsDatesSubjects)->groupBy("start_date")->map(function ($dates) {
                 return $dates->map(function ($date) {
                     return $date;
@@ -118,7 +117,6 @@ class CalendarController extends Controller
         $appointment = Appointment::create([
             "title" => $request->title,
             "location" => $request->location,
-            "description" => "sdqfqsdfqsdfqsdf",
             "start_date" => $request->startDate,
             "start_time" => $request->startTime,
             "end_date" => $request->endDate,

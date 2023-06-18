@@ -14,7 +14,6 @@ class ChatController extends Controller
     public function __construct()
     {
         $this->middleware('auth:sanctum');
-        //$this->authorizeResource(Chat::class, 'chat');
     }
 
     public function index()
@@ -31,30 +30,5 @@ class ChatController extends Controller
     public function create()
     {
         return view('chat.create');
-    }
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function show(string $id)
-    {
-        //
-    }
-
-    public function edit(string $id)
-    {
-        //
-    }
-
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    public function destroy(string $id)
-    {
-        //
     }
 }

@@ -58,20 +58,6 @@ class CourseController extends Controller
         return view('courses.tasks', compact('subjects', 'selectedSubject'));
     }
 
-    public function AddTasks(Request $request)
-    {
-        $task = Task::find($request->task);
-
-        $path = 'tasks/'.$request->task.'/'.auth()->user()->id;
-        foreach ($request->files as $key => $file)
-        {
-            $request->file($key)->storeAs($path, $request->file($key)->getClientOriginalName());
-            $task->users()->attach(auth()->user()->id, ['file_name' => $request->file($key)->getClientOriginalName()]);
-        }
-
-        return response()->json("success");
-    }
-
     public function checkTasks($slug, Task $task)
     {
         if (! Gate::allows('manage_tasks')) {

@@ -14,17 +14,6 @@ class MessageController extends Controller
     public function __construct()
     {
         $this->middleware('auth:sanctum');
-        //$this->authorizeResource(Chat::class, 'chat');
-    }
-
-    public function index()
-    {
-        //
-    }
-
-    public function create()
-    {
-        //
     }
 
     public function store(Request $request)
@@ -54,26 +43,5 @@ class MessageController extends Controller
         }
 
         return response()->json("succes");
-    }
-
-    public function show(string $id)
-    {
-        //
-    }
-
-    public function edit(string $id)
-    {
-        //
-    }
-
-
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    public function destroy(string $id)
-    {
-        //
     }
 }

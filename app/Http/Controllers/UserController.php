@@ -22,7 +22,6 @@ class UserController extends Controller
         $this->authorizeResource(User::class, 'user');
     }
 
-
     public function index()
     {
         $users = User::orderBy('id', 'desc')->get();
@@ -39,12 +38,6 @@ class UserController extends Controller
 
         return view("users.index", compact('users', 'show', 'courses', 'roles'));
     }
-
-    public function create()
-    {
-        //
-    }
-
 
     public function store(StoreUserRequest $request)
     {
@@ -63,30 +56,6 @@ class UserController extends Controller
         Mail::to($user)->send(new NewUser($user));
 
         return redirect()->route("users.index");
-    }
-
-
-    public function show(string $id)
-    {
-        //
-    }
-
-
-    public function edit(string $id)
-    {
-        //
-    }
-
-
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-
-    public function destroy(string $id)
-    {
-        //
     }
 
     public function destroyMultipleUsers(DeleteUserRequest $request)
