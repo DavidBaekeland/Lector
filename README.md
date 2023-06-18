@@ -2,7 +2,7 @@
 
 ## Lector
 
-Lector is een online leerplatform dat ontwikkeled is om het online schoolproces van studenten zo gemakkelijk mogelijk maakt:
+Lector is een online leerplatform dat ontwikkeled is om het online schoolproces van studenten zo gemakkelijk mogelijk te maken. Lector bestaat uit 3 onderdelen:
 - Leerplatform
 - Agenda
 - Communicatie
