@@ -281,15 +281,15 @@ class CourseSeeder extends Seeder
 
         Task::create([
             "name" => "Magazine",
-            "description" => "In week 8 werken we een pitch presentatie uit waarin de deliverables van de voorbije weken worden toegelicht en het prototype wordt voorgesteld. Daarin ligt je op logische wijze het verloop van het project toe. <br> <br> - Initiële vraagstelling <br>- Observaties en interviews en de daaruit volgende bevindingen <br>- De ontwikkeling van je ideeën <br>- Het bepalen van de scope <br>- De uitwerking van het prototype <br>- Het prototype <br><br>Geef daarbij voldoende aandacht aan de waarom van de bepaalde scope op basis van de bevindingen uit je onderzoek en de manier waarop je een oplossing biedt met je prototype. Voor dat laatste zijn de testen die je doet met het prototype waardevol als bewijs dat je oplossing doet wat je hebt beoogd.",
+            "description" => "De magazine is één van de belangerijkste opdrachten van je Final Work. De magazine is een document waarbij het proces en het resultaat wordt besproken. <br> <br> <b>Abstract</b><br>De abstract is een korte samenvatting van je magazine.<br><br> <b>Middenstuk</b><br>In het middenstuk worden alle onderdelen (onderzoek, technologiëen, ...) besproken.<br><br><br><b>Litteratuurlijst</b><br>In de litteratuurlijst worden alle referenties geplaatst.<br><br>Dit document moet minstens <b>30</b> pagina's groot zijn.",
             "deadline" => now(),
             "points" => 40,
             "subject_id" => $subject1->id
         ]);
 
         Task::create([
-            "name" => "Gebruikers documentatie",
-            "description" => "In week 8 werken we een pitch presentatie uit waarin de deliverables van de voorbije weken worden toegelicht en het prototype wordt voorgesteld. Daarin ligt je op logische wijze het verloop van het project toe. <br> <br> - Initiële vraagstelling <br>- Observaties en interviews en de daaruit volgende bevindingen <br>- De ontwikkeling van je ideeën <br>- Het bepalen van de scope <br>- De uitwerking van het prototype <br>- Het prototype <br><br>Geef daarbij voldoende aandacht aan de waarom van de bepaalde scope op basis van de bevindingen uit je onderzoek en de manier waarop je een oplossing biedt met je prototype. Voor dat laatste zijn de testen die je doet met het prototype waardevol als bewijs dat je oplossing doet wat je hebt beoogd.",
+            "name" => "Design",
+            "description" => "Voor deze opdracht is het de bedoeling om een design te ontwikkelen voor je Final Work. Hierbij moeten de volgende onderdelen ingeleverd worden: <br>  <br> - Wireframes <br>- Stylegids <br> - Design <br> <br>",
             "deadline" => now()->addDay(),
             "points" => 40,
             "subject_id" => $subject1->id
