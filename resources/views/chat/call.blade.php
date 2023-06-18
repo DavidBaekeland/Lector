@@ -13,16 +13,6 @@
                     <path stroke-linecap="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z" />
                 </svg>
             </x-chat.button>
-            <x-chat.button>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
-                </svg>
-            </x-chat.button>
-            <x-chat.button>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.068.157 2.148.279 3.238.364.466.037.893.281 1.153.671L12 21l2.652-3.978c.26-.39.687-.634 1.153-.67 1.09-.086 2.17-.208 3.238-.365 1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
-                </svg>
-            </x-chat.button>
             <x-chat.button :exit="true" :href="route('call.stop')">
                 <!-- Generator: Adobe Illustrator 27.5.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -43,19 +33,15 @@
     <script type="module">
         const videoGrid = document.getElementById('videosDiv');
 
-        const peer = new Peer({
-            host: "localhost",
-            port: 9000,
-            path: "/peerserver",
-        })
+        const peer = new Peer();
 
         const myVideo = document.createElement('video')
         myVideo.muted = true;
 
         navigator.mediaDevices.getUserMedia({
             video: {
-                'width': {'ideal': 728},
-                'height': {'ideal': 410}
+                'width': {'max': 728},
+                'height': {'max': 410}
             },
             audio: true
         }).then(stream => {
@@ -136,15 +122,12 @@
 
 
         peer.on('open', id => {
-            console.log(id);
-
             setTimeout(() => {
                 Echo.private(`chat.{{$chat_id}}`)
                     .whisper('user-connected', {
                         user_id: id
                     });
             }, 1000);
-
         })
 
         function connectToNewUser(userId, stream)  {

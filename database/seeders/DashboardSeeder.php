@@ -11,7 +11,7 @@ class DashboardSeeder extends Seeder
     public function run(): void
     {
         Dashboard::create([
-            'title' => 'Aankondiging'
+            'title' => 'Aankondigingen'
         ]);
 
         Dashboard::create([
@@ -19,7 +19,7 @@ class DashboardSeeder extends Seeder
         ]);
 
         Dashboard::create([
-            'title' => 'Chat'
+            'title' => 'Chats'
         ]);
 
         Dashboard::create([

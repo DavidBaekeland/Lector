@@ -68,12 +68,9 @@ img {
     -premailer-cellpadding: 0;
     -premailer-cellspacing: 0;
     -premailer-width: 100%;
-    margin: 0;
+    margin: auto;
     padding: 0;
     width: 100%;
-    background-image:  linear-gradient(rgba(112, 112, 112, 0.05) 1px, transparent 1px), linear-gradient(to right, rgba(112, 112, 112, 0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
-
 }
 
 .content {
@@ -108,13 +105,20 @@ img {
 }
 
 /* Body */
+body {
+    background-image:  linear-gradient(rgba(112, 112, 112, 0.05) 1px, transparent 1px), linear-gradient(to right, rgba(112, 112, 112, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+}
 
 .body {
     -premailer-cellpadding: 0;
     -premailer-cellspacing: 0;
     -premailer-width: 100%;
     width: 100%;
-
     font-family: effra;
     margin: 0;
 }
@@ -123,7 +127,7 @@ img {
     -premailer-cellpadding: 0;
     -premailer-cellspacing: 0;
     -premailer-width: 570px;
-    margin: 0 auto;
+    margin: 0 auto  34px;
     display: flex;
     flex-direction: column;
     background-color: white;

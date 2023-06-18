@@ -14,17 +14,6 @@ class MessageController extends Controller
     public function __construct()
     {
         $this->middleware('auth:sanctum');
-        //$this->authorizeResource(Chat::class, 'chat');
-    }
-
-    public function index()
-    {
-        //
-    }
-
-    public function create()
-    {
-        //
     }
 
     public function store(Request $request)
@@ -46,34 +35,11 @@ class MessageController extends Controller
 
         event(new \App\Events\Chat($message));
 
-        $users = $chat->users;
-
-        foreach ($users as $user)
+        foreach ($chat->users as $user)
         {
             Notification::send($user, new NewMessage($message, $chat));
         }
 
         return response()->json("succes");
-    }
-
-    public function show(string $id)
-    {
-        //
-    }
-
-    public function edit(string $id)
-    {
-        //
-    }
-
-
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    public function destroy(string $id)
-    {
-        //
     }
 }

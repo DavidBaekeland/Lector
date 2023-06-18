@@ -75,7 +75,7 @@ class Peer extends Notification
     {
         return new BroadcastMessage([
             'chat_id' => $this->chat->id,
-            'chat_name' => ($this->chat->name) ? $this->chat->name : $this->chatName,
+            'chat_name' => ($this->chatName) ?: $this->chat->name,
             'url_chat_accept' => $this->urlChatAccept,
             'url_chat_decline' => $this->urlChatDecline,
             'audio_link' => $this->audioLink

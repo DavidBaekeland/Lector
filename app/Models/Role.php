@@ -12,10 +12,6 @@ class Role extends Model
 
     const ROLES = ["admin", "docent", "student"];
 
-
-    /** Attributes */
-
-
     /** Relationships */
     public function users(): HasMany
     {

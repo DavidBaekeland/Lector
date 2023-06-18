@@ -31,7 +31,6 @@
 
 
         <script type="module">
-            @if(!request()->routeIs('chat') && !request()->routeIs('chat.create'))
             Echo.private('App.Models.User.' + {{ auth()->user()->id }})
                 .notification((notification) => {
                     console.log(notification)
@@ -66,36 +65,37 @@
                             document.getElementById(`${notification.chat_id}CallDiv`).remove();
                         })
                     } else if (notification.type === 'App\\Notifications\\NewMessage') {
-                        let htmlString = `
-                        <div class="alertDiv" id="${notification.id}Div">
-                            <span class="alert">
-                                <div>
-                                    <h1>${notification.chatName}</h1>
-                                    <a id="${notification.id}">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                        </svg>
-                                    </a>
-                                </div>
-                                <p>${notification.message}</p>
-                            </span>
-                        </div>`;
+                        @if(!request()->routeIs('chat') && !request()->routeIs('chat.create'))
+                            let htmlString = `
+                            <div class="alertDiv" id="${notification.id}Div">
+                                <span class="alert">
+                                    <div>
+                                        <h1>${notification.chatName}</h1>
+                                        <a id="${notification.id}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <p>${notification.message}</p>
+                                </span>
+                            </div>`;
 
-                        document.getElementsByClassName('app')[0].insertAdjacentHTML('afterbegin', htmlString);
+                            document.getElementsByClassName('app')[0].insertAdjacentHTML('afterbegin', htmlString);
 
-                        let alertClose = document.getElementById(`${notification.id}`);
+                            let alertClose = document.getElementById(`${notification.id}`);
 
-                        setTimeout(() => {
-                            document.getElementById(`${notification.id}Div`).innerHTML = "";
-                        }, "5000");
+                            setTimeout(() => {
+                                document.getElementById(`${notification.id}Div`).innerHTML = "";
+                            }, "5000");
 
-                        alertClose.addEventListener('click', (e) => {
-                            document.getElementById(`${notification.id}Div`).innerHTML = "";
-                        })
+                            alertClose.addEventListener('click', (e) => {
+                                document.getElementById(`${notification.id}Div`).innerHTML = "";
+                            })
+                        @endif
+
                     }
-
                 });
-            @endif
         </script>
     </body>
 </html>

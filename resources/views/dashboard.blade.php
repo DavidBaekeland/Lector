@@ -49,7 +49,7 @@
 
         <div class="cardsDashboard">
             <div class="row">
-                @if(auth()->user()->hasDashboardTitle("Aankondiging"))
+                @if(auth()->user()->hasDashboardTitle("Aankondigingen"))
                     <x-card-dashboard class="info2">
                         <h2>AANKONDIGINGEN</h2>
                         @if(count($announcements) > 0)
@@ -85,9 +85,9 @@
             </div>
 
             <div class="row">
-                @if(auth()->user()->hasDashboardTitle("Chat"))
+                @if(auth()->user()->hasDashboardTitle("Chats"))
                     <x-card-dashboard class="info">
-                        <h2>CHAT</h2>
+                        <h2>CHATS</h2>
                         @if(count($chats) > 0)
                             @foreach($chats as $chat)
                                 <a href="{{ route('chat') }}" class="chat-dashboard">
@@ -100,7 +100,7 @@
                     </x-card-dashboard>
                 @endif
 
-                @if(auth()->user()->can("see_deadlines") && auth()->user()->hasDashboardTitle("Deadline"))
+                @if(auth()->user()->can("see_deadlines") && auth()->user()->hasDashboardTitle("Deadlines"))
                     <x-card-dashboard class="info2">
                         <h2>DEADLINES</h2>
                         @if(count($deadlines) > 0)
